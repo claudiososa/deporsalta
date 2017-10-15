@@ -16,9 +16,75 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
+        'name' => 'claudio',
+        'username' => 'claudioSosa',//$faker->name,
+        'email' => 'vicomser.claudio@gmail.com',//$faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
+        'type' => 'admin'
     ];
+});
+
+
+$factory->define(App\Category::class,function(Faker\Generator $faker){
+  return [
+    'description' => $faker->username(),
+    'user_id' => '1',
+  ];
+});
+
+$factory->define(App\Brand::class,function(Faker\Generator $faker){
+  return [
+    'description' => $faker->username(),
+    'marginReseller' => $faker->numberBetween($min=40,$max=60),
+    'marginClient' => $faker->numberBetween($min=80,$max=120),
+    'user_id' => '1',
+  ];
+});
+
+$factory->define(App\Colour::class,function(Faker\Generator $faker){
+  return [
+    'description' => $faker->username(),
+    'user_id' => '1',
+  ];
+});
+
+
+
+$factory->define(App\Product::class,function(Faker\Generator $faker){
+  return [
+    'description' => $faker->username(),
+    'priceCost' => $faker->numberBetween($min=250,$max=999),
+    'marginReseller' => $faker->numberBetween($min=40,$max=60),
+    'marginClient' => $faker->numberBetween($min=80,$max=120),
+    'category_id' => $faker->numberBetween($min=1,$max=20),
+    'brand_id' => $faker->numberBetween($min=1,$max=20),
+    'colour_id' => $faker->numberBetween($min=1,$max=20),
+  ];
+});
+
+
+$factory->define(App\Waist::class,function(Faker\Generator $faker){
+  return [
+    'description' => $faker->username(),
+    'user_id' => '1',
+  ];
+});
+
+$factory->define(App\Quantity::class,function (Faker\Generator $faker){
+  return [
+    'product_id'=>$faker->numberBetween($min=1,$max=20),
+    'waist_id' => $faker->numberBetween($min=1,$max=5),
+    'quantity' => $faker->numberBetween($min=1,$max=10),
+    'user_id' => '1',
+  ];
+});
+
+
+$factory->define(App\Image::class,function(Faker\Generator $faker){
+  return [
+    'product_id' => $faker->numberBetween($min=1,$max=20),
+    'description' => $faker->username(),
+    'user_id' => '1',
+  ];
 });
