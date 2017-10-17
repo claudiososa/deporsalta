@@ -33,6 +33,9 @@
                         <!-- Authentication Links -->
                         @if (Auth::guest())
                           <li class="nav-item">
+                            <a class="nav-link" href="/catalogo">Catalogo</a>
+                          </li>
+                          <li class="nav-item">
                             <a class="nav-link" href="/aboutUs">Quienes Somos</a>
                           </li>
                             <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Entrar</a></li>
@@ -49,6 +52,8 @@
                                 <a href="/viewcolour">Mostrar Colores</a>
                                 <a href="/brand/create">Nueva Marca</a>
                                 <a href="/viewbrand">Mostrar Marcas</a>
+                                <a href="/waist/create">Nuevo Talles</a>
+                                <a href="/viewwaist">Mostrar Talles</a>
                               </div>
                             </li>
                               <li  class="nav-item dropdown">

@@ -14,9 +14,11 @@ class CreateTableImagess extends Migration
     public function up()
     {
         Schema::create('images', function (Blueprint $table) {
+            $table->increments('id')->unsigned();
             $table->integer('product_id')->unsigned();
             $table->string('description');
-            $table->integer('user_id')->unsigned();            
+            $table->boolean('selected')->unsigned()->default(0);
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
         });
     }

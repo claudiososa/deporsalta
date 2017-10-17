@@ -84,7 +84,7 @@ $factory->define(App\Quantity::class,function (Faker\Generator $faker){
 $factory->define(App\Image::class,function(Faker\Generator $faker){
   return [
     'product_id' => $faker->numberBetween($min=1,$max=20),
-    'description' => $faker->username(),
+    'description' => '',    
     'user_id' => '1',
   ];
 });

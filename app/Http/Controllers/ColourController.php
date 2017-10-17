@@ -59,7 +59,7 @@ class ColourController extends Controller
       $colour->id = $request->input('id');
       $colour->description = $request->input('description');
       $colour->user_id = $user->id;
-
+      dd($colour);
       $colour->save();
       return view('colour.show',[
         'colour'=>$colour

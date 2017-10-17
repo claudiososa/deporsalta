@@ -14,8 +14,13 @@ class ProductController extends Controller
 
   public function show(Product $product)
   {
+    $product = Product::with(['quantity' => function($query){
+      $query->with('waist')->get();
+    }])->find($product->id);
+    //$quantities =$product->quantity;
     return view('product.show',[
-      'product'=>$product
+      'product'=>$product,
+      'quantities'=>$quantities
     ]);
   }
 
@@ -91,9 +96,42 @@ class ProductController extends Controller
 
   public  function list()
   {
-    $products = Product::paginate(10);
-    //dd($products);
+      $products = Product::with([
+        'quantity' => function($query){
+          $query->with('waist')->get();
+          },
+        'quantitySum' => function($query){
+          $query->get();
+        },
+        'image' => function ($query){
+          $query->get();
+        }
+
+      ])->paginate(10);
+
+      //dd($products);
     return view('product.list',[
+      'products' => $products
+    ]);
+  }
+
+  public  function catalogo()
+  {
+      $products = Product::with([
+        'quantity' => function($query){
+          $query->with('waist')->get();
+          },
+        'quantitySum' => function($query){
+          $query->get();
+        },
+        'image' => function ($query){
+          $query->get();
+        }
+
+      ])->paginate(12);
+
+      //dd($products);
+    return view('product.catalogo',[
       'products' => $products
     ]);
   }

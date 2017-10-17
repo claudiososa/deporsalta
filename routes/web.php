@@ -15,8 +15,13 @@ Route::get('/','PagesController@home');
 
 Route::get('/aboutUs','PagesController@aboutUs');
 
+
+// Visitante
+
+Route::get('/catalogo','ProductController@catalogo');
+
 //  Products
-Route::get('/products','ProductController@list');
+Route::get('/products','ProductController@list')->middleware('auth');
 Route::get('/product/create','ProductController@new')->middleware('auth');
 Route::get('viewproduct/{product}','ProductController@show');
 Route::post('/product/create','ProductController@create')->middleware('auth');
@@ -43,6 +48,16 @@ Route::get('/category/update/{category}','CategoryController@update')->middlewar
 Route::post('/category/edit','CategoryController@edit')->middleware('auth');
 Route::post('/category/create','CategoryController@create')->middleware('auth');
 
+//  Waists
+Route::get('/viewwaist','WaistController@list')->middleware('auth');
+Route::get('/viewwaist/{waist}','WaistController@show')->middleware('auth');
+
+Route::get('/waist/create','WaistController@new')->middleware('auth');
+Route::get('/waist/update/{waist}','WaistController@update')->middleware('auth');
+
+Route::post('/waist/edit','WaistController@edit')->middleware('auth');
+Route::post('/waist/create','WaistController@create')->middleware('auth');
+
 
 // Colours
 Route::get('/viewcolour','ColourController@list')->middleware('auth');
@@ -54,6 +69,18 @@ Route::get('/colour/update/{colour}','ColourController@update')->middleware('aut
 Route::post('/colour/edit','ColourController@edit')->middleware('auth');
 
 Route::post('/colour/create','ColourController@create')->middleware('auth');
+
+// Images
+Route::get('/image/new/{product}','ImageController@new')->middleware('auth');
+Route::post('/image/create','ImageController@create')->middleware('auth');
+Route::get('/image/delete/{image}','ImageController@delete')->middleware('auth');
+
+// Quantity
+Route::get('/quantity/new/{product}','QuantityController@new')->middleware('auth');
+Route::post('/quantity/create','QuantityController@create')->middleware('auth');
+
+
+
 
 Auth::routes();
 

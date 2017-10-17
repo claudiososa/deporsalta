@@ -34,12 +34,12 @@ class DatabaseSeeder extends Seeder
         ->create();
 
         factory(App\Quantity::class)
-        ->times(2)
+        ->times(1)
         ->create();
 
-        factory(App\Image::class)
-        ->times(20)
-        ->create();
+        /*factory(App\Image::class)
+        ->times(1)
+        ->create();*/
 
 
     }

@@ -23,8 +23,27 @@ class Product extends Model
       return $this->belongsTo(Category::class);
     }
 
+    public function image()
+    {
+        return $this->hasMany(Image::class);
+    }
+
     public function quantity()
     {
       return $this->hasMany(Quantity::class);
     }
+
+    public function quantity2()
+    {
+      return $this->hasMany(Quantity::class);
+    }
+
+    public function quantitySum()
+    {
+    return $this->hasMany(Quantity::class)
+      ->select('product_id')
+      ->selectRaw('SUM(quantity) as total')
+      ->groupBy('product_id');
+    }
+
 }
