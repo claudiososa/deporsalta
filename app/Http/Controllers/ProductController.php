@@ -6,11 +6,27 @@ use App\Product;
 use App\Category;
 use App\Brand;
 use App\Colour;
+use App\Waist;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateProductRequest;
+use App\Http\Requests\SearchProductRequest;
 
 class ProductController extends Controller
 {
+
+  public function search(Product $product)
+  {
+    $categories = Category::all();
+    $brands = Brand::all();
+    $colours = Colour::all();
+    $waists = Waist::all();
+    return view('product.search',[
+      'categories'=>$categories,
+      'brands' => $brands,
+      'colours' => $colours,
+      'waists' => $waists
+    ]);
+  }
 
   public function show(Product $product)
   {
@@ -113,6 +129,52 @@ class ProductController extends Controller
     return view('product.list',[
       'products' => $products
     ]);
+  }
+
+  public function searchPost(SearchProductRequest $request)
+  {
+    $products = Product::whereHas('category', function($query) use ($request) {
+        if ($request->categories <> "0") {
+        $query->where('id',$request->categories);
+        }
+      })->whereHas(
+        'brand',function($query) use ($request){
+          if ($request->brands <> "0") {
+            $query->where('id',$request->brands);
+          }
+        })
+        ->whereHas(
+          'colour',function($query) use ($request){
+            if ($request->colours <> "0") {
+              $query->where('id',$request->colours);
+            }
+          })
+      ->with('category','brand','colour')
+      ->with([
+        'quantity' => function($query){
+          $query->with('waist')->get();
+          },
+        'quantitySum' => function($query){
+          $query->get();
+        },
+        'image' => function ($query){
+          $query->get();
+        }
+      ])->where(function ($query) use ($request){
+          if ($request->description <>""){
+            return $query->where('description','LIKE','%'.$request->description.'%');
+          }
+        })->get();
+        //
+        //{
+
+        //}
+
+
+      //dd($products);
+      return view('product.searchList',[
+        'products' =>$products
+      ]);
   }
 
   public  function catalogo()

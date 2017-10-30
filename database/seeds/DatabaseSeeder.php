@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
         ->create();
 
         factory(App\Product::class)
-        ->times(20)
+        ->times(300)
         ->create();
 
         factory(App\Waist::class)
