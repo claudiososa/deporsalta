@@ -14,15 +14,15 @@ class DatabaseSeeder extends Seeder
         factory(App\User::class,1)->create();
         // $this->call(UsersTableSeeder::class);
         factory(App\Category::class)
-        ->times(20)
+        ->times(5)
         ->create();
 
         factory(App\Brand::class)
-        ->times(20)
+        ->times(5)
         ->create();
 
         factory(App\Colour::class)
-        ->times(20)
+        ->times(5)
         ->create();
 
         factory(App\Product::class)

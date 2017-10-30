@@ -19,6 +19,8 @@ Route::get('/aboutUs','PagesController@aboutUs');
 // Visitante
 
 Route::get('/catalogo','ProductController@catalogo');
+Route::get('/catalogo/{category}','ProductController@catalogoCategory');
+
 
 //  Products
 Route::get('/products','ProductController@list')->middleware('auth');

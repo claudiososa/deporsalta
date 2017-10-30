@@ -192,9 +192,36 @@ class ProductController extends Controller
 
       ])->paginate(12);
 
-      //dd($products);
+      $categories = Category::all();
+      //dd($categories);
     return view('product.catalogo',[
-      'products' => $products
+      'products' => $products,
+      'categories' => $categories
+    ]);
+  }
+
+  public  function catalogoCategory(Category $category)
+  {
+      $products = Product::whereHas('category', function($query) use ($category) {
+          $query->where('id',$category->id);
+        })->with([
+        'quantity' => function($query){
+          $query->with('waist')->get();
+          },
+        'quantitySum' => function($query){
+          $query->get();
+        },
+        'image' => function ($query){
+          $query->get();
+        }
+
+      ])->paginate(12);
+
+      $categories = Category::all();
+      //dd($categories);
+    return view('product.catalogo',[
+      'products' => $products,
+      'categories' => $categories
     ]);
   }
 }
