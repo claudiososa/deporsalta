@@ -55,8 +55,11 @@ $factory->define(App\Product::class,function(Faker\Generator $faker){
   return [
     'description' => $faker->username(),
     'priceCost' => $faker->numberBetween($min=250,$max=999),
+    'priceReven' => $faker->numberBetween($min=1000,$max=1500),
+    'priceClient' => $faker->numberBetween($min=1500,$max=2000),
     'marginReseller' => $faker->numberBetween($min=40,$max=60),
     'marginClient' => $faker->numberBetween($min=80,$max=120),
+    //'special' => $faker->numberBetween($min=0,$max=1),
     'category_id' => $faker->numberBetween($min=1,$max=20),
     'brand_id' => $faker->numberBetween($min=1,$max=20),
     'colour_id' => $faker->numberBetween($min=1,$max=20),
@@ -76,6 +79,18 @@ $factory->define(App\Quantity::class,function (Faker\Generator $faker){
     'product_id'=>$faker->numberBetween($min=1,$max=20),
     'waist_id' => $faker->numberBetween($min=1,$max=5),
     'quantity' => $faker->numberBetween($min=1,$max=10),
+    'user_id' => '1',
+  ];
+});
+
+$factory->define(App\Sale::class,function (Faker\Generator $faker){
+  return [
+    'id'=>$faker->numberBetween($min=1,$max=20),
+    'product_id'=>$faker->numberBetween($min=1,$max=20),
+    'waist_id' => $faker->numberBetween($min=1,$max=5),
+    'quantity' => $faker->numberBetween($min=1,$max=10),
+    'priceUnit' => $faker->numberBetween($min=1000,$max=1500),
+    'total' => $faker->numberBetween($min=2000,$max=3000),
     'user_id' => '1',
   ];
 });

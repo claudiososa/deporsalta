@@ -46,6 +46,23 @@
           0
         @endforelse
       </td>
+      <td>
+        <!-- @forelse ($product->quantity as $stock)
+          <b>{{$stock->waist->description}}</b>-{{$stock->quantity}}
+        @empty
+          Sin stock
+        @endforelse -->
+        
+        @forelse ($product->quantitySum as $total)  
+          @if($total->total>0)
+            <a href="/sale/new/{{$product->id}}" class="btn btn-success">Vender</a></td>
+          @else
+            <p class="btn btn-warning">Sin Stock</p>
+          @endif
+        @empty
+          <p class="btn btn-warning">Sin Stock</p>
+        @endforelse
+      </td>
     </tr>
   @empty
     <p>No hay Productos creadas</p>

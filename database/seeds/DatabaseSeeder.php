@@ -37,6 +37,10 @@ class DatabaseSeeder extends Seeder
         ->times(1)
         ->create();
 
+        factory(App\Sale::class)
+        ->times(5)
+        ->create();
+
         /*factory(App\Image::class)
         ->times(1)
         ->create();*/

@@ -86,8 +86,13 @@ Route::get('/image/delete/{image}','ImageController@delete')->middleware('auth')
 Route::get('/quantity/new/{product}','QuantityController@new')->middleware('auth');
 Route::post('/quantity/create','QuantityController@create')->middleware('auth');
 
+// Sales
+Route::get('/sale/new/{product}','SaleController@new')->middleware('auth');
+Route::get('/sale/list','SaleController@list')->middleware('auth');
+Route::post('/sale/create','SaleController@create')->middleware('auth');
+Route::get('/sale/delete/{sale}','SaleController@delete')->middleware('auth');
 
-
+//Route::resource('sales','SaleController');
 
 Auth::routes();
 

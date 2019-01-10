@@ -36,7 +36,7 @@ class ProductController extends Controller
     //$quantities =$product->quantity;
     return view('product.show',[
       'product'=>$product,
-      'quantities'=>$quantities
+      //'quantities'=>$quantities
     ]);
   }
 
@@ -55,13 +55,21 @@ class ProductController extends Controller
   public function create(CreateProductRequest $request)
   {
     $user = $request->user();
-
-    //dd($request);
+    if ($request->input('special') == 'on'){      
+      $special = 1;
+    }else{
+      $special = 0;
+    }
+      
+    
     $product = Product::create([
       'description' => $request->input('description'),
       'priceCost' => $request->input('priceCost'),
+      'priceReven'=>$request->input('priceReven'),
+      'priceClient'=>$request->input('priceClient'),
       'marginReseller'=>$request->input('marginReseller'),
       'marginClient'=>$request->input('marginClient'),
+      'special'=>$special,
       'category_id'=>$request->input('category_id'),
       'brand_id'=>$request->input('brand_id'),
       'colour_id'=>$request->input('colour_id'),
@@ -93,12 +101,20 @@ class ProductController extends Controller
       $user= $request->user();
 
       $product = Product::find($request->input('id'));
+      if ($request->input('special') == 'on'){      
+        $special = 1;
+      }else{
+        $special = 0;
+      }        
 
       $product->id = $request->input('id');
       $product->description = $request->input('description');
       $product->priceCost = $request->input('priceCost');
+      $product->priceReven = $request->input('priceReven');
+      $product->priceClient = $request->input('priceClient');
       $product->marginReseller = $request->input('marginReseller');
-      $product->marginClient = $request->input('marginClient');
+      $product->marginClient = $request->input('marginClient'); 
+      $product->special = $special;
       $product->category_id = $request->input('category_id');
       $product->brand_id = $request->input('brand_id');
       $product->colour_id = $request->input('colour_id');
@@ -179,21 +195,21 @@ class ProductController extends Controller
 
   public  function catalogo()
   {
-      $products = Product::with([
+    $products = Product::with([
         'quantity' => function($query){
           $query->with('waist')->get();
           },
-        'quantitySum' => function($query){
-          $query->get();
-        },
+        // 'quantitySum' => function($query){
+        //   $query->get();
+        // },
         'image' => function ($query){
           $query->get();
         }
 
-      ])->paginate(12);
-
+      ])->withCount('quantity')->paginate(12);
+      //dd($products);
       $categories = Category::all();
-      //dd($categories);
+
     return view('product.catalogo',[
       'products' => $products,
       'categories' => $categories
@@ -215,7 +231,7 @@ class ProductController extends Controller
           $query->get();
         }
 
-      ])->paginate(12);
+      ])->withCount('quantity')->paginate(12);
 
       $categories = Category::all();
       //dd($categories);
