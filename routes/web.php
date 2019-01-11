@@ -14,6 +14,7 @@
 Route::get('/','PagesController@home');
 
 Route::get('/aboutUs','PagesController@aboutUs');
+Route::get('/contacto','PagesController@contact');
 
 
 // Visitante

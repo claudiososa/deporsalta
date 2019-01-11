@@ -95,7 +95,7 @@
                         <!-- Logo Area Start -->
                         <div class="col-6 col-md-3">
                             <div class="logo_area">
-                                <a href="index.html">Deportiva Salta</a>
+                                <a href="/">Deportiva Salta</a>
                             </div>
                         </div>
                         <!-- Search Area Start -->

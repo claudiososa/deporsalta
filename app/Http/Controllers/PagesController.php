@@ -18,7 +18,10 @@ class PagesController extends Controller
       return view('sections.aboutUs');
     }
 
-
+    public function contact()
+    {
+      return view('sections.contact');
+    }
 
 
 }
