@@ -85,7 +85,14 @@
                                 @forelse ($categories as $category)
                                   <div class="custom-control custom-checkbox d-flex align-items-center mb-2">
                                       <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                      <label class="custom-control-label" for="customCheck1"><a href="/catalogo/{{$category->id}}">{{$category->description}}</a> <span class="text-muted">(109)</span></label>
+                                      <label class="custom-control-label" for="customCheck1"><a href="/catalogo/{{$category->id}}">{{$category->description}}</a> <span class="text-muted">(
+                                        @forelse ($category->productsCount as $item)                                            
+                                            {{$item->total}}    
+                                        @empty
+                                            0
+                                        @endforelse  
+
+                                        )</span></label>
                                   </div>                              
                                 @empty
                                   <p>No existen categorias</p>

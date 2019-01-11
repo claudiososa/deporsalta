@@ -118,70 +118,65 @@
 
             <div class="mainmenu_area">
                 <div class="container">
-                     <!-- Authentication Links -->
-                     @if (Auth::guest())
-                       <!-- Logo Area Start -->
-                       <div class="nav-header">
+                    <nav id="bigshop-nav" class="navigation">
+                        <!-- Authentication Links -->
+                        <!-- Logo Area Start -->
+                        <div class="nav-header">
                             <div class="nav-toggle"></div>
                         </div>
                         <!-- Nav Text Area Start -->
                         <span class="nav-text align-to-right"><i class="ti-headphone-alt"></i> +54 387 4152010</span>
-                        <!-- Main Menus Wrapper -->
-                        <div class="nav-menus-wrapper">
-                            <ul class="nav-menu">
-                            <li><a href="/">Inicio</a></li>
-                                <li><a href="/aboutUs" >Quienes somos</a></li>
-                                <li><a href="/catalogo" >Catálogo</a></li>
-                                <li><a href="/catalogo" >Preguntas frecuentes</a></li>
-                                <li><a href="/contacto" >Contactanos</a></li>                    
-                             
-                            </ul>
-                        </div>
-                          <!-- <li class="nav-item">
-                            <a class="nav-link" href="/catalogo">Catalogo</a>
-                          </li>
-                          <li class="nav-item">
-                            <a class="nav-link" href="/aboutUs">Quienes Somos</a>
-                          </li>
-                            <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Entrar</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Registrarse</a></li> -->
+
+                        @if (Auth::guest())
+                            <!-- Main Menus Wrapper -->
+                            <div class="nav-menus-wrapper">
+                                <ul class="nav-menu">
+                                <li><a href="/">Inicio</a></li>
+                                    <li><a href="/aboutUs" >Quienes somos</a></li>
+                                    <li><a href="/catalogo" >Catálogo</a></li>
+                                    <li><a href="/catalogo" >Preguntas frecuentes</a></li>
+                                    <li><a href="/contacto" >Contactanos</a></li>                    
+                                
+                                </ul>
+                            </div>                    
                         @else
-                          <li  class="nav-item dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Administrator</a>
-                              <div class="dropdown-menu" role="menu">
-                                <a href="/sale/list">Ventas realizadas</a>
-                                <a href="/product/create">Nuevo Producto</a>
-                                <a href="/products">Mostrar Productos</a>
-                                <a href="/category/create">Nueva Categoria</a>
-                                <a href="/viewcategory">Mostrar Categorias</a>
-                                <a href="/colour/create">Nueva Color</a>
-                                <a href="/viewcolour">Mostrar Colores</a>
-                                <a href="/brand/create">Nueva Marca</a>
-                                <a href="/viewbrand">Mostrar Marcas</a>
-                                <a href="/waist/create">Nuevo Talles</a>
-                                <a href="/viewwaist">Mostrar Talles</a>
-                              </div>
-                            </li>
-                              <li  class="nav-item dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                  {{ Auth::user()->name }} <span class="caret"></span>
-                              </a>
+                            <div class="nav-menus-wrapper">
+                                <ul class="nav-menu">                                
+                                    <li><a href="#">Administrador</a>
+                                        <ul class="nav-dropdown">
+                                            <li><a href="/sale/list">Ventas realizadas</a></li>
+                                            <li><a href="/product/create">Nuevo Producto</a></li>
+                                            <li><a href="/products">Mostrar Productos</a></li>
+                                            <li><a href="/category/create">Nueva Categoria</a></li>
+                                            <li><a href="/viewcategory">Mostrar Categorias</a></li>
+                                            <li><a href="/colour/create">Nueva Color</a></li>
+                                            <li><a href="/viewcolour">Mostrar Colores</a></li>
+                                            <li><a href="/brand/create">Nueva Marca</a></li>
+                                            <li><a href="/viewbrand">Mostrar Marcas</a></li>
+                                            <li><a href="/waist/create">Nuevo Talles</a></li>
+                                            <li><a href="/viewwaist">Mostrar Talles</a></li>
+                                        </ul>    
+                                    </li>
+                                    <li  class="nav-item dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                        {{ Auth::user()->name }} <span class="caret"></span>
+                                    </a>
 
-                              <div class="dropdown-menu" role="menu">
-                                  <a class="dropdown-item" href="{{ route('logout') }}"
-                                          onclick="event.preventDefault();
-                                                   document.getElementById('logout-form').submit();">
-                                          Salir
-                                      </a>
-
-                                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                          {{ csrf_field() }}
-                                      </form>
-
-                              </div>
-                          </li>
+                                    <div class="dropdown-menu" role="menu">
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                                            Salir
+                                        </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                                    </div>
+                                    </li>
+                                </ul>
+                            </div>
                         @endif
-                   
+                    </nav>
                 </div>
             </div>
         </div>
@@ -309,10 +304,7 @@
     <!-- Plugins js -->
     <script src="js/plugins.js"></script>
     <!-- Active js -->
-    <script src="js/active.js"></script>
-    
+    <script src="js/active.js"></script>   
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 </body>
 </html>

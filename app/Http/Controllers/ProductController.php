@@ -207,8 +207,21 @@ class ProductController extends Controller
         }
 
       ])->withCount('quantity')->paginate(12);
-      //dd($products);
-      $categories = Category::all();
+      
+      // $categories = Category::all();
+
+      $categories = Category::with([
+         'productsCount' => function($query){
+          $query->get();
+          },
+        // 'products' => function($query){
+        //   $query->count();
+        // }
+      ])->get();
+
+      //dd($categories);
+
+
 
     return view('product.catalogo',[
       'products' => $products,
