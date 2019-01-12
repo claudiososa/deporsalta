@@ -79,9 +79,9 @@ Route::post('/colour/edit','ColourController@edit')->middleware('auth');
 Route::post('/colour/create','ColourController@create')->middleware('auth');
 
 // Images
-Route::get('/image/new/{product}','ImageController@new')->middleware('auth');
-Route::post('/image/create','ImageController@create')->middleware('auth');
-Route::get('/image/delete/{image}','ImageController@delete')->middleware('auth');
+Route::get('/image/new/{product}','PictureController@new')->middleware('auth');
+Route::post('/image/create','PictureController@create')->middleware('auth');
+Route::get('/image/delete/{image}','PictureController@delete')->middleware('auth');
 
 // Quantity
 Route::get('/quantity/new/{product}','QuantityController@new')->middleware('auth');

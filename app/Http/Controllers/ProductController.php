@@ -135,7 +135,7 @@ class ProductController extends Controller
         'quantitySum' => function($query){
           $query->get();
         },
-        'image' => function ($query){
+        'picture' => function ($query){
           $query->get();
         }
 
@@ -173,7 +173,7 @@ class ProductController extends Controller
         'quantitySum' => function($query){
           $query->get();
         },
-        'image' => function ($query){
+        'picture' => function ($query){
           $query->get();
         }
       ])->where(function ($query) use ($request){
@@ -202,7 +202,7 @@ class ProductController extends Controller
         // 'quantitySum' => function($query){
         //   $query->get();
         // },
-        'image' => function ($query){
+        'picture' => function ($query){
           $query->get();
         }
 
@@ -240,7 +240,7 @@ class ProductController extends Controller
         'quantitySum' => function($query){
           $query->get();
         },
-        'image' => function ($query){
+        'picture' => function ($query){
           $query->get();
         }
 

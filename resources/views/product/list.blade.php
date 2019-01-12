@@ -33,7 +33,7 @@
         <a href="/quantity/new/{{$product->id}}" class="btn btn-success">Agregar Stock</a></td>
       </td>
       <td>
-        @forelse ($product->image as $image)
+        @forelse ($product->picture as $image)
           <img width="45" height="45" src="{{Storage::disk('public')->url($image->description)}}" alt="">
         @empty
 

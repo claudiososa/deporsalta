@@ -129,7 +129,7 @@
                                      <div class="single_arrivals_slide">
                                         <div class="product_image">
                                            @php ($cant = 0)
-                                           @forelse ($product->image as $image)
+                                           @forelse ($product->picture as $image)
                                               @if($cant == 0)
                                                 <img class="normal_img" src="{{Storage::disk('public')->url($image->description)}}" alt="">
                                                 @php ($cant++)
@@ -216,7 +216,7 @@
           @if($product->quantity_count > 0)
               <div class="col-md-4">
                 <p>{{$product->description}}</p>
-                @forelse ($product->image as $image)
+                @forelse ($product->picture as $image)
                   <p><img width="160" height="250" src="{{Storage::disk('public')->url($image->description)}}" alt=""></p>
                 @empty
                   <p><img width="160" height="250" src="{{Storage::disk('public')->url('products/sinFoto.png')}}" alt=""></p>
