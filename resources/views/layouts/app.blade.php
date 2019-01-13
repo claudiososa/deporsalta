@@ -219,17 +219,17 @@
                             <h6>Account Information</h6>
                         </div>
                         <ul class="footer_widget_menu">
-                            <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>Your Account</a></li>
-                            <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>Free Shipping Policy</a></li>
-                            <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>Your Cart</a></li>
-                            <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>Return Policy</a></li>
-                            <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>Free Coupon</a></li>
-                            <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>Delivary Info</a></li>
+                            <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>Login</a></li>
+                            <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>Inicio</a></li>
+                            <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>Quienes somos</a></li>
+                            <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>Catálogo</a></li>
+                            <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>Galería de fotos</a></li>
+                            <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>Contactenos</a></li>                            
                         </ul>
                     </div>
                 </div>
                 <!-- Single Footer Area Start -->
-                <div class="col-12 col-md-6 col-lg">
+                {{-- <div class="col-12 col-md-6 col-lg">
                     <div class="single_footer_area">
                         <div class="footer_heading mb-30">
                             <h6>Support</h6>
@@ -243,21 +243,21 @@
                             <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>Affiliate Proggram</a></li>
                         </ul>
                     </div>
-                </div>
+                </div> --}}
                 <!-- Single Footer Area Start -->
                 <div class="col-12 col-md-6 col-lg">
                     <div class="single_footer_area">
                         <div class="footer_heading mb-30">
-                            <h6>Join our mailing list</h6>
+                            <h6>Recibe novedades en tu email</h6>
                         </div>
                         <div class="subscribtion_form">
                             <form action="#" method="post">
-                                <input type="email" name="mail" class="mail" placeholder="Your E-mail Addrees">
+                                <input type="email" name="mail" class="mail" placeholder="Tu dirección de E-mail">
                                 <button type="submit" class="submit"><i class="ti-check" aria-hidden="true"></i></button>
                             </form>
                         </div>
                     </div>
-                    <div class="single_footer_area mt-30">
+                    {{-- <div class="single_footer_area mt-30">
                         <div class="footer_heading mb-15">
                             <h6>Download our Mobile Apps</h6>
                         </div>
@@ -265,7 +265,7 @@
                             <a href="#"><img src="img/core-img/play-store.png" alt="Play Store"></a>
                             <a href="#"><img src="img/core-img/app-store.png" alt="Apple Store"></a>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

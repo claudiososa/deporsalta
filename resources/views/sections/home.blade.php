@@ -57,48 +57,24 @@
       <section class="shop_by_catagory_area section_padding_100_0">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-md">
-                    <div class="single_catagory">
-                        <a href="#">
-                            <img class="img-fluid" src="img/bg-img/cat-1.jpg" alt="">
-                            <div class="single_cata_desc">
-                                <div class="bigshop-table">
-                                    <div class="bigshop-table-cell">
-                                        <h5><span>Women</span>Hot Collection</h5>
+                @forelse ($albums as $album)
+                    <div class="col-12 col-md">
+                        <div class="single_catagory">
+                            <a href="/fotos">
+                            <img class="img-fluid" src="albums/{{$album->cover_image}}" alt="">
+                                    <div class="single_cata_desc">
+                                        <div class="bigshop-table">
+                                            <div class="bigshop-table-cell">
+                                                <h5><span>{{$album->description}}</span>Hot Collection</h5>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        </a>
+                                </a>    
+                            
+                        </div>
                     </div>
-                </div>
-                <div class="col-12 col-md">
-                    <div class="single_catagory">
-                        <a href="#">
-                            <img src="img/bg-img/cat-2.jpg" alt="">
-                            <div class="single_cata_desc">
-                                <div class="bigshop-table">
-                                    <div class="bigshop-table-cell">
-                                        <h5><span>Men</span>Summer Collection</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-12 col-md">
-                    <div class="single_catagory">
-                        <a href="#">
-                            <img src="img/bg-img/cat-3.jpg" alt="">
-                            <div class="single_cata_desc">
-                                <div class="bigshop-table">
-                                    <div class="bigshop-table-cell">
-                                        <h5><span>Kids</span>Up to 75% off</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
+                @empty                            
+                @endforelse      
             </div>
         </div>
     </section>
@@ -185,215 +161,44 @@
                         <!-- Tabs -->
                         <ul class="nav nav-tabs" role="tablist" id="product-tab">
                             <li class="nav-item">
-                                <a href="#top-sellers" class="nav-link active" data-toggle="tab" role="tab">New Arrivals</a>
+                                <a href="#top-sellers" class="nav-link active" data-toggle="tab" role="tab">Ultimos ingresos</a>
                             </li>
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a href="#best-rated" class="nav-link" data-toggle="tab" role="tab">Best Rated</a>
                             </li>
                             <li class="nav-item">
                                 <a href="#on-sale" class="nav-link" data-toggle="tab" role="tab">Featured</a>
-                            </li>
+                            </li> --}}
                         </ul>
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane fade show active" id="top-sellers">
                                 <div class="top_sellers_area">
                                     <div class="row">
-                                        <div class="col-12 col-sm-6 col-lg-3">
-                                            <div class="single_top_sellers">
-                                                <div class="top_seller_image">
-                                                    <img src="img/product-img/1.jpg" alt="Top-Sellers">
-                                                    <!-- Wishlist -->
-                                                    <div class="product_wishlist">
-                                                        <a href="wishlist.html" target="_blank"><i class="ti-heart"></i></a>
+                                        
+                                                    @forelse ($productSpecial as $product)
+                                                    <div class="col-12 col-sm-6 col-lg-3">
+                                                            <div class="single_top_sellers">
+                                                                <div class="top_seller_image">
+                                                                @forelse ($product->picture as $picture)                                                                    
+                                                                  <img src="{{Storage::disk('public')->url($picture->description)}}" alt="Top-Sellers">                                                                
+                                                                  @break
+                                                                @empty
+                                                            
+                                                                 @endforelse
+                                                
+                                                                </div>
+                                                                <div class="top_seller_desc">
+                                                                    <h5><a href="#">{{$product->description}}</a></h5>
+                                                                    <h6> $ {{number_format($product->priceClient, 0,'','.')}} <span>{{$product->priceClient-50}}</span></h6>
+                                                                    {{-- <h5><a href="#">Blouses &amp; Shirts</a></h5>
+                                                                    <h6>$49.39 <span>$55.31</span></h6> --}}
+                                                                </div>
+                                                            </div>
                                                     </div>
-                                                    <!-- Compare -->
-                                                    <div class="product_compare">
-                                                        <a href="#" title="Compare"><i class="ti-stats-up"></i></a>
-                                                    </div>
-                                                    <!-- Add to cart -->
-                                                    <div class="product_add_to_cart">
-                                                        <a href="#" title="Add to Cart"><i class="ti-shopping-cart"></i></a>
-                                                    </div>
-                                                </div>
-                                                <div class="top_seller_desc">
-                                                    <h5><a href="#">Blouses &amp; Shirts</a></h5>
-                                                    <h6>$49.39 <span>$55.31</span></h6>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-12 col-sm-6 col-lg-3">
-                                            <div class="single_top_sellers">
-                                                <div class="top_seller_image">
-                                                    <img src="img/product-img/2.jpg" alt="Top-Sellers">
-                                                    <!-- Wishlist -->
-                                                    <div class="product_wishlist">
-                                                        <a href="wishlist.html" target="_blank"><i class="ti-heart"></i></a>
-                                                    </div>
-                                                    <!-- Compare -->
-                                                    <div class="product_compare">
-                                                        <a href="#" title="Compare"><i class="ti-stats-up"></i></a>
-                                                    </div>
-                                                    <!-- Add to cart -->
-                                                    <div class="product_add_to_cart">
-                                                        <a href="#" title="Add to Cart"><i class="ti-shopping-cart"></i></a>
-                                                    </div>
-                                                </div>
-                                                <div class="top_seller_desc">
-                                                    <h5><a href="#">Women's Romper</a></h5>
-                                                    <h6>$49.39 <span>$55.31</span></h6>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-12 col-sm-6 col-lg-3">
-                                            <div class="single_top_sellers">
-                                                <div class="top_seller_image">
-                                                    <img src="img/product-img/3.jpg" alt="Top-Sellers">
-
-                                                    <!-- Wishlist -->
-                                                    <div class="product_wishlist">
-                                                        <a href="wishlist.html" target="_blank"><i class="ti-heart"></i></a>
-                                                    </div>
-                                                    <!-- Compare -->
-                                                    <div class="product_compare">
-                                                        <a href="#" title="Compare"><i class="ti-stats-up"></i></a>
-                                                    </div>
-                                                    <!-- Add to cart -->
-                                                    <div class="product_add_to_cart">
-                                                        <a href="#" title="Add to Cart"><i class="ti-shopping-cart"></i></a>
-                                                    </div>
-                                                </div>
-                                                <div class="top_seller_desc">
-                                                    <h5><a href="#">Wedding Dresses</a></h5>
-                                                    <h6>$49.39 <span>$55.31</span></h6>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-12 col-sm-6 col-lg-3">
-                                            <div class="single_top_sellers">
-                                                <div class="top_seller_image">
-                                                    <img src="img/product-img/4.jpg" alt="Top-Sellers">
-                                                    <!-- Wishlist -->
-                                                    <div class="product_wishlist">
-                                                        <a href="wishlist.html" target="_blank"><i class="ti-heart"></i></a>
-                                                    </div>
-                                                    <!-- Compare -->
-                                                    <div class="product_compare">
-                                                        <a href="#" title="Compare"><i class="ti-stats-up"></i></a>
-                                                    </div>
-                                                    <!-- Add to cart -->
-                                                    <div class="product_add_to_cart">
-                                                        <a href="#" title="Add to Cart"><i class="ti-shopping-cart"></i></a>
-                                                    </div>
-                                                </div>
-                                                <div class="top_seller_desc">
-                                                    <h5><a href="#">Flower Dresses</a></h5>
-                                                    <h6>$49.39 <span>$55.31</span></h6>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-12 col-sm-6 col-lg-3">
-                                            <div class="single_top_sellers">
-                                                <div class="top_seller_image">
-                                                    <img src="img/product-img/5.jpg" alt="Top-Sellers">
-                                                    <!-- Wishlist -->
-                                                    <div class="product_wishlist">
-                                                        <a href="wishlist.html" target="_blank"><i class="ti-heart"></i></a>
-                                                    </div>
-                                                    <!-- Compare -->
-                                                    <div class="product_compare">
-                                                        <a href="#" title="Compare"><i class="ti-stats-up"></i></a>
-                                                    </div>
-                                                    <!-- Add to cart -->
-                                                    <div class="product_add_to_cart">
-                                                        <a href="#" title="Add to Cart"><i class="ti-shopping-cart"></i></a>
-                                                    </div>
-                                                </div>
-                                                <div class="top_seller_desc">
-                                                    <h5><a href="#">Shorts</a></h5>
-                                                    <h6>$49.39 <span>$55.31</span></h6>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-12 col-sm-6 col-lg-3">
-                                            <div class="single_top_sellers">
-                                                <div class="top_seller_image">
-                                                    <img src="img/product-img/6.jpg" alt="Top-Sellers">
-
-                                                    <!-- Wishlist -->
-                                                    <div class="product_wishlist">
-                                                        <a href="wishlist.html" target="_blank"><i class="ti-heart"></i></a>
-                                                    </div>
-                                                    <!-- Compare -->
-                                                    <div class="product_compare">
-                                                        <a href="#" title="Compare"><i class="ti-stats-up"></i></a>
-                                                    </div>
-                                                    <!-- Add to cart -->
-                                                    <div class="product_add_to_cart">
-                                                        <a href="#" title="Add to Cart"><i class="ti-shopping-cart"></i></a>
-                                                    </div>
-                                                </div>
-                                                <div class="top_seller_desc">
-                                                    <h5><a href="#">Leggings</a></h5>
-                                                    <h6>$49.39 <span>$55.31</span></h6>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-12 col-sm-6 col-lg-3">
-                                            <div class="single_top_sellers">
-                                                <div class="top_seller_image">
-                                                    <img src="img/product-img/7.jpg" alt="Top-Sellers">
-
-                                                    <!-- Wishlist -->
-                                                    <div class="product_wishlist">
-                                                        <a href="wishlist.html" target="_blank"><i class="ti-heart"></i></a>
-                                                    </div>
-                                                    <!-- Compare -->
-                                                    <div class="product_compare">
-                                                        <a href="#" title="Compare"><i class="ti-stats-up"></i></a>
-                                                    </div>
-                                                    <!-- Add to cart -->
-                                                    <div class="product_add_to_cart">
-                                                        <a href="#" title="Add to Cart"><i class="ti-shopping-cart"></i></a>
-                                                    </div>
-                                                </div>
-                                                <div class="top_seller_desc">
-                                                    <h5><a href="#">Parkas</a></h5>
-                                                    <h6>$49.39 <span>$55.31</span></h6>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-12 col-sm-6 col-lg-3">
-                                            <div class="single_top_sellers">
-                                                <div class="top_seller_image">
-                                                    <img src="img/product-img/8.jpg" alt="Top-Sellers">
-
-                                                    <!-- Wishlist -->
-                                                    <div class="product_wishlist">
-                                                        <a href="wishlist.html" target="_blank"><i class="ti-heart"></i></a>
-                                                    </div>
-                                                    <!-- Compare -->
-                                                    <div class="product_compare">
-                                                        <a href="#" title="Compare"><i class="ti-stats-up"></i></a>
-                                                    </div>
-                                                    <!-- Add to cart -->
-                                                    <div class="product_add_to_cart">
-                                                        <a href="#" title="Add to Cart"><i class="ti-shopping-cart"></i></a>
-                                                    </div>
-                                                </div>
-                                                <div class="top_seller_desc">
-                                                    <h5><a href="#">Wayfarer SUNGLASSES</a></h5>
-                                                    <h6>$49.39 <span>$55.31</span></h6>
-                                                </div>
-                                            </div>
-                                        </div>
-
+                                                    @empty
+                                                        
+                                                    @endforelse
+                                                    
                                     </div>
                                 </div>
                             </div>
@@ -877,7 +682,7 @@
     <!-- ***** Best Rated/Onsale/Top Sale Area End ***** -->
 
     <!-- ***** Blog Area Start ***** -->
-    <section class="blog_area home-2 section_padding_0_70">
+    {{-- <section class="blog_area home-2 section_padding_0_70">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -918,7 +723,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- ***** Blog Area End ***** -->
 
     <!-- ***** Special Featured Area Start ***** -->
@@ -931,8 +736,8 @@
                 <span><i class="ti-check" aria-hidden="true"></i></span>
             </div>
             <div class="feature_content">
-                <h6>FREE SHIPPING</h6>
-                <p>For orders above $100</p>
+                <h6>Enviamos al interior</h6>
+                <p>consulta precio de envios</p>
             </div>
         </div>
 
@@ -943,8 +748,8 @@
                 <span><i class="ti-check" aria-hidden="true"></i></span>
             </div>
             <div class="feature_content">
-                <h6>Customer Care</h6>
-                <p>24/7 Friendly Support</p>
+                <h6>Atención Personalizada</h6>
+                <p>Whatsapp y Chat de Facebook</p>
             </div>
         </div>
 
@@ -955,8 +760,8 @@
                 <span><i class="ti-check" aria-hidden="true"></i></span>
             </div>
             <div class="feature_content">
-                <h6>Happy Returns</h6>
-                <p>7 Days free Returns</p>
+                <h6>Dias de Descuento</h6>
+                <p>Descuento especial por cantidad</p>
             </div>
         </div>
 
@@ -967,8 +772,8 @@
                 <span><i class="ti-check" aria-hidden="true"></i></span>
             </div>
             <div class="feature_content">
-                <h6>100% Money Back</h6>
-                <p>If product is damaged</p>
+                <h6>Aceptamos tarjeta de Crédito</h6>
+                <p>Consultanos</p>
             </div>
         </div>
     </section>

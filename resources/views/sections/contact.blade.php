@@ -70,6 +70,6 @@
 <!-- >>>>>>>>>>>>>>>> Message Now Area Start <<<<<<<<<<<<<<<< -->
 
 <!-- Map Area Start -->
-<div id="googleMap"></div>
+{{-- <div id="googleMap"></div> --}}
 
 @endsection
