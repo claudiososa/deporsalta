@@ -93,6 +93,20 @@ Route::get('/sale/list','SaleController@list')->middleware('auth');
 Route::post('/sale/create','SaleController@create')->middleware('auth');
 Route::get('/sale/delete/{sale}','SaleController@delete')->middleware('auth');
 
+// Albums
+Route::get('/fotos','AlbumsController@getAlbums');
+Route::get('/galeria','AlbumsController@getList')->name('gallery');
+Route::get('/createalbum','AlbumsController@getForm')->name('createAlbum');
+
+
+Route::post('/createalbum', array('as' => 'create_album','uses' => 'AlbumsController@postCreate'));
+Route::get('/deletealbum/{id}', array('as' => 'delete_album','uses' => 'AlbumsController@getDelete'));
+Route::get('/album/{id}','AlbumsController@getAlbum')->name('album');
+Route::get('/addimage/{id}', 'ImagesController@getForm')->name('addImage');
+Route::post('/addimage', array('as' => 'add_image_to_album','uses' => 'ImagesController@postAdd'));
+Route::get('/deleteimage/{id}','ImagesController@getDelete')->name('deleteImage');
+Route::post('/moveimage', array('as' => 'move_image','uses' => 'ImagesController@postMove'));
+
 //Route::resource('sales','SaleController');
 
 Auth::routes();

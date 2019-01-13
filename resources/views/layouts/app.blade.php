@@ -134,7 +134,7 @@
                                 <li><a href="/">Inicio</a></li>
                                     <li><a href="/aboutUs" >Quienes somos</a></li>
                                     <li><a href="/catalogo" >Catálogo</a></li>
-                                    <li><a href="/catalogo" >Preguntas frecuentes</a></li>
+                                    <li><a href="/fotos" >Galería de Fotos</a></li>
                                     <li><a href="/contacto" >Contactanos</a></li>                    
                                 
                                 </ul>
@@ -145,8 +145,9 @@
                                     <li><a href="#">Administrador</a>
                                         <ul class="nav-dropdown">
                                             <li><a href="/sale/list">Ventas realizadas</a></li>
-                                            <li><a href="/product/create">Nuevo Producto</a></li>
                                             <li><a href="/products">Mostrar Productos</a></li>
+                                            <li><a href="/product/create">Nuevo Producto</a></li>
+                                            <li><a href="/galeria">Admin Galeria de Fotos</a></li>
                                             <li><a href="/category/create">Nueva Categoria</a></li>
                                             <li><a href="/viewcategory">Mostrar Categorias</a></li>
                                             <li><a href="/colour/create">Nueva Color</a></li>
