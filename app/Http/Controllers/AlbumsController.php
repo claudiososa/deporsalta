@@ -13,7 +13,7 @@ class AlbumsController extends Controller
 {
   public function getList()
   {
-    $albums = Album::where('id','>',1)->with('Photos')->paginate(4);
+    $albums = Album::where('id','>',0)->with('Photos')->paginate(4);
     //return View::make('index')
     //->with('albums',$albums);
     return view('admin.gallery',[
@@ -23,7 +23,7 @@ class AlbumsController extends Controller
 
   public function getAlbums()
   {
-    $albums = Album::where('id','>','1')->with('Photos')->paginate(3);
+    $albums = Album::where('id','>','0')->with('Photos')->paginate(3);
     //return View::make('index')
     //->with('albums',$albums);
     return view('sections.galleryPhotos',[
