@@ -11,7 +11,7 @@
 
         <!-- page-title start -->
         <!-- ================ -->
-        <h1 class="page-title">Galería de Fotos</h1>
+        <h2 class="page-title">Galería de Fotos</h2>
         <div class="separator-2"></div>
         <!-- page-title end -->
 
@@ -19,7 +19,7 @@
         <!-- ============================================================================== -->
         @foreach ($albums as $album)
         <br>
-        <h2>{{$album->name}}</h2>
+        <h2><span class="bigshop-label bigshop-label-danger">{{$album->name}}</span></h2>        
         <br>
         <div class="row">
           @foreach ($album->Photos as $photo)

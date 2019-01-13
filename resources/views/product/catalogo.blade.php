@@ -73,9 +73,11 @@
         </div>
     </div>
     <!-- ***** Quick View Modal Area End ***** -->
-    <div><p><h1>Catalogo</h1></p></div>
     <section class="shop_grid_area ">
         <div class="container">
+            <div class="row">
+                <h3 class="page-title">Catalogo</h3>
+            </div>    
             <div class="row">
                 <div class="col-12 col-md-3">
                     <div class="shop_sidebar_area">
@@ -106,21 +108,7 @@
                 </div>
 
                 <div class="col-12 col-md-9">
-                    <div class="shop_grid_product_area">
-                        <!-- <div class="shop_top_sidebar_area mb-30">
-                            <div class="view_area d-inline-block">
-                                <div class="grid_view d-inline-block"><a href="shop-grid-left-sidebar.html"><i class="fa fa-th" aria-hidden="true"></i></a></div>
-                                <div class="list_view ml-15 d-inline-block"><a href="shop-list-left-sidebar.html"><i class="fa fa-th-list" aria-hidden="true"></i></a></div>
-                            </div>
-                            <div class="search_by_terms">
-                                <select class="custom-select widget-title">
-                                  <option selected>Short by Popularity</option>
-                                  <option value="1">Short by Newest</option>
-                                  <option value="2">Short by Sales</option>
-                                  <option value="3">Short by Ratings</option>
-                                </select>
-                            </div>
-                        </div> -->
+                    <div class="shop_grid_product_area">                      
                         <div class="row">
                             @forelse ($products as $product)
                               @if($product->quantity_count > 0)
