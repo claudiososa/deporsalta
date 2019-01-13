@@ -10,9 +10,9 @@
                     <div class="row h-100 align-items-center">
                         <div class="col-12">
                             <div class="welcome_slide_text">
-                                <p class="text-white" data-animation="fadeInUp" data-delay="0">hot fashion</p>
-                                <h2 class="text-white" data-animation="fadeInUp" data-delay="300ms">Summer Collection</h2>
-                                <a href="#" class="btn buy-now" data-animation="fadeInUp" data-delay="600ms">Buy Now</a>
+                                <p class="text-white" data-animation="fadeInUp" data-delay="0">Solo fashion</p>
+                                <h2 class="text-white" data-animation="fadeInUp" data-delay="300ms">Colección Verano</h2>
+                                <a href="/catalogo" class="btn buy-now" data-animation="fadeInUp" data-delay="600ms">Catálogo</a>
                             </div>
                         </div>
                     </div>
@@ -25,9 +25,9 @@
                     <div class="row h-100 align-items-center">
                         <div class="col-12">
                             <div class="welcome_slide_text">
-                                <p class="text-white" data-animation="fadeInLeftBig" data-delay="0">Latest Trends</p>
-                                <h2 class="text-white" data-animation="fadeInLeftBig" data-delay="300ms">New Hats 2018</h2>
-                                <a href="#" class="btn buy-now" data-animation="fadeInLeftBig" data-delay="600ms">Shop Now</a>
+                                <p class="text-white" data-animation="fadeInLeftBig" data-delay="0">Ver más en nuestra</p>
+                                <h2 class="text-white" data-animation="fadeInLeftBig" data-delay="300ms">Galería de fotos</h2>
+                                <a href="/fotos" class="btn buy-now" data-animation="fadeInLeftBig" data-delay="600ms">Galería</a>
                             </div>
                         </div>
                     </div>
@@ -40,9 +40,9 @@
                     <div class="row h-100 align-items-center">
                         <div class="col-12">
                             <div class="welcome_slide_text">
-                                <p data-animation="slideInDown" data-delay="600ms">Todays Deals <i class="ti-heart"></i></p>
-                                <h2 data-animation="slideInDown" data-delay="300ms">Women Fashion</h2>
-                                <a href="#" class="btn buy-now" data-animation="slideInDown" data-delay="0">Check Collection</a>
+                                <p data-animation="slideInDown" data-delay="600ms">Quienes somos? <i class="ti-heart"></i></p>
+                                <h2 data-animation="slideInDown" data-delay="300ms">Más información</h2>
+                                <a href="aboutUs" class="btn buy-now" data-animation="slideInDown" data-delay="0">Sobre nosotros...</a>
                             </div>
                         </div>
                     </div>
