@@ -44,9 +44,9 @@
                     <div class="col-12 col-md-6">
                         <div class="top_single_area d-sm-flex align-items-center">
                             <!-- Top Mail Area Start -->
-                            <div class="top_mail mr-5">
+                            {{-- <div class="top_mail mr-5">
                                 <a class="align-middle" href="mailto:paty.sugelli@gmail.com"><i class="fa fa-envelope-o" aria-hidden="true"></i> paty.sugelli@gmail.com</a>
-                            </div>
+                            </div> --}}
                             <!-- Top Social Area Start -->
                             <div class="top_social">
                                 <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
@@ -99,14 +99,14 @@
                             </div>
                         </div>
                         <!-- Search Area Start -->
-                        <div class="col-12 col-md-6">
+                        {{-- <div class="col-12 col-md-6">
                             <div class="hero_search_area">
                                 <form action="#" method="get">
                                     <input type="search" class="form-control" id="search" aria-describedby="search" placeholder="Buscador de productos, talle o categoria">
                                     <button type="submit" class="btn"><i class="ti-search"></i></button>
                                 </form>
                             </div>
-                        </div>
+                        </div> --}}
                         <!-- Hero Meta Area Start -->
                         <div class="col-6 col-md-3">
                             <div class="hero_meta_area d-flex text-right align-items-center justify-content-end">                             
