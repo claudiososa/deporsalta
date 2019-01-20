@@ -1,8 +1,30 @@
 @extends('layouts.app')
 @section('content')
+<div class="container">
   <a class="btn btn-success" href="/product/create">Crear nuevo Producto</a>
   <hr>
   <h2>Lista de Productos</h2>
+  <div>
+      <p>Filtrar</p>
+    	<form action="{{route('searchProduct')}}" class="form-inline my-2 my-lg-0" method="post">
+          {{csrf_field()}}          
+            <input name="id" class="form-control mr-sm-2" type="text" placeholder="id">
+            <input name="description" class="form-control mr-sm-2" type="text" placeholder="descripción">
+            <select class="form-control" name="category_id">
+                <option value="0">Categoría</option>
+                @foreach ($categories as $category)
+                  <option value="{{$category->id}}">{{$category->description}}</option>
+                @endforeach
+              </select>
+              <select class="form-control" name="brand_id">
+                  <option value="0">Marca</option>
+                  @foreach ($brands as $brand)
+                    <option value="{{$brand->id}}">{{$brand->description}}</option>
+                  @endforeach
+                </select>              
+            <button class="btn btn-warning" type="submit" >Buscar</button>
+          </form>
+  </div>
   <table class="table">
     <thead>
       <th>Id</th>
@@ -75,4 +97,5 @@
         {{$products->links('pagination::bootstrap-4')}}
     </div>
   @endif
+  </div>
 @endsection

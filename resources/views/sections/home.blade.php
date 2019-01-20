@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+    @if (Auth::guest())
       <!-- ***** Welcome Slides Area Start ***** -->
       <section class="welcome_area home-2">
         <div class="welcome_slides">
@@ -778,4 +779,5 @@
         </div>
     </section>
     <!-- ***** Special Featured Area End ***** -->
+    @endif
 @endsection

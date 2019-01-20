@@ -1,12 +1,15 @@
 @extends('layouts.app')
 @section('content')
+<div class="container">
   <script src="{{asset('js/product/create.js')}}"></script>
   <div class="row">
-    <h2>Nuevo Producto</h2>
+    <h3>Crear Producto</h3>
+    <br>
+    <div class='col-md-12'>
     <form class="" action="/product/create" method="post">
       {{csrf_field()}}
       <div class="form-group @if($errors->has('description')) has-danger @endif">
-        <label for="description">Nombre del Producto</label>
+        {{-- <label for="description">Nombre del Producto</label> --}}
         <input type="text" name="description" value="" class="form-control"
         placeholder="Ingrese nombre de producto">
         @if ($errors->has('description'))
@@ -19,7 +22,7 @@
       </div>
 
       <div class="form-group @if($errors->has('priceCost')) has-danger @endif">
-        <label for="description">Precio Costo</label>
+        {{-- <label for="description">Precio Costo</label> --}}
         <input type="text" name="priceCost" id="priceCost" value="" class="form-control" placeholder="Precio de Costo">
         @if ($errors->has('priceCost'))
           @foreach ($errors->get('priceCost') as $error)
@@ -31,7 +34,7 @@
       </div>
 
       <div class="form-group @if($errors->has('priceReven')) has-danger @endif">
-        <label for="description">Precio Revendedor</label>
+        {{-- <label for="description">Precio Revendedor</label> --}}
         <input type="text" name="priceReven" id="priceReven" value="" class="form-control" 
         placeholder="Precio para Revendedor">
         @if ($errors->has('priceReven'))
@@ -44,7 +47,7 @@
       </div>
 
       <div class="form-group @if($errors->has('priceClient')) has-danger @endif">
-        <label for="description">Precio Cliente Final</label>
+        {{-- <label for="description">Precio Cliente Final</label> --}}
         <input type="text" name="priceClient" id="priceClient" value="" class="form-control"
         placeholder="Precio para Cliente Final">
         @if ($errors->has('priceClient'))
@@ -57,12 +60,12 @@
       </div>
       
       <div class="form-group @if($errors->has('special')) has-danger @endif">
-        <label for="special">Destacado</label>        
+        <label for="special">Destacado</label> 
         <input type="checkbox" name="special" id="special" class="form-control">        
       </div>
 
       <div class="form-group @if($errors->has('marginReseller')) has-danger @endif">
-        <label for="marginReseller">Margen Revendedor</label>
+        {{-- <label for="marginReseller">Margen Revendedor</label> --}}
         <input type="text" name="marginReseller" id="marginReseller" value="" class="form-control" readyonly>
         @if ($errors->has('marginReseller'))
           @foreach ($errors->get('marginReseller') as $error)
@@ -74,7 +77,7 @@
       </div>
 
       <div class="form-group @if($errors->has('marginClient')) has-danger @endif">
-        <label for="marginClient">Margen Cliente Final</label>
+        {{-- <label for="marginClient">Margen Cliente Final</label> --}}
         <input type="text" name="marginClient" id="marginClient" value="" class="form-control" readyonly>
         @if ($errors->has('marginClient'))
           @foreach ($errors->get('marginClient') as $error)
@@ -114,5 +117,7 @@
 
       <button type="submit" class="btn btn-success" name="button">Crear Producto</button>
     </form>
+  </div>
   </div>  
+</div>    
 @endsection
