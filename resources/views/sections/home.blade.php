@@ -190,7 +190,7 @@
                                                                 </div>
                                                                 <div class="top_seller_desc">
                                                                     <h5><a href="#">{{$product->description}}</a></h5>
-                                                                    <h6> $ {{number_format($product->priceClient, 0,'','.')}} <span>{{$product->priceClient-50}}</span></h6>
+                                                                    <h6> $ {{number_format($product->priceClient, 0,'','.')}} <span>{{$product->priceClient+50}}</span></h6>
                                                                     {{-- <h5><a href="#">Blouses &amp; Shirts</a></h5>
                                                                     <h6>$49.39 <span>$55.31</span></h6> --}}
                                                                 </div>
