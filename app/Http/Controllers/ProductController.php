@@ -251,7 +251,7 @@ class ProductController extends Controller
 
       //])->withCount('quantity')->paginate(12);
       ])->paginate(12);
-      dd($products);
+      //dd($products);
       // $categories = Category::all();
 
       $categories = Category::with([
