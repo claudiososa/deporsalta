@@ -166,7 +166,7 @@
                               <p>No hay Productos creadas</p>
                             @endforelse
                         </div>
-                        @if(count($products))
+                        @if(count($products)>0)
                           <div class="mt-2 mx-auto shop_pagination_area">
                             {{$products->links('pagination::bootstrap-4')}}
                           </div>
