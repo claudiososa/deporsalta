@@ -170,81 +170,11 @@
                           <div class="mt-2 mx-auto shop_pagination_area">
                             {{$products->links('pagination::bootstrap-4')}}
                           </div>
-                        @endif
-                    <!-- <div class="shop_pagination_area">
-                        <nav aria-label="Page navigation">
-                            <ul class="pagination pagination-sm justify-content-center">
-                                <li class="page-item">
-                                    <a class="page-link" href="#"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                <li class="page-item"><a class="page-link" href="#">5</a></li>
-                                <li class="page-item"><a class="page-link" href="#">...</a></li>
-                                <li class="page-item"><a class="page-link" href="#">8</a></li>
-                                <li class="page-item"><a class="page-link" href="#">9</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div> -->
+                        @endif                 
 
                 </div>
             </div>
         </div>
     </section>
-
-  <!-- <h2>Catalogo Deportiva Salta</h2>
-  <hr>
-  <div class="row">
-    <div class="col-md-3">
-      <p><a href="/catalogo">Ver todo</a></p>
-      <p class="alert alert-success">Categorias</p>
-      @forelse ($categories as $category)
-        <p><a href="/catalogo/{{$category->id}}">{{$category->description}}</a></p>
-      @empty
-        <p>No existen categorias</p>
-      @endforelse
-    </div>
-    <div class="col-md-9">
-      <div class="row">
-        @forelse ($products as $product)
-          @if($product->quantity_count > 0)
-              <div class="col-md-4">
-                <p>{{$product->description}}</p>
-                @forelse ($product->picture as $image)
-                  <p><img width="160" height="250" src="{{Storage::disk('public')->url($image->description)}}" alt=""></p>
-                @empty
-                  <p><img width="160" height="250" src="{{Storage::disk('public')->url('products/sinFoto.png')}}" alt=""></p>
-                @endforelse
-
-                  @forelse ($product->quantity as $stock)
-                    <p class="alert alert-info">(Art.{{$product->id}})&nbsp;&nbsp;   En stock
-                      <br>{{$product->priceCost*$product->marginClient/100+$product->priceCost}}
-                    </p>
-
-                    @break
-                  @empty
-                    <p class="alert alert-danger">(Art.{{$product->id}})&nbsp;&nbsp;   Sin stock</p>
-                  @endforelse
-
-              </div>
-          @endif
-        @empty
-          <p>No hay Productos creadas</p>
-        @endforelse
-    </div>
-
-    </div>
-    @if(count($products))
-      <div class="mt-2 mx-auto">
-          {{$products->links('pagination::bootstrap-4')}}
-      </div>
-    @endif
-  </div> -->
-
 
 @endsection
