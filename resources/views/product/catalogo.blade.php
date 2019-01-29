@@ -111,7 +111,7 @@
                     <div class="shop_grid_product_area">                      
                         <div class="row">
                             @forelse ($products as $product)
-                              @if($product->quantitySum[0]->total != 0)
+                              {{-- @if($product->quantitySum[0]->total != 0) --}}
                                 <div class="col-12 col-sm-6 col-lg-4">
                                   <div class="single_product_area mb-30">
                                      <div class="single_arrivals_slide">
@@ -128,14 +128,24 @@
                                                 <p><img width="160" height="250" src="{{Storage::disk('public')->url('products/sinFoto.png')}}" alt=""></p>
                                             @endforelse
 
-                                            @forelse ($product->quantity as $stock)
+                                            @if($product->quantitySum[0]->total != 0)
+                                                <div class="product_badge">
+                                                    <span class="badge-new">En Stock</span>
+                                                </div>
+                                            @else    
+                                                <div class="product_badge2">
+                                                    <span class="badge-new" >Sin Stock</span>
+                                                </div>
+                                            {{-- @forelse ($product->quantity as $stock)
                                               <div class="product_badge">
                                                 <span class="badge-new">En Stock</span>
                                               </div>
                                               @break
-                                            @empty
+                                            @empty --}}
                                               <!-- <p class="alert alert-danger">(Art.{{$product->id}})&nbsp;&nbsp;   Sin stock</p> -->
-                                            @endforelse
+                                            {{-- @endforelse --}}
+
+                                            @endif    
                                               <!-- Quick View -->
                                               <div class="product_quick_view">
                                                 <a href="#" data-target="#quickview"><i class="ti-eye" aria-hidden="true"></i> Mas Detalles</a>
@@ -151,7 +161,7 @@
                                        </div>
                                    </div>
                                 </div>
-                              @endif
+                              {{-- @endif --}}
                             @empty
                               <p>No hay Productos creadas</p>
                             @endforelse

@@ -22,7 +22,8 @@ class Category extends Model
     {
     return $this->hasMany(Product::class)
       ->select('category_id')
-      ->selectRaw('COUNT(category_id) as total')
+      ->selectRaw('COUNT(category_id) as total')      
       ->groupBy('category_id');
     }
 }
+

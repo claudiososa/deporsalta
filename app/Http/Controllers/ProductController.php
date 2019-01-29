@@ -239,9 +239,9 @@ class ProductController extends Controller
   public  function catalogo()
   {
     $products = Product::with([
-        'quantity' => function($query){
-          $query->with('waist')->get();
-          },
+        // 'quantity' => function($query){
+        //   $query->with('waist')->get();
+        //   },
         'quantitySum' => function($query){
           $query->get();
         },
@@ -249,8 +249,9 @@ class ProductController extends Controller
           $query->get();
         }
 
-      ])->withCount('quantity')->paginate(12);
-      
+      //])->withCount('quantity')->paginate(12);
+      ])->paginate(12);
+      //dd($products);
       // $categories = Category::all();
 
       $categories = Category::with([
