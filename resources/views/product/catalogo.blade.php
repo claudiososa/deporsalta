@@ -151,6 +151,16 @@
                                         <!-- Product Description -->
                                         <div class="product_description">
                                           <p class="brand_name">{{$product->brand->description}}</p>
+                                            <p>Talles:
+                                                @forelse ($product->quantity as $stock)
+                                                    @if ($stock->quantity > 0)
+                                                        <b>{{$stock->waist->description}}</b>
+                                                    @endif
+                                                    
+                                                @empty
+                                                    Sin stock
+                                                @endforelse
+                                            </p>
                                            <h5><a href="#">{{$product->description}}</a></h5>
                                            <h6>Precio: $ {{number_format($product->priceClient, 0,'','.')}} <span>{{$product->priceClient+50}}</span></h6>
                                         </div>
