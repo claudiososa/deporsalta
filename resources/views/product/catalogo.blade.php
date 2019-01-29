@@ -127,25 +127,21 @@
                                               @empty
                                                 <p><img width="160" height="250" src="{{Storage::disk('public')->url('products/sinFoto.png')}}" alt=""></p>
                                             @endforelse
-
-                                            @if($product->quantitySum[0]->total != 0)
-                                                <div class="product_badge">
-                                                    <span class="badge-new">En Stock</span>
-                                                </div>
+                                            @if($product->quantitySum->isNotEmpty())
+                                                @if($product->quantitySum[0]->total != 0)
+                                                    <div class="product_badge">
+                                                        <span class="badge-new">En Stock</span>
+                                                    </div>
+                                                @else    
+                                                    <div class="product_badge2">
+                                                        <span class="badge-new" >Sin Stock</span>
+                                                    </div>                                           
+                                                @endif
                                             @else    
                                                 <div class="product_badge2">
                                                     <span class="badge-new" >Sin Stock</span>
-                                                </div>
-                                            {{-- @forelse ($product->quantity as $stock)
-                                              <div class="product_badge">
-                                                <span class="badge-new">En Stock</span>
-                                              </div>
-                                              @break
-                                            @empty --}}
-                                              <!-- <p class="alert alert-danger">(Art.{{$product->id}})&nbsp;&nbsp;   Sin stock</p> -->
-                                            {{-- @endforelse --}}
-
-                                            @endif    
+                                                </div>                                           
+                                            @endif            
                                               <!-- Quick View -->
                                               <div class="product_quick_view">
                                                 <a href="#" data-target="#quickview"><i class="ti-eye" aria-hidden="true"></i> Mas Detalles</a>
