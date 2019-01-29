@@ -111,7 +111,7 @@
                     <div class="shop_grid_product_area">                      
                         <div class="row">
                             @forelse ($products as $product)
-                              @if($product->quantity_count > 0)
+                              @if($product->quantitySum[0]->total != 0)
                                 <div class="col-12 col-sm-6 col-lg-4">
                                   <div class="single_product_area mb-30">
                                      <div class="single_arrivals_slide">
@@ -138,7 +138,8 @@
                                             @endforelse
                                               <!-- Quick View -->
                                               <div class="product_quick_view">
-                                                <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-eye" aria-hidden="true"></i> Mas Detalles</a>
+                                                <a href="#" data-target="#quickview"><i class="ti-eye" aria-hidden="true"></i> Mas Detalles</a>
+                                                {{-- <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-eye" aria-hidden="true"></i> Mas Detalles</a> --}}
                                               </div>
                                         </div>
                                         <!-- Product Description -->

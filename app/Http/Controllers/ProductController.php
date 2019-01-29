@@ -242,9 +242,9 @@ class ProductController extends Controller
         'quantity' => function($query){
           $query->with('waist')->get();
           },
-        // 'quantitySum' => function($query){
-        //   $query->get();
-        // },
+        'quantitySum' => function($query){
+          $query->get();
+        },
         'picture' => function ($query){
           $query->get();
         }
@@ -261,11 +261,7 @@ class ProductController extends Controller
         //   $query->count();
         // }
       ])->get();
-
-      //dd($categories);
-
-
-
+     
     return view('product.catalogo',[
       'products' => $products,
       'categories' => $categories
