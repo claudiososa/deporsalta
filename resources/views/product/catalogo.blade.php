@@ -85,8 +85,9 @@
                             <h6 class="widget-title">Categorias de Productos</h6>
                             <div class="widget-desc">
                                 @forelse ($categories as $category)
-                                  <div class="custom-control custom-checkbox d-flex align-items-center mb-2">
-                                      <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                    <div class="d-flex align-items-center mb-2">
+                                  {{-- <div class="custom-control custom-checkbox d-flex align-items-center mb-2"> --}}
+                                      {{-- <input type="checkbox" class="custom-control-input" id="customCheck1"> --}}
                                       <label class="custom-control-label" for="customCheck1"><a href="/catalogo/{{$category->id}}">{{$category->description}}</a> <span class="text-muted">(
                                         @forelse ($category->productsCount as $item)                                            
                                             {{$item->total}}    
@@ -150,11 +151,11 @@
                                         </div>
                                         <!-- Product Description -->
                                         <div class="product_description">
-                                          <p class="brand_name">{{$product->brand->description}}</p>
-                                            <p>Talles:
+                                          <p class="brand_name"><b>Marca:</b> {{$product->brand->description}}</p>
+                                            <p><b>Talle:</b>
                                                 @forelse ($product->quantity as $stock)
                                                     @if ($stock->quantity > 0)
-                                                        <b>{{$stock->waist->description}}</b>
+                                                        {{$stock->waist->description}}-
                                                     @endif
                                                     
                                                 @empty
@@ -162,7 +163,7 @@
                                                 @endforelse
                                             </p>
                                            <h5><a href="#">{{$product->description}}</a></h5>
-                                           <h6>Precio: $ {{number_format($product->priceClient, 0,'','.')}} <span>{{$product->priceClient+50}}</span></h6>
+                                           <h6>Precio de contado: $ {{number_format($product->priceClient, 0,'','.')}} <span>{{$product->priceClient+50}}</span></h6>
                                         </div>
                                        </div>
                                    </div>
