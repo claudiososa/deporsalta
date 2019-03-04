@@ -54,6 +54,46 @@ class ProductController extends Controller
   ]);
   }  
 
+  public function searchProductSale(Request $request){
+    $products = Product::with([
+      'quantity' => function($query){
+        $query->with('waist')->get();
+        },
+      'quantitySum' => function($query){
+        $query->get();
+      },
+      'picture' => function ($query){
+        $query->get();
+      }    
+     ])->where(function ($query) use ($request){
+        if ($request->id<>"") {
+          $query->where('id',$request->id);  # code...
+        }
+        if ($request->description) {
+          $query->where('description','LIKE','%'.$request->description.'%');
+        }
+        if ($request->category_id) {
+          $query->where('category_id','=',$request->category_id);
+        }
+        if ($request->brand_id) {
+          $query->where('brand_id','=',$request->brand_id);
+        }                  
+    })->orderBy('id','desc')->paginate(10);
+    
+    
+  //   ->where(function($q) {
+  //     $q->where('Cab', 2)
+  //       ->orWhere('Cab', 4);
+  // })
+  $brands = Brand::all();  
+  $categories = Category::all();
+  return view('product.listSale',[
+    'products' => $products,
+    'categories' => $categories,
+    'brands' => $brands
+  ]);
+  }  
+
   public function search(Product $product)
   {
     $categories = Category::all();
@@ -185,6 +225,17 @@ class ProductController extends Controller
     
     return view('product.list',[
       'products' => $products,
+      'categories' => $categories,
+      'brands' => $brands
+    ]);
+  }
+
+  public  function listSale()
+  {
+      $categories = Category::all();
+      $brands = Brand::all();      
+    
+    return view('product.listSale',[
       'categories' => $categories,
       'brands' => $brands
     ]);

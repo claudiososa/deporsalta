@@ -25,8 +25,13 @@ Route::get('/catalogo/{category}','ProductController@catalogoCategory');
 
 //  Products
 Route::get('/products','ProductController@list')->middleware('auth');
+Route::get('/productsale','ProductController@listSale')->middleware('auth');
+
+
 Route::get('/product/create','ProductController@new')->middleware('auth');
 Route::post('/searchproduct','ProductController@searchProduct')->middleware('auth')->name('searchProduct');
+Route::post('/searchproductsale','ProductController@searchProductSale')->middleware('auth')->name('searchProductSale');
+
 
 Route::get('/search','ProductController@search')->middleware('auth');
 Route::post('/product/search','ProductController@searchPost')->middleware('auth');
