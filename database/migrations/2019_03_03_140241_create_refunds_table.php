@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSalesTable extends Migration
+class CreateRefundsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateSalesTable extends Migration
      */
     public function up()
     {
-        Schema::create('sales', function (Blueprint $table) {
+        Schema::create('refunds', function (Blueprint $table) {
             $table->increments('id');
-            $table->dateTime('date');
-            $table->integer('client_id')->unsigned();
+            $table->integer('product_id')->unsigned();
+            $table->integer('waist_id')->unsigned();
+            $table->decimal('amount',7,2)->unsigned();
             $table->integer('user_id')->unsigned();
-            $table->timestamps();            
+            $table->timestamps();
         });
     }
 
@@ -29,6 +30,6 @@ class CreateSalesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sales');
+        Schema::dropIfExists('refunds');
     }
 }

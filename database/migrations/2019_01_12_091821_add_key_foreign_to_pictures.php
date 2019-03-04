@@ -27,8 +27,8 @@ class AddKeyForeignToPictures extends Migration
     public function down()
     {
         Schema::table('pictures', function (Blueprint $table) {
-          $table->dropForeign('images_user_id_foreign');
-          $table->dropForeign('images_product_id_foreign');
+          $table->dropForeign('pictures_user_id_foreign');
+          $table->dropForeign('pictures_product_id_foreign');
         });
     }
 }

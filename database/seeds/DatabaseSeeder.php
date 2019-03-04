@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
         ->create();
 
         factory(App\Product::class)
-        ->times(300)
+        ->times(200)
         ->create();
 
         factory(App\Waist::class)
@@ -38,7 +38,19 @@ class DatabaseSeeder extends Seeder
         ->create();
 
         factory(App\Sale::class)
-        ->times(5)
+        ->times(1)
+        ->create();
+
+        factory(App\Payment::class)
+        ->times(1)
+        ->create();
+
+        factory(App\Refund::class)
+        ->times(2)
+        ->create();
+
+        factory(App\SaleDetail::class)
+        ->times(3)
         ->create();
 
         /*factory(App\Image::class)
