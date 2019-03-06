@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
+use App\Waist;
 use App\Http\Requests\CreateCategoryRequest;
 //use App\Http\Requests\UpdateCategoryRequest;
 
@@ -29,7 +30,11 @@ class CategoryController extends Controller
 
     public function new()
     {
-      return view('category.create');
+      $waists = Waist::groupby('type')->distinct()->get();
+      //dd($waists);
+      return view('category.create',[
+        'waists' => $waists,
+      ]);
     }
 
     public function create(CreateCategoryRequest $request)

@@ -70,6 +70,7 @@ $factory->define(App\Product::class,function(Faker\Generator $faker){
 $factory->define(App\Waist::class,function(Faker\Generator $faker){
   return [
     'description' => $faker->username(),
+    'type'=>$faker->numberBetween($min=1,$max=5),
     'user_id' => '1',
   ];
 });

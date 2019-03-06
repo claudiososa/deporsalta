@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableWaists extends Migration
+class AddKeyForeignToCategorywaist extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateTableWaists extends Migration
      */
     public function up()
     {
-        Schema::create('waists', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('description',25);
-            $table->integer('type')->unsigned();
-            $table->integer('user_id')->unsigned();
-            $table->timestamps();
+        Schema::table('categorywaist', function(Blueprint $table){
+            $table->foreign('category_id')->references('id')->on('categories');
+
         });
     }
 
@@ -29,6 +26,9 @@ class CreateTableWaists extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('waists');
+        Schema::table('categorywaist', function(Blueprint $table){
+            $table->dropForeign('categorywaist_category_id_foreign'); 
+
+        });
     }
 }
