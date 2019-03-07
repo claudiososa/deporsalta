@@ -30,15 +30,18 @@ class CategoryController extends Controller
 
     public function new()
     {
-      $waists = Waist::groupby('type')->distinct()->get();
+      $waists = Waist::distinct()->select('type')->orderBy('type','asc')->get();
+      $waist_details = Waist::orderBy('type','asc')->get();
       //dd($waists);
       return view('category.create',[
         'waists' => $waists,
+        'waist_details' => $waist_details
       ]);
     }
 
     public function create(CreateCategoryRequest $request)
     {
+      dd($request);
       $user= $request->user();
       $category = Category::create([
         'user_id' => $user->id,
