@@ -41,12 +41,14 @@ class CategoryController extends Controller
 
     public function create(CreateCategoryRequest $request)
     {
-      dd($request);
+      
       $user= $request->user();
       $category = Category::create([
         'user_id' => $user->id,
-        'description' =>$request->input('description')
+        'description' =>$request->input('description'),
+        'type' =>$request->input('type')
       ]);
+      //dd($request);
       return redirect('/viewcategory/'.$category->id);
     }
 

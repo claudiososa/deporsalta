@@ -28,7 +28,10 @@ Route::get('/products','ProductController@list')->middleware('auth');
 Route::get('/productsale','ProductController@listSale')->middleware('auth');
 
 
-Route::get('/product/create','ProductController@new')->middleware('auth');
+Route::get('/product/selectcategory','ProductController@selectCategory')->middleware('auth');
+Route::post('/product/selectcategory','ProductController@new')->middleware('auth');
+
+//Route::get('/product/create','ProductController@new')->middleware('auth');
 Route::post('/searchproduct','ProductController@searchProduct')->middleware('auth')->name('searchProduct');
 Route::post('/searchproductsale','ProductController@searchProductSale')->middleware('auth')->name('searchProductSale');
 
@@ -39,6 +42,7 @@ Route::post('/product/search','ProductController@searchPost')->middleware('auth'
 
 Route::get('viewproduct/{product}','ProductController@show');
 Route::post('/product/create','ProductController@create')->middleware('auth');
+
 
 Route::get('/product/update/{product}','ProductController@update')->middleware('auth');
 Route::post('/product/edit','ProductController@edit')->middleware('auth');

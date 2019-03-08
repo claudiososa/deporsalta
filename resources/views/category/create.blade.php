@@ -20,7 +20,7 @@
         <br>
         @foreach ($waists as $waist)
           <p class='alert alert-info'>
-            <input class='from-control' type="radio" name="waists" value="{{$waist->type}}"> Tipo Talle: {{$waist->type}}
+            <input class='from-control' type="radio" name="type" value="{{$waist->type}}"> Tipo Talle: {{$waist->type}}
           </p>
           <ul>
           @foreach ($waist_details as $detail)

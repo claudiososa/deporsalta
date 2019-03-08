@@ -147,7 +147,7 @@
                                             <li><a href="/sale/list">Ventas realizadas</a></li>
                                             <li><a href="/products">Mostrar Productos</a></li>
                                             <li><a href="/productsale">Mostrar Productos para Vender</a></li>
-                                            <li><a href="/product/create">Nuevo Producto</a></li>
+                                            <li><a href="/product/selectcategory">Nuevo Producto</a></li>
                                             <li><a href="/galeria">Admin Galeria de Fotos</a></li>
                                             <li><a href="/category/create">Nueva Categoria</a></li>
                                             <li><a href="/viewcategory">Mostrar Categorias</a></li>

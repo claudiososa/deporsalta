@@ -10,6 +10,7 @@ use App\Waist;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateProductRequest;
 use App\Http\Requests\SearchProductRequest;
+use App\Http\Requests\SelectCategoryRequest;
 
 class ProductController extends Controller
 {
@@ -120,15 +121,28 @@ class ProductController extends Controller
     ]);
   }
 
-  public function new()
+  public function new(SelectCategoryRequest $request)
   {
-    $categories = Category::all();
+    
+    $category =Category::find($request->category_id);
+    
+    $waists =Waist::where('type',$category->type)->orderBy('id','asc')->get();
+    //dd($waists);    
     $brands = Brand::all();
     $colours = Colour::all();
-    return view('product.create',[
-      'categories' => $categories,
+    return view('product.create',[      
+      'waists' =>$waists,
+      'category' =>$category,
       'brands' => $brands,
-      'colours' => $colours,
+      'colours' => $colours
+    ]);
+  }
+
+  public function selectCategory()
+  {
+    $categories = Category::all();    
+    return view('product.selectCategory',[
+      'categories' => $categories      
     ]);
   }
 

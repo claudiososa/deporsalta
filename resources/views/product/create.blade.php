@@ -3,11 +3,13 @@
 <div class="container">
   <script src="{{asset('js/product/create.js')}}"></script>
   <div class="row">
-    <h3>Crear Producto</h3>
+    <h3>Crear Producto </h3>
     <br>
     <div class='col-md-12'>
+    <p class='alert alert-info'><h1>Categoria: {{$category->description}}</h1></p>
     <form class="" action="/product/create" method="post">
       {{csrf_field()}}
+    
       <div class="form-group @if($errors->has('description')) has-danger @endif">
         {{-- <label for="description">Nombre del Producto</label> --}}
         <input type="text" name="description" value="" class="form-control"
@@ -22,9 +24,10 @@
       </div>
 
       <div class="form-group @if($errors->has('priceCost')) has-danger @endif">
-        {{-- <label for="description">Precio Costo</label> --}}
-        <input type="text" name="priceCost" id="priceCost" value="" class="form-control" placeholder="Precio de Costo">
-        @if ($errors->has('priceCost'))
+        {{-- <label for="description">Precio Costo Principal</label> --}}
+        <input type="text" name="cost" id="cost" value="" class="form-control" placeholder="Precio Costo General">
+        <input type="text" name="client" id="client" value="" class="form-control" placeholder="Precio Venta General">
+        @if ($errors->has('priceCost{{$waist->id}}'))
           @foreach ($errors->get('priceCost') as $error)
             <div class="form-control-feedback">
               {{$error}}
@@ -32,6 +35,26 @@
           @endforeach
         @endif
       </div>
+
+      @foreach ($waists as $waist)
+      <p>Talle: {{$waist->description}}</p>
+
+      <div class="form-group @if($errors->has('priceCost')) has-danger @endif">
+        {{-- <label for="description">Precio Costo</label> --}}
+        <input type="text" name="priceCost{{$waist->id}}" id="priceCost{{$waist->id}}" value="" class="form-control" placeholder="Precio de Costo">
+        <input type="text" name="priceClient{{$waist->id}}" id="priceClient{{$waist->id}}" value="" class="form-control" placeholder="Precio Venta">
+        @if ($errors->has('priceCost{{$waist->id}}'))
+          @foreach ($errors->get('priceCost{{$waist->id}}') as $error)
+            <div class="form-control-feedback">
+              {{$error}}
+            </div>
+          @endforeach
+        @endif
+      </div>
+        
+      @endforeach
+
+      
 
       <div class="form-group @if($errors->has('priceReven')) has-danger @endif">
         {{-- <label for="description">Precio Revendedor</label> --}}
@@ -88,14 +111,7 @@
         @endif
       </div>
 
-      <div class="form-group @if($errors->has('category_id')) has-danger @endif">
-        <label for="marginClient">Categoria</label>
-        <select class="form-control" name="category_id">
-          @foreach ($categories as $category)
-            <option value="{{$category->id}}">{{$category->description}}</option>
-          @endforeach
-        </select>
-      </div>
+     
 
       <div class="form-group @if($errors->has('brand_id')) has-danger @endif">
         <label for="marginClient">Marca</label>
