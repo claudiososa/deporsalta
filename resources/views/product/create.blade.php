@@ -1,19 +1,19 @@
 @extends('layouts.app')
 @section('content')
-<div class="container">
-  <script src="{{asset('js/product/create.js')}}"></script>
-  <div class="row">
-    <h3>Crear Producto </h3>
-    <br>
+<script src="{{asset('js/product/create.js')}}"></script>
+<div class="container">    
     <div class='col-md-12'>
-    <p class='alert alert-info'><h1>Categoria: {{$category->description}}</h1></p>
+    <h4>Crear Producto </h4>    
+    <h5 class="alert alert-info">Categoria: {{$category->description}}</h5>
     <form class="" action="/product/create" method="post">
       {{csrf_field()}}
-    
+      <input type="hidden" name="type" value="{{$category->type}}">
+      <input type="hidden" name="category_id" value="{{$category->id}}">
+
       <div class="form-group @if($errors->has('description')) has-danger @endif">
-        {{-- <label for="description">Nombre del Producto</label> --}}
+        <label for="description">Nombre del Producto</label>
         <input type="text" name="description" value="" class="form-control"
-        placeholder="Ingrese nombre de producto">
+        >
         @if ($errors->has('description'))
           @foreach ($errors->get('description') as $error)
             <div class="form-control-feedback">
@@ -106,9 +106,9 @@
      
 
      
-      <button type="submit" class="btn btn-success" name="button">Crear Producto</button>
+      <button type="submit" class="btn btn-success" id="createButton" name="button">Crear Producto</button>
     </form>
   </div>
-  </div>  
+  
 </div>    
 @endsection

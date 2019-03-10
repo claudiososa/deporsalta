@@ -18,6 +18,7 @@ class CreateSalesTable extends Migration
             $table->dateTime('date');
             $table->integer('client_id')->unsigned();
             $table->integer('user_id')->unsigned();
+            $table->integer('status')->unsigned();                        
             $table->timestamps();            
         });
     }

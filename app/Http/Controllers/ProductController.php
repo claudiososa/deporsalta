@@ -7,6 +7,9 @@ use App\Category;
 use App\Brand;
 use App\Colour;
 use App\Waist;
+use App\Productprice;
+use App\Sale;
+use App\SaleDetail;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateProductRequest;
 use App\Http\Requests\SearchProductRequest;
@@ -56,6 +59,18 @@ class ProductController extends Controller
   }  
 
   public function searchProductSale(Request $request){
+    $sale = Sale::where('status','0')->count();
+
+    if ($sale >0) {
+      $sale = Sale::where('status','0')->get()->first();
+      $saleDetail =SaleDetail::where('sale_id',$sale->id)->get();
+      $totalSale = SaleDetail::where('sale_id',$sale->id)->sum('total');
+    } else {
+      $saleDetail = '';
+      $totalSale = '';
+      $sale = '';
+    }
+
     $products = Product::with([
       'quantity' => function($query){
         $query->with('waist')->get();
@@ -80,18 +95,16 @@ class ProductController extends Controller
           $query->where('brand_id','=',$request->brand_id);
         }                  
     })->orderBy('id','desc')->paginate(10);
-    
-    
-  //   ->where(function($q) {
-  //     $q->where('Cab', 2)
-  //       ->orWhere('Cab', 4);
-  // })
+    //dd($products);
   $brands = Brand::all();  
   $categories = Category::all();
   return view('product.listSale',[
     'products' => $products,
     'categories' => $categories,
-    'brands' => $brands
+    'brands' => $brands,
+    'saleDetail' => $saleDetail,
+    'totalSale' => $totalSale,
+    'sale' => $sale
   ]);
   }  
 
@@ -148,46 +161,68 @@ class ProductController extends Controller
 
   public function create(CreateProductRequest $request)
   {
+    //dd($request);
     $user = $request->user();
     if ($request->input('special') == 'on'){      
       $special = 1;
     }else{
       $special = 0;
     }
-      
-    
+
     $product = Product::create([
       'description' => $request->input('description'),
-      'priceCost' => $request->input('priceCost'),
-      'priceReven'=>$request->input('priceReven'),
-      'priceClient'=>$request->input('priceClient'),
-      'marginReseller'=>$request->input('marginReseller'),
-      'marginClient'=>$request->input('marginClient'),
       'special'=>$special,
-      'category_id'=>$request->input('category_id'),
+      'category_id'=>$request->category_id,
       'brand_id'=>$request->input('brand_id'),
       'colour_id'=>$request->input('colour_id'),
       //'user_id'=>'1',
 
     ]);
 
+    //dd($product);
+    $waists = Waist::where('type',$request->type)->get();
+    //dd($waists);
+
+    foreach ($waists as $waist){
+      //$dato =${'request->priceCost'.$waist->id};
+      //$dato =${'priceCost'.$waist->id};
+
+      //dd($request->input('priceCost'.$waist->id));
+      $price = Productprice::create([
+        'product_id' => $product->id,
+        'waist_id'=>$waist->id,
+        'price_cost'=>$request->input('priceCost'.$waist->id),
+        'price_sale'=>$request->input('priceClient'.$waist->id),        
+        
+  
+      ]);
+      //dd($request->priceCost+$waist->id);
+    }
+
+      
+    
+   
     return redirect('/viewproduct/'.$product->id);
   }
 
   public function update(Product $product)
     {
+      $category = Category::find($product->category_id);
       $categories = Category::all();
       $brands = Brand::all();
       $colours = Colour::all();
+      $waists =Waist::where('type',$category->type)->orderBy('id','asc')->get();
+      $productPrice = Productprice::where('product_id',$product->id)->get();
+      //dd($productPrice);
       return view('product.edit',[
         'product' => $product,
         'categories' => $categories,
         'brands' => $brands,
         'colours' => $colours,
-      ]);
-      //return view('product.edit',[
-
-      //]);
+        'category' => $category,
+        'waists' => $waists,
+        'productPrice' => $productPrice
+      ]);    
     }
 
     public function edit(CreateProductRequest $request)
@@ -203,17 +238,51 @@ class ProductController extends Controller
 
       $product->id = $request->input('id');
       $product->description = $request->input('description');
-      $product->priceCost = $request->input('priceCost');
-      $product->priceReven = $request->input('priceReven');
-      $product->priceClient = $request->input('priceClient');
-      $product->marginReseller = $request->input('marginReseller');
-      $product->marginClient = $request->input('marginClient'); 
+      // $product->priceCost = $request->input('priceCost');
+      // $product->priceReven = $request->input('priceReven');
+      // $product->priceClient = $request->input('priceClient');
+      // $product->marginReseller = $request->input('marginReseller');
+      // $product->marginClient = $request->input('marginClient'); 
       $product->special = $special;
       $product->category_id = $request->input('category_id');
       $product->brand_id = $request->input('brand_id');
       $product->colour_id = $request->input('colour_id');
 
       $product->save();
+         
+      $waists = Waist::where('type',$request->type)->get();
+    
+      $prices = Productprice::where('product_id',$product->id)->get();
+      //dd($prices);
+      foreach($waists as $waist){
+
+        foreach ($prices as $price) {
+          
+          if($price->waist_id == $waist->id)
+          {
+            $p =Productprice::find($price->id);
+            $p->price_cost = $request->input('priceCost'.$waist->id);
+            $p->price_sale = $request->input('priceClient'.$waist->id);
+            $p->save();            
+          }
+          
+        }
+      }
+      
+
+
+      // foreach ($waists as $waist){    
+      //   $price = Productprice::create([
+      //     'product_id' => $product->id,
+      //     'waist_id'=>$waist->id,
+      //     'price_cost'=>$request->input('priceCost'.$waist->id),
+      //     'price_sale'=>$request->input('priceClient'.$waist->id),        
+          
+    
+      //   ]);        
+      // }
+
+
       return view('product.show',[
         'product'=>$product
       ]);
@@ -246,13 +315,36 @@ class ProductController extends Controller
 
   public  function listSale()
   {
-      $categories = Category::all();
-      $brands = Brand::all();      
-    
+    $sale = Sale::where('status','0')->count();
+
+    if ($sale >0) {
+      $sale = Sale::where('status','0')->get()->first();
+      $totalSale = SaleDetail::where('sale_id',$sale->id)->sum('total');
+
+      $saleDetail =SaleDetail::with([
+        'product' => function ($query){
+          $query->get();
+        },
+        'waist' => function ($query){
+          $query->get();
+        }       
+      ])->where('sale_id',$sale->id)->get();
+    } else {
+      $saleDetail = '';
+      $totalSale = '';
+      $sale = '';
+    }
+
+    $categories = Category::all();
+    $brands = Brand::all();      
+    //dd($saleDetail);
     return view('product.listSale',[
       'categories' => $categories,
-      'brands' => $brands
-    ]);
+      'brands' => $brands,
+      'saleDetail' => $saleDetail,
+      'totalSale' => $totalSale,
+      'sale' => $sale
+      ]);
   }
 
   public function searchPost(SearchProductRequest $request)

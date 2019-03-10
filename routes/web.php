@@ -45,6 +45,7 @@ Route::post('/product/create','ProductController@create')->middleware('auth');
 
 
 Route::get('/product/update/{product}','ProductController@update')->middleware('auth');
+
 Route::post('/product/edit','ProductController@edit')->middleware('auth');
 //  Brands
 Route::get('/viewbrand','BrandController@list')->middleware('auth');
@@ -101,7 +102,11 @@ Route::post('/quantity/create','QuantityController@create')->middleware('auth');
 Route::get('/sale/new/{product}','SaleController@new')->middleware('auth');
 Route::get('/sale/list','SaleController@list')->middleware('auth');
 Route::post('/sale/create','SaleController@create')->middleware('auth');
-Route::get('/sale/delete/{sale}','SaleController@delete')->middleware('auth');
+Route::get('/sale/addItem/{product}/{waist}','SaleController@addItem');
+//Route::post('/sale/addItem','SaleController@addItem');
+//Route::get('/sale/delete/{sale}','SaleController@delete')->middleware('auth');
+Route::get('/saledetail/delete/{sale}','SaleController@delete')->middleware('auth');
+Route::get('/saledetail/sum/{sale}','SaleController@sumTotal')->middleware('auth');
 
 // Albums
 Route::get('/fotos','AlbumsController@getAlbums');

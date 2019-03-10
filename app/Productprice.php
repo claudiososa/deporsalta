@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Productprice extends Model
 {
-    public function product()
+  protected $guarded=[];
+  
+  public function product()
     {
       return $this->belongsTo(Product::class);
     }

@@ -1,14 +1,12 @@
 
 $(document).ready(function () {  
-    $('#cost').change( function(){
-      $('[id ^=priceCost]').val('444')
-      
-      //alert('perdio el focus cost')
+    $('#cost').change( function(){      
+      $('[id ^=priceCost]').val($(this).val())           
     })
 
     $('#client').change( function(){
-      $('[id ^=priceClient]').val('99')
-      //alert('perdio el focus client')
+      $('[id ^=priceClient]').val($(this).val())      
+      $('#createButton').focus()
     })  
 
     $('#priceReven').change( function() {        

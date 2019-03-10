@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
         ->create();
 
         factory(App\Waist::class)
-        ->times(20)
+        ->times(5)
         ->create();
 
         factory(App\Quantity::class)

@@ -2,13 +2,13 @@
 <html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="UTF-8">
-    <meta name="Deportiva Salta" content="Ropa Deportiva Salta, aqui encontraras la ropa que estas, buscando. Puedes ver nuestro catagolo actualizado">
+    <meta name="ValenClothes" content="Ropa para mujer">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title  -->
-    <title>Deportiva Salta | Calzas, etc.</title>
+    <title>Valenclothes | Ropa para mujer.</title>
 
     <!-- Favicon  -->
     <link rel="shortcut icon" href="{{asset('img/core-img/favicon.ico')}}">
@@ -125,7 +125,7 @@
                             <div class="nav-toggle"></div>
                         </div>
                         <!-- Nav Text Area Start -->
-                        <span class="nav-text align-to-right"><i class="ti-headphone-alt"></i> +54 387 4152010</span>
+                        <span class="nav-text align-to-right"><i class="ti-headphone-alt"></i> +54 387 xxxxxxx</span>
 
                         @if (Auth::guest())
                             <!-- Main Menus Wrapper -->
@@ -144,9 +144,9 @@
                                 <ul class="nav-menu">                                
                                     <li><a href="#">Administrador</a>
                                         <ul class="nav-dropdown">
+                                            <li><a href="/productsale">Realizar Venta</a></li>
                                             <li><a href="/sale/list">Ventas realizadas</a></li>
-                                            <li><a href="/products">Mostrar Productos</a></li>
-                                            <li><a href="/productsale">Mostrar Productos para Vender</a></li>
+                                            <li><a href="/products">Mostrar Productos</a></li>                                            
                                             <li><a href="/product/selectcategory">Nuevo Producto</a></li>
                                             <li><a href="/galeria">Admin Galeria de Fotos</a></li>
                                             <li><a href="/category/create">Nueva Categoria</a></li>
@@ -283,11 +283,11 @@
                     <!-- Payment Method -->
                     <div class="col-12 col-md">
                         <div class="payment_method text-right">
-                            <img src="img/payment-method/paypal.png" alt="">
-                            <img src="img/payment-method/maestro.png" alt="">
-                            <img src="img/payment-method/western-union.png" alt="">
-                            <img src="img/payment-method/discover.png" alt="">
-                            <img src="img/payment-method/american-express.png" alt="">
+                            <img src="/img/payment-method/paypal.png" alt="">
+                            <img src="/img/payment-method/maestro.png" alt="">
+                            <img src="/img/payment-method/western-union.png" alt="">
+                            <img src="/img/payment-method/discover.png" alt="">
+                            <img src="/img/payment-method/american-express.png" alt="">
                         </div>
                     </div>
                 </div>
@@ -300,13 +300,13 @@
     
     
     <!-- Popper js -->
-    <script src="js/popper.min.js"></script>
+    <script src="/js/popper.min.js"></script>
     <!-- Bootstrap js -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
     <!-- Plugins js -->
-    <script src="js/plugins.js"></script>
+    <script src="/js/plugins.js"></script>
     <!-- Active js -->
-    <script src="js/active.js"></script>   
+    <script src="/js/active.js"></script>   
 
 </body>
 </html>

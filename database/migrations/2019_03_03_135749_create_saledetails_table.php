@@ -21,6 +21,7 @@ class CreateSaleDetailsTable extends Migration
             $table->integer('quantity')->unsigned();
             $table->decimal('priceUnit',6,2)->unsigned();
             $table->decimal('total',6,2)->unsigned();                        
+            $table->integer('status')->unsigned();                        
             $table->timestamps();
         });
     }

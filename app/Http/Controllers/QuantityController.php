@@ -7,6 +7,7 @@ use App\Http\Requests\CreateQuantityRequest;
 use App\Quantity;
 use App\Waist;
 use App\Product;
+use App\Category;
 
 class QuantityController extends Controller
 {
@@ -40,7 +41,10 @@ class QuantityController extends Controller
 
   public function new(Product $product)
   {
-    $waists =Waist::all();
+    $category = Category::find($product->category_id);
+
+    $waists =Waist::where('type',$category->type)->get();
+    //dd($waists);
     return view('quantity.create',[
       'product' =>$product,
       'waists' =>$waists

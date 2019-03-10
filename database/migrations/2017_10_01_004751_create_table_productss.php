@@ -16,11 +16,11 @@ class CreateTableProductss extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
             $table->string('description',150);
-            $table->decimal('priceCost',6,2);
-            $table->decimal('priceReven',6,2);
-            $table->decimal('priceClient',6,2);
-            $table->decimal('marginReseller',6,2);
-            $table->decimal('marginClient',6,2);
+            // $table->decimal('priceCost',6,2);
+            // $table->decimal('priceReven',6,2);
+            // $table->decimal('priceClient',6,2);
+            // $table->decimal('marginReseller',6,2);
+            // $table->decimal('marginClient',6,2);
             $table->boolean('special')->default('0');
             $table->integer('category_id')->unsigned();
             $table->integer('brand_id')->unsigned();

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class SaleDetail extends Model
 {
     protected $table = 'saledetails';
+    protected $guarded=[];
 
     public function user()
     {
@@ -24,9 +25,7 @@ class SaleDetail extends Model
 
     public function waist()
     {
-        return $this->belongsTo(Wais::class);
-    }
-
-
+        return $this->belongsTo(Waist::class);
+    }    
 
 }
