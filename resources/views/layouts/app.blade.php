@@ -95,7 +95,8 @@
                         <!-- Logo Area Start -->
                         <div class="col-6 col-md-3">
                             <div class="logo_area">
-                                <a href="/">Deportiva Salta</a>
+                                <img src="{{asset('img/logo.png')}}" alt="">
+                                
                             </div>
                         </div>
                         <!-- Search Area Start -->
