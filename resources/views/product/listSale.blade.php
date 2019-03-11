@@ -1,9 +1,17 @@
 @extends('layouts.app')
 @section('content')
+@if(isset($sale->id))
 <script>
   let sale_id ={{$sale->id}}
   //alert (sale_id)
 </script>
+@else
+<script>
+  let sale_id ='0'
+  //alert (sale_id)
+</script>
+@endif
+
 <div class="container">
   <script src="{{asset('js/sale/getPrice.js')}}"></script>
   <div class='alert alert-success'>
@@ -91,6 +99,7 @@
       @empty
         <p>No hay Productos creadas</p>
       @endforelse
+      
       </tbody>
       </table>
 
@@ -128,13 +137,14 @@
           <td><a href="#" id="saledetail{{$detail->id}}" class="btn btn-danger">Quitar</a></td>
         </tr>
         @endforeach
-        <tr>
+        <tr id='rowTotal'>
           <td></td>
           <td></td>
           <td></td>
           <td>Total:</td>
           <td class='alert alert-danger' id='totalSale'>${{$totalSale}}</td>
         </tr>
+        <tr id='rowConfirmSale'><td colspan="6"><button class='btn btn-info' id='confirmSale'>Confirmar venta</button></td></tr>
       </tbody>
     </table>
 </div>

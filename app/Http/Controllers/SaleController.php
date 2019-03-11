@@ -130,6 +130,15 @@ class SaleController extends Controller
         return response()->json($total);
     }
 
+    public function confirm($id)
+    {
+       $sale = Sale::find($id);
+       $sale->status = '1';
+       $sale->save();
+
+        return response()->json($sale);
+    }
+
     public function addItem(Product $product, Waist $waist)      
     {
       $price = Productprice::where('product_id',$product->id)

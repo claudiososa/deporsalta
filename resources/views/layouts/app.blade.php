@@ -201,9 +201,9 @@
                             <h6>Sobre nosotros</h6>
                         </div>
                         <div class="footer_content">
-                            <p>Deportiva Salta, es un emprendimiento que busca satisfacer la necesidad de usar ropa deportiva de calidad.</p>
-                            <p>Movil: +54 387 4152010</p>
-                            <p>Email: paty.sugelli@gmail.com</p>
+                            <p>Valenclothes, es un emprendimiento ...</p>
+                            <p>Movil: +54 387 xxxxxx</p>
+                            <p>Email: contacto@valenclothes.com.ar</p>
                         </div>
                         <div class="footer_social_area mt-15">
                             <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>

@@ -63,6 +63,7 @@ class ProductController extends Controller
 
     if ($sale >0) {
       $sale = Sale::where('status','0')->get()->first();
+      
       $saleDetail =SaleDetail::where('sale_id',$sale->id)->get();
       $totalSale = SaleDetail::where('sale_id',$sale->id)->sum('total');
     } else {
@@ -315,10 +316,11 @@ class ProductController extends Controller
 
   public  function listSale()
   {
-    $sale = Sale::where('status','0')->count();
+    $saleCount = Sale::where('status','0')->count();
 
-    if ($sale >0) {
+    if ($saleCount >0) {
       $sale = Sale::where('status','0')->get()->first();
+      
       $totalSale = SaleDetail::where('sale_id',$sale->id)->sum('total');
 
       $saleDetail =SaleDetail::with([

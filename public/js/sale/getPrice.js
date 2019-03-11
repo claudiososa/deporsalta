@@ -70,4 +70,20 @@ $(document).ready(function () {
             }
         });
     }
+
+    $('#confirmSale').click(function (){
+        console.log('presionaste confirmSale')
+        $.ajax({
+            type: 'GET',
+            url: '/sale/confirm/' + sale_id,
+            data: {
+                '_token': $('input[name=_token]').val(),
+            },
+            success: function(data) {
+                console.log('sumando')
+                console.log(data) 
+                $('[id ^=rowDetail]').empty();                                
+            }
+        });
+    })
 });
