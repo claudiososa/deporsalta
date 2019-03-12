@@ -143,21 +143,33 @@
                         @else
                             <div class="nav-menus-wrapper">
                                 <ul class="nav-menu">                                
-                                    <li><a href="#">Administrador</a>
+                                    <li><a href="#">Ventas</a>
                                         <ul class="nav-dropdown">
                                             <li><a href="/productsale">Realizar Venta</a></li>
-                                            <li><a href="/sale/list">Ventas realizadas</a></li>
+                                            <li><a href="/sale/list">Ventas realizadas</a></li>                                                                         
+                                        </ul>    
+                                    </li>
+                                    <li><a href="#">Productos</a>
+                                        <ul class="nav-dropdown">
                                             <li><a href="/products">Mostrar Productos</a></li>                                            
-                                            <li><a href="/product/selectcategory">Nuevo Producto</a></li>
-                                            <li><a href="/galeria">Admin Galeria de Fotos</a></li>
-                                            <li><a href="/category/create">Nueva Categoria</a></li>
+                                            <li><a href="/product/selectcategory">Nuevo Producto</a></li>                                           
+                                        </ul>    
+                                    </li>
+                                    <li><a href="#">Galeria de Fotos</a>
+                                        <ul class="nav-dropdown">
+                                            <li><a href="/galeria">Administrar fotos</a></li>            
+                                        </ul>    
+                                    </li>
+                                    <li><a href="#">Administrar</a>
+                                        <ul class="nav-dropdown">
+                                        <li><a href="/category/create">Nueva Categoria</a></li>
                                             <li><a href="/viewcategory">Mostrar Categorias</a></li>
                                             <li><a href="/colour/create">Nueva Color</a></li>
                                             <li><a href="/viewcolour">Mostrar Colores</a></li>
                                             <li><a href="/brand/create">Nueva Marca</a></li>
                                             <li><a href="/viewbrand">Mostrar Marcas</a></li>
                                             <li><a href="/waist/create">Nuevo Talles</a></li>
-                                            <li><a href="/viewwaist">Mostrar Talles</a></li>
+                                            <li><a href="/viewwaist">Mostrar Talles</a></li>            
                                         </ul>    
                                     </li>
                                     <li  class="nav-item dropdown">
