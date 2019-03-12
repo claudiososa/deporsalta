@@ -23,7 +23,7 @@
         @foreach ($waists as $waist)
 
         <div class='col-md-4'>
-          <p class='alert alert-info'>
+          <p class='alert alert-danger'>
             <input class='from-control' type="radio" name="type" value="{{$waist->type}}"> Tipo Talle: {{$waist->type}}
           </p>
           <ul>
