@@ -13,4 +13,9 @@ class Sale extends Model
       return $this->belongsTo(User::class);
     } 
 
+    public function saledetail()
+    {
+      return $this->belongsTo(SaleDetail::class);
+    } 
+
 }

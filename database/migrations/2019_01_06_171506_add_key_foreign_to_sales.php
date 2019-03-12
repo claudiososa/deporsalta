@@ -15,7 +15,7 @@ class AddKeyForeignToSales extends Migration
     {
       Schema::table('sales', function (Blueprint $table) {
         $table->foreign('user_id')->references('id')->on('users');
-        //$table->foreign('waist_id')->references('id')->on('waists');
+        //$table->foreign('id')->references('id')->on('waists');
       });
     }
 

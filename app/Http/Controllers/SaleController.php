@@ -16,14 +16,19 @@ class SaleController extends Controller
 {
     public  function list()
     {
-      $sales = Sale::with([
-        'product' => function($query){
+      $sales = Sale::where('status','1')->get();
+      //dd($sales);
+     
+      $salesDetail = SaleDetail::with([
+        'sale' => function($query){
          $query->get();
         }
-        ])->paginate(10);    
+        ])->paginate(10);  
+        //dd($sales);  
       //])->where('status','=','0')->paginate(10);  
     return view('sale.list',[
-      'sales' => $sales
+      'sales' => $sales,
+      'salesDetail' => $salesDetail
     ]);    
   }
 

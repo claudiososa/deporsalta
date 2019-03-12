@@ -31,7 +31,7 @@ class CategoryController extends Controller
     public function new()
     {
       $waists = Waist::distinct()->select('type')->orderBy('type','asc')->get();
-      $waist_details = Waist::orderBy('type','asc')->get();
+      $waist_details = Waist::orderBy('id','asc')->get();
       //dd($waists);
       return view('category.create',[
         'waists' => $waists,
