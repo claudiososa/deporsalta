@@ -164,11 +164,11 @@
                                         <ul class="nav-dropdown">
                                         <li><a href="/category/create">Nueva Categoria</a></li>
                                             <li><a href="/viewcategory">Mostrar Categorias</a></li>
-                                            <li><a href="/colour/create">Nueva Color</a></li>
+                                            <li><a href="/colour/create">Nuevo Color</a></li>
                                             <li><a href="/viewcolour">Mostrar Colores</a></li>
                                             <li><a href="/brand/create">Nueva Marca</a></li>
                                             <li><a href="/viewbrand">Mostrar Marcas</a></li>
-                                            <li><a href="/waist/create">Nuevo Talles</a></li>
+                                            <li><a href="/waist/create">Nuevo Talle</a></li>
                                             <li><a href="/viewwaist">Mostrar Talles</a></li>            
                                         </ul>    
                                     </li>
