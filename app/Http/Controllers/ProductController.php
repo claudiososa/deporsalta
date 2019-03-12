@@ -403,21 +403,20 @@ class ProductController extends Controller
   public  function catalogo()
   {
     $products = Product::with([
+        'productpriceUnico' => function ($query) {
+          $query->first();
+          },
         'quantity' => function($query){
           $query->with('waist')->get();
-          },
+          },       
         'quantitySum' => function($query){
           $query->get();
         },
         'picture' => function ($query){
           $query->get();
-        }
-
-      //])->withCount('quantity')->paginate(12);
-      ])->paginate(12);
+        } 
+      ])->orderBy('id','desc')->paginate(12);  
       //dd($products);
-      // $categories = Category::all();
-
       $categories = Category::with([
          'productsCount' => function($query){
           $query->get();

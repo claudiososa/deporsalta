@@ -163,7 +163,9 @@
                                                 @endforelse
                                             </p>
                                            <h5><a href="#">{{$product->description}}</a></h5>
-                                           <h6>Precio de contado: $ {{number_format($product->priceClient, 0,'','.')}} <span>{{$product->priceClient+50}}</span></h6>
+                                           @foreach ($product->productpriceUnico as $price)
+                                                <h6>Precio de contado: $ {{number_format($price->price_sale, 0,'','.')}} <span>{{$price->price_sale+200}}</span></h6>
+                                           @endforeach
                                         </div>
                                        </div>
                                    </div>

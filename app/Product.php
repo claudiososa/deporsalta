@@ -23,6 +23,18 @@ class Product extends Model
       return $this->belongsTo(Category::class);
     }
 
+    public function productprice()
+    {
+      return $this->hasMany(Productprice::class)->orderBy('price_sale','desc');
+    }
+
+    public function productpriceUnico()
+    {
+      return $this->hasMany(Productprice::class)->orderBy('price_sale','desc');
+    }
+
+   
+
     // public function sale()
     // {
     //   return $this->belongsTo(Sale::class);
