@@ -298,6 +298,9 @@ class ProductController extends Controller
         'quantity' => function($query){
           $query->with('waist')->get();
           },
+        'productprice' => function($query){
+            $query->get();
+            },  
         'quantitySum' => function($query){
           $query->get();
         },
@@ -306,7 +309,7 @@ class ProductController extends Controller
         }
 
       ])->orderBy('id','desc')->paginate(10);
-    
+    dd($products);
     return view('product.list',[
       'products' => $products,
       'categories' => $categories,

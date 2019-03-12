@@ -77,7 +77,7 @@
         
         @forelse ($product->quantitySum as $total)  
           @if($total->total>0)
-            <a href="/sale/new/{{$product->id}}" class="btn btn-success">Vender</a></td>
+            <p class="btn btn-success">Con Stock</p></td>
           @else
             <p class="btn btn-warning">Sin Stock</p>
           @endif
