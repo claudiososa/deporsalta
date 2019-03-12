@@ -310,7 +310,7 @@ class ProductController extends Controller
 
       ])->orderBy('id','desc')->paginate(10);
     
-    dd($products);
+   // dd($products);
 
     return view('product.list',[
       'products' => $products,
