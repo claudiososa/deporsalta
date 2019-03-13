@@ -81,6 +81,8 @@ $(document).ready(function () {
 
     $('#tipoTarjeta').change(function (){
         if ($(this).val()=='credito') {
+            let montoTarjeta = $('#montoTarjeta').val()
+            $('#montoTarjetaCuotas').val(montoTarjeta)
             $('#trCuotas').show()
         }
         if ($(this).val()=='debito') {
@@ -88,21 +90,22 @@ $(document).ready(function () {
         }
     })
 
-    $('#quotas').change(function (){
+    $('#quotas').change(function (){//al cambiar valor en select de cuotas
         let montoTarjeta = $('#montoTarjeta').val()
         let porcent =$(this).val()
         let quotas = $('select[id="quotas"] option:selected').text()
-        
-        
+       // alert(str.length(quotas))
+        console.log(quotas.length)
         let valor = 1 + (quotas * porcent)
         let priceTotal = valor * montoTarjeta
-        if (quotas == '1') {
-            $('#montoTarjetaCuotas').val(montoTarjeta)    
-        }else{
-            $('#montoTarjetaCuotas').val(priceTotal)    
-        }
-
-        
+       
+            if (quotas == '1') {
+                $('#montoTarjetaCuotas').val(Math.round(montoTarjeta))    
+            }else{
+                $('#montoTarjetaCuotas').val(Math.round(priceTotal))   
+            }
+           
+    
         console.log(valor)
         console.log(priceTotal)
     })

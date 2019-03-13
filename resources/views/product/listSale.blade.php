@@ -172,7 +172,7 @@
           <td colspan='2'></td>            
           <td colspan='2'>
             <select name="quotas" id="quotas" class="form-control">
-              <option value="0" selected>Seleccione Cuotas</option>
+             
               @foreach ($quotas as $quota)
                 <option value="{{$quota->percent}}">{{$quota->number}}</option>
               @endforeach              
