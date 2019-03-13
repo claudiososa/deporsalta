@@ -11,6 +11,7 @@ use App\Waist;
 use App\Category;
 use App\Product;
 use App\SaleDetail;
+use App\Payment;
 
 class SaleController extends Controller
 {
@@ -141,6 +142,31 @@ class SaleController extends Controller
        $sale->status = '1';
        $sale->save();
 
+        return response()->json($sale);
+    }
+
+    public function confirmPost(Request $request)
+    {
+       $sale = Sale::find($request->sale_id);
+       $sale->status = '1';
+       $sale->save();
+
+       if ($request->montoEfectivo !='0') {
+          $payment = Payment::create([
+            'sale_id' => $request->sale_id,
+            'type' => 'efectivo',
+            'amount' => $request->montoEfectivo
+          ]);
+       }
+
+       if ($request->montoTarjeta !='0') {
+        $payment = Payment::create([
+          'sale_id' => $request->sale_id,
+          'type' => $request->tipoTarjeta,
+          'amount' => $request->montoTarjeta
+        ]);
+     }
+       
         return response()->json($sale);
     }
 

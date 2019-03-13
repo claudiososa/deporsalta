@@ -6,6 +6,7 @@ use App\Product;
 use App\Category;
 use App\Brand;
 use App\Colour;
+use App\Quota;
 use App\Waist;
 use App\Productprice;
 use App\Sale;
@@ -343,14 +344,16 @@ class ProductController extends Controller
     }
 
     $categories = Category::all();
-    $brands = Brand::all();      
+    $brands = Brand::all();
+    $quotas = Quota::all();      
     //dd($saleDetail);
     return view('product.listSale',[
       'categories' => $categories,
       'brands' => $brands,
       'saleDetail' => $saleDetail,
       'totalSale' => $totalSale,
-      'sale' => $sale
+      'sale' => $sale,
+      'quotas' => $quotas
       ]);
   }
 

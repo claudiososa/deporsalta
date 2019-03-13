@@ -142,7 +142,45 @@
           <td></td>
           <td></td>
           <td>Total:</td>
-          <td class='alert alert-danger' id='totalSale'>${{$totalSale}}</td>
+          <td class='alert alert-danger'>$<input type="text" id='totalSale' value='{{$totalSale}}' disabled></td>
+        </tr>
+        <tr>
+          <td colspan='6'>Detalle de pago</td>
+        </tr>
+        <tr>
+          <td>
+            <select name="tipoEfectivo" id="tipoEfectivo" class="form-control" disabled>
+              <option value="efectivo" selected>Efectivo</option>
+            </select>            
+          </td>  
+          <td>
+            <input type="text" id='montoEfectivo' class="form-control" value="0">
+          </td>          
+          <td colspan='2'>
+            <select name="tipoTarjeta" id="tipoTarjeta" class="form-control">
+              <option value="0" selected>Tipo de Tarjeta</option>
+              <option value="debito" >Debito</option>
+              <option value="credito">Credito</option>
+            </select>            
+          </td>  
+          <td>
+            <input type="text" id='montoTarjeta' class="form-control" value="0">
+          </td>          
+        </tr>
+
+        <tr id="trCuotas" style='display:none'>
+          <td colspan='2'></td>            
+          <td colspan='2'>
+            <select name="quotas" id="quotas" class="form-control">
+              <option value="0" selected>Seleccione Cuotas</option>
+              @foreach ($quotas as $quota)
+                <option value="{{$quota->percent}}">{{$quota->number}}</option>
+              @endforeach              
+            </select>            
+          </td>  
+          <td>
+            <input type="text" id='montoTarjetaCuotas' class="form-control">
+          </td>          
         </tr>
         <tr id='rowConfirmSale'><td colspan="6"><button class='btn btn-info' id='confirmSale'>Confirmar venta</button></td></tr>
       </tbody>

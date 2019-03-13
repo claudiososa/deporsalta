@@ -11,6 +11,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+     
+
         factory(App\User::class,1)->create();
         // $this->call(UsersTableSeeder::class);
         factory(App\Category::class)
@@ -56,7 +58,23 @@ class DatabaseSeeder extends Seeder
         /*factory(App\Image::class)
         ->times(1)
         ->create();*/
-
+        for($i = 1; $i < 25; $i++) {
+            if($i < 7)
+            {
+                App\Quota::create([
+                    'number' => $i,
+                    'percent' => '0.0667',
+                    'user_id' => '1'
+                ]);
+            }else{
+                App\Quota::create([
+                    'number' => $i,
+                    'percent' => '0.075',
+                    'user_id' => '1'
+                ]);
+            }
+            
+        }
 
     }
 }

@@ -1,4 +1,12 @@
 $(document).ready(function () {  
+    $('#montoEfectivo').val($('#totalSale').val()).focus()
+    let montoTotal = $('#totalSale').val()
+    let montoTarjeta = $('#montoTarjeta').val()
+    let montoEfectivo = $('#montoEfectivo').val()
+
+    
+
+
     console.log($('#product_id').val())
     let product_id = $('#product_id').val()
     
@@ -71,19 +79,84 @@ $(document).ready(function () {
         });
     }
 
+    $('#tipoTarjeta').change(function (){
+        if ($(this).val()=='credito') {
+            $('#trCuotas').show()
+        }
+        if ($(this).val()=='debito') {
+            $('#trCuotas').hide()
+        }
+    })
+
+    $('#quotas').change(function (){
+        let montoTarjeta = $('#montoTarjeta').val()
+        let porcent =$(this).val()
+        let quotas = $('select[id="quotas"] option:selected').text()
+        
+        
+        let valor = 1 + (quotas * porcent)
+        let priceTotal = valor * montoTarjeta
+        if (quotas == '1') {
+            $('#montoTarjetaCuotas').val(montoTarjeta)    
+        }else{
+            $('#montoTarjetaCuotas').val(priceTotal)    
+        }
+
+        
+        console.log(valor)
+        console.log(priceTotal)
+    })
+
+    $('#montoEfectivo').change(function (){
+        montoTarjeta = montoTotal - $('#montoEfectivo').val()
+        $('#montoTarjeta').val(montoTarjeta)      
+    })
+
+    $('#montoTarjeta').change(function (){
+        montoEfectivo = montoTotal - $('#montoTarjeta').val()
+        $('#montoEfectivo').val(montoEfectivo)      
+    })
+
     $('#confirmSale').click(function (){
         console.log('presionaste confirmSale')
+        let montoEfectivo = $('#montoEfectivo').val()
+        let tipoTarjeta = $('#tipoTarjeta').val()
+        let montoTarjeta = $('#montoTarjeta').val()
         $.ajax({
-            type: 'GET',
-            url: '/sale/confirm/' + sale_id,
+            type: 'POST',
+            url: '/sale/confirm/',
             data: {
                 '_token': $('input[name=_token]').val(),
+                'sale_id': sale_id,
+                'montoEfectivo': montoEfectivo,
+                'tipoTarjeta': tipoTarjeta,
+                'montoTarjeta' : montoTarjeta
             },
             success: function(data) {
                 console.log('sumando')
                 console.log(data) 
-                $('[id ^=rowDetail]').empty();                                
+                $('[id ^=rowDetail]').empty();
+                $('#rowTotal').empty();                                
+                $('#rowConfirmSale').empty();                                
             }
         });
     })
+
+    // $('#confirmSale').click(function (){
+    //     console.log('presionaste confirmSale')
+    //     $.ajax({
+    //         type: 'GET',
+    //         url: '/sale/confirm/' + sale_id,
+    //         data: {
+    //             '_token': $('input[name=_token]').val(),
+    //         },
+    //         success: function(data) {
+    //             console.log('sumando')
+    //             console.log(data) 
+    //             $('[id ^=rowDetail]').empty();
+    //             $('#rowTotal').empty();                                
+    //             $('#rowConfirmSale').empty();                                
+    //         }
+    //     });
+    // })
 });
