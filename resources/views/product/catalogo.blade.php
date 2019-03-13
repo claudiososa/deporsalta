@@ -165,6 +165,7 @@
                                            <h5><a href="#">{{$product->description}}</a></h5>
                                            @foreach ($product->productpriceUnico as $price)
                                                 <h6>Precio de contado: $ {{number_format($price->price_sale, 0,'','.')}} <span>{{$price->price_sale+200}}</span></h6>
+                                                @break
                                            @endforeach
                                         </div>
                                        </div>

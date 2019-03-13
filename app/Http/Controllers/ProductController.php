@@ -407,7 +407,7 @@ class ProductController extends Controller
   {
     $products = Product::with([
         'productpriceUnico' => function ($query) {
-          $query->first();
+          $query->get();
           },
         'quantity' => function($query){
           $query->with('waist')->get();
