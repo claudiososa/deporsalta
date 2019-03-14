@@ -151,6 +151,16 @@ class SaleController extends Controller
        $sale->status = '1';
        $sale->save();
 
+       $details = SaleDetail::where('sale_id',$request->sale_id)->get();
+
+       foreach( $details as $item)
+       {
+          $quantity = Quantity::where('product_id',$item->product_id)->where('waist_id',$item->waist_id)->first();
+
+          $quantity->quantity = $quantity->quantity - $item->quantity;
+          $quantity->save();
+        }
+       //dd($quantity);
        if ($request->montoEfectivo !='0') {
           $payment = Payment::create([
             'sale_id' => $request->sale_id,
