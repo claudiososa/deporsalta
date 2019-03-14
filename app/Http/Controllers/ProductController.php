@@ -100,13 +100,15 @@ class ProductController extends Controller
     //dd($products);
   $brands = Brand::all();  
   $categories = Category::all();
+  $quotas = Quota::all();      
   return view('product.listSale',[
     'products' => $products,
     'categories' => $categories,
     'brands' => $brands,
     'saleDetail' => $saleDetail,
     'totalSale' => $totalSale,
-    'sale' => $sale
+    'sale' => $sale,
+    'quotas' => $quotas
   ]);
   }  
 

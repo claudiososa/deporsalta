@@ -179,8 +179,15 @@
             </select>            
           </td>  
           <td>
-            <input type="text" id='montoTarjetaCuotas' class="form-control">
-          </td>          
+            <input type="text" id='montoTarjetaCuotas' class="form-control" disabled>
+          </td>                    
+        </tr>
+        <tr id='trAmountQuota' style='display:none'>
+          <td colspan='3'></td>
+          <td>Valor Cuota</td>
+          <td>
+            <input type="text" id='amountQuota' class="form-control" disabled>
+          </td>
         </tr>
         <tr id='rowConfirmSale'><td colspan="6"><button class='btn btn-info' id='confirmSale'>Confirmar venta</button></td></tr>
       </tbody>

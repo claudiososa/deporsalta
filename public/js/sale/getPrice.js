@@ -84,6 +84,7 @@ $(document).ready(function () {
             let montoTarjeta = $('#montoTarjeta').val()
             $('#montoTarjetaCuotas').val(montoTarjeta)
             $('#trCuotas').show()
+            $('#trAmountQuota').show()
         }
         if ($(this).val()=='debito') {
             $('#trCuotas').hide()
@@ -93,8 +94,7 @@ $(document).ready(function () {
     $('#quotas').change(function (){//al cambiar valor en select de cuotas
         let montoTarjeta = $('#montoTarjeta').val()
         let porcent =$(this).val()
-        let quotas = $('select[id="quotas"] option:selected').text()
-       // alert(str.length(quotas))
+        let quotas = $('select[id="quotas"] option:selected').text()       
         console.log(quotas.length)
         let valor = 1 + (quotas * porcent)
         let priceTotal = valor * montoTarjeta
@@ -105,19 +105,49 @@ $(document).ready(function () {
                 $('#montoTarjetaCuotas').val(Math.round(priceTotal))   
             }
            
-    
+        $('#amountQuota').val(Math.round($('#montoTarjetaCuotas').val() / quotas))    
         console.log(valor)
         console.log(priceTotal)
     })
 
     $('#montoEfectivo').change(function (){
-        montoTarjeta = montoTotal - $('#montoEfectivo').val()
-        $('#montoTarjeta').val(montoTarjeta)      
+        let montoTarjeta = montoTotal - $('#montoEfectivo').val()
+        $('#montoTarjeta').val(montoTarjeta)
+        
+        //let montoTarjeta = $('#montoTarjeta').val()
+        let porcent =$('#quotas').val()
+        let quotas = $('select[id="quotas"] option:selected').text()       
+        //console.log(quotas.length)
+        let valor = 1 + (quotas * porcent)
+        let priceTotal = valor * montoTarjeta
+       
+            if (quotas == '1') {
+                $('#montoTarjetaCuotas').val(Math.round(montoTarjeta))    
+            }else{
+                $('#montoTarjetaCuotas').val(Math.round(priceTotal))   
+            }
+           
+        $('#amountQuota').val(Math.round($('#montoTarjetaCuotas').val() / quotas)) 
     })
 
     $('#montoTarjeta').change(function (){
         montoEfectivo = montoTotal - $('#montoTarjeta').val()
-        $('#montoEfectivo').val(montoEfectivo)      
+        $('#montoEfectivo').val(montoEfectivo)  
+
+        let montoTarjeta = $(this).val()
+        let porcent =$('#quotas').val()
+        let quotas = $('select[id="quotas"] option:selected').text()       
+        //console.log(quotas.length)
+        let valor = 1 + (quotas * porcent)
+        let priceTotal = valor * montoTarjeta
+       
+            if (quotas == '1') {
+                $('#montoTarjetaCuotas').val(Math.round(montoTarjeta))    
+            }else{
+                $('#montoTarjetaCuotas').val(Math.round(priceTotal))   
+            }
+           
+        $('#amountQuota').val(Math.round($('#montoTarjetaCuotas').val() / quotas)) 
     })
 
     $('#confirmSale').click(function (){
@@ -143,23 +173,5 @@ $(document).ready(function () {
                 $('#rowConfirmSale').empty();                                
             }
         });
-    })
-
-    // $('#confirmSale').click(function (){
-    //     console.log('presionaste confirmSale')
-    //     $.ajax({
-    //         type: 'GET',
-    //         url: '/sale/confirm/' + sale_id,
-    //         data: {
-    //             '_token': $('input[name=_token]').val(),
-    //         },
-    //         success: function(data) {
-    //             console.log('sumando')
-    //             console.log(data) 
-    //             $('[id ^=rowDetail]').empty();
-    //             $('#rowTotal').empty();                                
-    //             $('#rowConfirmSale').empty();                                
-    //         }
-    //     });
-    // })
+    })   
 });
