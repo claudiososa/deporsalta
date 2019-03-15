@@ -42,6 +42,33 @@ $(document).ready(function () {
     })
 
     
+    $('[id ^=radio').on('click', function(){
+
+        //alert($(this).attr('id').substr(5));
+        $("#agregarItem").prop('disabled', false);
+        let waist_id = $(this).attr('id').substr(5)        
+        let product_id = $('#product_id').val()
+
+        $('#waist_id').val(waist_id)
+
+        $.ajax({
+            type: 'POST',
+            url: '/sale/price/unit/',
+            data: {
+                '_token': $('input[name=_token]').val(),                
+                'waist_id': waist_id,
+                'product_id': product_id                
+            },
+            success: function(data) {
+                console.log('sumando')
+                console.log(data) 
+                //$('[id ^=rowDetail]').empty();
+                $('#priceUnit').val(data.price_sale);
+                $('#total').val(data.price_sale);
+                //$('#rowConfirmSale').empty();                                
+            }
+        });
+    });
 
     $('[id ^=saledetail]').on('click', function(){
 

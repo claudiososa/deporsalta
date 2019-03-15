@@ -12,4 +12,9 @@ class Waist extends Model
   {
     return $this->belongsTo(User::class);
   }
+
+  public function quantity()
+    {
+      return $this->hasMany(Quantity::class);
+    }
 }

@@ -37,6 +37,24 @@ class SaleController extends Controller
     {
       $sale = Sale::where('status','0')->count();
 
+      $quantities = Quantity::with([
+        'waist' => function($query){
+         $query->get();
+        }
+        ])->join('productprices', function($join)
+          {
+            $join->on('productprices.product_id','=','quantities.product_id');
+            $join->on('productprices.waist_id','=','quantities.waist_id');
+          })
+      ->where('quantities.product_id',$product->id)->get();
+        //->join('productprices','productprices.product_id','=','quantities.product_id','and','productprices.waist_id','=','productprices.waist_id')
+        //->join('votes', 'votes.userId', '=', 'friend.friendId')
+
+        
+
+        //dd($quantities);
+       
+       
       if ($sale > 0) {
         $sale = Sale::where('status','0')->first();        
       } else {
@@ -54,8 +72,9 @@ class SaleController extends Controller
         'waists' =>$waists,
         'category' => $category,
         'sale' => $sale,
-        'error'=>''
-      ]);
+        'error'=>'',
+        'quantities' => $quantities
+        ]);
     }
 
     public function create(CreateSaleRequest $request)
@@ -143,6 +162,13 @@ class SaleController extends Controller
        $sale->save();
 
         return response()->json($sale);
+    }
+
+
+    public function priceUnit(Request $request)
+    {
+       $price = Productprice::where('product_id',$request->product_id)->where('waist_id',$request->waist_id)->first();       
+       return response()->json($price);
     }
 
     public function confirmPost(Request $request)
