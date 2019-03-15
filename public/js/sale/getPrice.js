@@ -31,7 +31,8 @@ $(document).ready(function () {
         });
     })
 
-    $('#quantity').change(function (){
+    $('#quantity').on('change', function(){
+        alert('hola')
         let total = $(this).val()*$('#priceUnit').val()        
         $('#total').val(total)
     })
@@ -68,7 +69,11 @@ $(document).ready(function () {
                 $('#total').val(data.price_sale);
                 $('#divQuantity').empty()
                 $(`<input max="${data.quantity}" min="1" type="number" name="quantity" id="quantity" value="1" class='form-control'>`).appendTo('#divQuantity')
-                
+
+                $('#quantity').on('change', function(){                    
+                    let total = $(this).val()*$('#priceUnit').val()        
+                    $('#total').val(total)
+                })
                 //$('#rowConfirmSale').empty();                                
             }
         });
