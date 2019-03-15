@@ -6,7 +6,7 @@
     <script src="{{asset('js/sale/action.js')}}"></script>
     <div>
       @foreach($sales as $sale)
-      <div> {{$sale->id}} {{$sale->date}}</div>        
+      <div> {{$sale->id}} </div>        
       <div>   
         <table class="table">
           <thead>
@@ -19,10 +19,10 @@
             <!-- <th>Cancelar</th>       -->
           </thead>
           <tbody>
-            <?$tot=0?>
+           
             @forelse ($salesDetail as $detail)
               @if($detail->sale_id == $sale->id)
-               <?$tot = $tot + $detail->total;?>
+               
                
               
               <tr id='rowSale{{$detail->id}}'>
@@ -36,7 +36,7 @@
                 <!-- <td><a href="#" id="sale{{$detail->id}}" class="btn btn-danger">Cancelar venta</a></td> -->
               </tr>
               <tr>
-                <td colspan="6">{{$tot}}</td>
+                <td colspan="6"></td>
               </tr>
               @endif
             @empty
