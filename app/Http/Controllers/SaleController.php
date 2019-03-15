@@ -33,7 +33,7 @@ class SaleController extends Controller
     ]);    
   }
 
-    public function new(Product $product)
+    public function new(Product $product)//agregar nuevo item a venta actual
     {
       $sale = Sale::where('status','0')->count();
 
@@ -46,15 +46,7 @@ class SaleController extends Controller
             $join->on('productprices.product_id','=','quantities.product_id');
             $join->on('productprices.waist_id','=','quantities.waist_id');
           })
-      ->where('quantities.product_id',$product->id)->get();
-        //->join('productprices','productprices.product_id','=','quantities.product_id','and','productprices.waist_id','=','productprices.waist_id')
-        //->join('votes', 'votes.userId', '=', 'friend.friendId')
-
-        
-
-        //dd($quantities);
-       
-       
+      ->where('quantities.product_id',$product->id)->get();     
       if ($sale > 0) {
         $sale = Sale::where('status','0')->first();        
       } else {
@@ -64,15 +56,13 @@ class SaleController extends Controller
           'user_id' =>'1',
           'status' =>'0'          
         ]);        
-      }     
-      
+      }           
       $productImage = Product::with([
         'picture' => function($query){
           $query->first();
         }
       ])->find($product->id);
-
-      //dd($productImage);
+      
       $category = Category::find($product->category_id);
       $waists =Waist::where('type',$category->type)->get();
       return view('sale.create',[
@@ -185,16 +175,6 @@ class SaleController extends Controller
        return response()->json($price);
     }
 
-    // $quantities = Quantity::with([
-    //   'waist' => function($query){
-    //    $query->get();
-    //   }
-    //   ])->join('productprices', function($join)
-    //     {
-    //       $join->on('productprices.product_id','=','quantities.product_id');
-    //       $join->on('productprices.waist_id','=','quantities.waist_id');
-    //     })
-    // ->where('quantities.product_id',$product->id)->get();
 
     public function confirmPost(Request $request)
     {
