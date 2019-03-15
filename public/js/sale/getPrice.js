@@ -42,7 +42,7 @@ $(document).ready(function () {
     })
 
     
-    $('[id ^=radio').on('click', function(){
+    $('[id ^=radio').on('click', function(){//botones radio seleccion de talle
 
         //alert($(this).attr('id').substr(5));
         $("#agregarItem").prop('disabled', false);
@@ -63,8 +63,12 @@ $(document).ready(function () {
                 console.log('sumando')
                 console.log(data) 
                 //$('[id ^=rowDetail]').empty();
+                
                 $('#priceUnit').val(data.price_sale);
                 $('#total').val(data.price_sale);
+                $('#divQuantity').empty()
+                $(`<input max="${data.quantity}" min="1" type="number" name="quantity" id="quantity" value="1" class='form-control'>`).appendTo('#divQuantity')
+                
                 //$('#rowConfirmSale').empty();                                
             }
         });

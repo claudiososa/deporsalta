@@ -45,16 +45,21 @@
             <input class='form-control' type="text" name="priceUnit" id="priceUnit" value="{{$product->priceClient}}" placeholder="precio unitario" >
             <hr>
             Cantidad 
-
-            <input max="20" min="1" type="number" name="quantity" id="quantity" value="1" class='form-control'>
-
+            <div id='divQuantity'>
+              <input max="20" min="1" type="number" name="quantity" id="quantity" value="1" class='form-control'>
+            </div>
             <hr>
             <label for="total">Total</label>
             <input class='form-control' type="text" name="total" id="total" value="" readonly >
             <hr>
-            <input type="submit" id="agregarItem" class="btn btn-success" name="button" disabled value="Agregar Item">
+            <input type="submit" id="agregarItem" class="form-control btn btn-danger" name="button" disabled value="Agregar Item">
           </div>
-          <div class='col-md-3'>Foto</div>
+          <div class='col-md-3'>
+            @foreach ($productImage->picture as $picture)
+              <img src="{{Storage::disk('public')->url($picture->description)}}" alt="">
+            @endforeach
+            
+          </div>
         </div>
         
         <!-- <select class="form-control" name="waist_id" id="waist_id">

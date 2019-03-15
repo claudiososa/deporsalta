@@ -65,6 +65,14 @@ class SaleController extends Controller
           'status' =>'0'          
         ]);        
       }     
+      
+      $productImage = Product::with([
+        'picture' => function($query){
+          $query->first();
+        }
+      ])->find($product->id);
+
+      //dd($productImage);
       $category = Category::find($product->category_id);
       $waists =Waist::where('type',$category->type)->get();
       return view('sale.create',[
@@ -73,7 +81,8 @@ class SaleController extends Controller
         'category' => $category,
         'sale' => $sale,
         'error'=>'',
-        'quantities' => $quantities
+        'quantities' => $quantities,
+        'productImage' => $productImage
         ]);
     }
 
@@ -167,9 +176,25 @@ class SaleController extends Controller
 
     public function priceUnit(Request $request)
     {
-       $price = Productprice::where('product_id',$request->product_id)->where('waist_id',$request->waist_id)->first();       
+       $price = Productprice::join('quantities', function($join)
+       {
+         $join->on('quantities.product_id','=','productprices.product_id');
+         $join->on('quantities.waist_id','=','productprices.waist_id');
+        })
+       ->where('productprices.product_id',$request->product_id)->where('productprices.waist_id',$request->waist_id)->first();       
        return response()->json($price);
     }
+
+    // $quantities = Quantity::with([
+    //   'waist' => function($query){
+    //    $query->get();
+    //   }
+    //   ])->join('productprices', function($join)
+    //     {
+    //       $join->on('productprices.product_id','=','quantities.product_id');
+    //       $join->on('productprices.waist_id','=','quantities.waist_id');
+    //     })
+    // ->where('quantities.product_id',$product->id)->get();
 
     public function confirmPost(Request $request)
     {
