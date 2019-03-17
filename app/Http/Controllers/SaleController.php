@@ -33,7 +33,7 @@ class SaleController extends Controller
     ]);    
   }
 
-    public function new(Product $product)//agregar nuevo item a venta actual
+    public function new(Product $product)//agrega nuevo item a venta actual
     {
       $sale = Sale::where('status','0')->count();
 
@@ -189,7 +189,8 @@ class SaleController extends Controller
           $quantity = Quantity::where('product_id',$item->product_id)->where('waist_id',$item->waist_id)->first();
 
           $quantity->quantity = $quantity->quantity - $item->quantity;
-          $quantity->save();
+          Quantity::where('product_id',$item->product_id)->where('waist_id',$item->waist_id)->update(['quantity' => $quantity->quantity]);
+          //$quantity->save();
         }
        //dd($quantity);
        if ($request->montoEfectivo !='0') {

@@ -207,6 +207,9 @@ $(document).ready(function () {
                 $('[id ^=rowDetail]').empty();
                 $('#rowTotal').empty();                                
                 $('#rowConfirmSale').empty();                                
+                $('#rowTypePayment').empty();
+                $('#saleDetail').empty();
+                                                
             }
         });
     })   

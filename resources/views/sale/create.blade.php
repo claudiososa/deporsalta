@@ -31,7 +31,11 @@
               </tr>
               @forelse ($quantities as $quantity)
               <tr>
-                <td><input class='form-control' type="radio" id="radio{{$quantity->waist_id}}" name="radioWaist" value="{{$quantity->waist_id}}"></td>
+                @if($quantity->quantity=='0')
+                  <td><input disabled class='form-control' type="radio" id="radio{{$quantity->waist_id}}" name="radioWaist" value="{{$quantity->waist_id}}"></td>
+                @else
+                  <td><input class='form-control' type="radio" id="radio{{$quantity->waist_id}}" name="radioWaist" value="{{$quantity->waist_id}}"></td>
+                @endif                
                 <td>{{$quantity->waist->description}}</td>
                 <td>{{$quantity->quantity}}</td>
                 <td>{{$quantity->price_sale}}</td>
