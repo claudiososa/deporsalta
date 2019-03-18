@@ -53,12 +53,8 @@ $(document).ready(function () {
         $('#waist_id').val(waist_id)
      
         $.ajax({
-            cache: false,
-            type: 'POST',
-            //url: "{{ route('priceunitario') }}",
-            //url: "{{ url('/product_catalog/storeProduct') }}",
-             url: 'https://valenclothes.com.ar/sale/price/unit/',
-            //url: '**{{ route("priceUnit") }}**',
+            type: 'POST',         
+            url: '/sale/price/unit/',           
             data: {
                 '_token': $('input[name=_token]').val(),     
                 'waist_id': waist_id,
