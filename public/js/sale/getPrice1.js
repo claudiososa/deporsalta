@@ -51,18 +51,13 @@ $(document).ready(function () {
         let product_id = $('#product_id').val()
 
         $('#waist_id').val(waist_id)
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
+     
         $.ajax({
             type: 'post',
             url: '/sale/price/unit/',
             //url: '**{{ route("priceUnit") }}**',
             data: {
-                //'_token': $('input[name=_token]').val(),                
+                '_token': $('input[name=csrf-token]').val(),                
                 'waist_id': waist_id,
                 'product_id': product_id                
             },
