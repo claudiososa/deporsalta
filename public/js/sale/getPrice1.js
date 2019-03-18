@@ -55,6 +55,7 @@ $(document).ready(function () {
         $.ajax({
             type: 'POST',
             url: '/sale/price/unit/',
+            //url: '{{route("priceUnit")}}',
             data: {
                 '_token': $('input[name=_token]').val(),                
                 'waist_id': waist_id,
