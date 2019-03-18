@@ -44,7 +44,7 @@ $(document).ready(function () {
 
     
     $('[id ^=radio').on('click', function(){//botones radio seleccion de talle
-
+        //e.preventDefault();
         //alert($(this).attr('id').substr(5));
         $("#agregarItem").prop('disabled', false);
         let waist_id = $(this).attr('id').substr(5)        
@@ -53,11 +53,14 @@ $(document).ready(function () {
         $('#waist_id').val(waist_id)
      
         $.ajax({
-            type: 'post',
-            url: '/sale/price/unit/',
+            cache: false,
+            type: 'POST',
+            //url: "{{ route('priceunitario') }}",
+            //url: "{{ url('/product_catalog/storeProduct') }}",
+             url: 'https://valenclothes.com.ar/sale/price/unit/',
             //url: '**{{ route("priceUnit") }}**',
             data: {
-                '_token': $('input[name=csrf-token]').val(),                
+                '_token': $('input[name=_token]').val(),     
                 'waist_id': waist_id,
                 'product_id': product_id                
             },
