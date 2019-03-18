@@ -4,7 +4,8 @@
     @if(null !== $error)
         <p class="alert alert-warning">{{$error}}</p>
     @endif
-    
+  <meta name="csrf-token" content="{{ csrf_token() }}" />
+
   <script src="{{asset('js/sale/getPrice1.js')}}"></script>
   <div class="container">
   <div class="col-md-12">
@@ -15,7 +16,7 @@
 
     <form class="" action="/sale/create" method="post">
       <div class="form-group @if($errors->has('description')) has-danger @endif">
-      {{csrf_field()}}
+      
         <input type="hidden" name="product_id" id="product_id" value="{{$product->id}}">
         <input type="hidden" name="waist_id" id="waist_id" value="">
         <input type="hidden" name="sale_id" id="sale_id" value="{{$sale->id}}">

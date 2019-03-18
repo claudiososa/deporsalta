@@ -62,7 +62,7 @@ $(document).ready(function () {
             url: '/sale/price/unit/',
             //url: '**{{ route("priceUnit") }}**',
             data: {
-                '_token': $('input[name=_token]').val(),                
+                //'_token': $('input[name=_token]').val(),                
                 'waist_id': waist_id,
                 'product_id': product_id                
             },
