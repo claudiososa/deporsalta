@@ -4,20 +4,20 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6">
-				<p><h3>Bienvenido a Valenclothes</h3></p>
+				<p><h3>Bienvenido a Valen Clothes</h3></p>
 				<div class="c_izquierda">
-					<p>Somos un .<br><br>
+					<p>Valen Clothes en una tienda de ropa femenina en la que encontrarás lo ultimo de la moda y las tendencias de cada temporada.<br><br>
 
-					.<br><br>
+					<br><br>
 
-					Esperamos tus consultas <br><br>
+					Todo lo que buscas... En un solo lugar...  <br><br>
 
-					Equipo ValenClothes <br><br></p>
+					Esperamos tus consultas, ValenClothes <br><br></p>
 
 				</div>
 			</div>
 			<div class="col-md-6">
-				<img class="img-fluid" src="images/sections/foto-local.jpg" alt="deportivasalta">
+				<img class="img-fluid" src="images/sections/logo.jpg" alt="Valen Clothes">
 			</div>
 		</div>
 	</div>
