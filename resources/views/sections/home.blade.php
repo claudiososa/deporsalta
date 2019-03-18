@@ -10,11 +10,11 @@
                 <div class="container h-100">
                     <div class="row h-100 align-items-center">
                         <div class="col-12">
-                            <div class="welcome_slide_text">
-                                <p class="text-white" data-animation="fadeInUp" data-delay="0">Solo fashion</p>
+              <!--              <div class="welcome_slide_text">
+                               <p class="text-white" data-animation="fadeInUp" data-delay="0">Solo fashion</p>
                                 <h2 class="text-white" data-animation="fadeInUp" data-delay="300ms">Colección Verano</h2>
                                 <a href="/catalogo" class="btn buy-now" data-animation="fadeInUp" data-delay="600ms">Catálogo</a>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -25,11 +25,11 @@
                 <div class="container h-100">
                     <div class="row h-100 align-items-center">
                         <div class="col-12">
-                            <div class="welcome_slide_text">
+                          <!--   <div class="welcome_slide_text">
                                 <p class="text-white" data-animation="fadeInLeftBig" data-delay="0">Ver más en nuestra</p>
                                 <h2 class="text-white" data-animation="fadeInLeftBig" data-delay="300ms">Galería de fotos</h2>
                                 <a href="/fotos" class="btn buy-now" data-animation="fadeInLeftBig" data-delay="600ms">Galería</a>
-                            </div>
+                            </div>  -->
                         </div>
                     </div>
                 </div>
@@ -41,10 +41,10 @@
                     <div class="row h-100 align-items-center">
                         <div class="col-12">
                             <div class="welcome_slide_text">
-                                <p data-animation="slideInDown" data-delay="600ms">Quienes somos? <i class="ti-heart"></i></p>
+                            <!--     <p data-animation="slideInDown" data-delay="600ms">Quienes somos? <i class="ti-heart"></i></p>
                                 <h2 data-animation="slideInDown" data-delay="300ms">Más información</h2>
                                 <a href="aboutUs" class="btn buy-now" data-animation="slideInDown" data-delay="0">Sobre nosotros...</a>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -70,12 +70,12 @@
                                             </div>
                                         </div>
                                     </div>
-                                </a>    
-                            
+                                </a>
+
                         </div>
                     </div>
-                @empty                            
-                @endforelse      
+                @empty
+                @endforelse
             </div>
         </div>
     </section>
@@ -175,18 +175,18 @@
                             <div role="tabpanel" class="tab-pane fade show active" id="top-sellers">
                                 <div class="top_sellers_area">
                                     <div class="row">
-                                        
+
                                                     @forelse ($productSpecial as $product)
                                                     <div class="col-12 col-sm-6 col-lg-3">
                                                             <div class="single_top_sellers">
                                                                 <div class="top_seller_image">
-                                                                @forelse ($product->picture as $picture)                                                                    
-                                                                  <img src="{{Storage::disk('public')->url($picture->description)}}" alt="Top-Sellers">                                                                
+                                                                @forelse ($product->picture as $picture)
+                                                                  <img src="{{Storage::disk('public')->url($picture->description)}}" alt="Top-Sellers">
                                                                   @break
                                                                 @empty
-                                                            
+
                                                                  @endforelse
-                                                
+
                                                                 </div>
                                                                 <div class="top_seller_desc">
                                                                     <h5><a href="#">{{$product->description}}</a></h5>
@@ -197,9 +197,9 @@
                                                             </div>
                                                     </div>
                                                     @empty
-                                                        
+
                                                     @endforelse
-                                                    
+
                                     </div>
                                 </div>
                             </div>

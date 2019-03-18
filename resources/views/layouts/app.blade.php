@@ -2,13 +2,13 @@
 <html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="UTF-8">
-    <meta name="Deportiva Salta" content="Ropa Deportiva Salta, aqui encontraras la ropa que estas, buscando. Puedes ver nuestro catagolo actualizado">
+    <meta name="ValenClothes" content="Ropa para mujer">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title  -->
-    <title>Deportiva Salta | Calzas, etc.</title>
+    <title>Valenclothes | Ropa para mujer.</title>
 
     <!-- Favicon  -->
     <link rel="shortcut icon" href="{{asset('img/core-img/favicon.ico')}}">
@@ -23,7 +23,7 @@
 
     <!-- Responsive CSS -->
     <link href="{{asset('css/responsive.css')}}" rel="stylesheet">
-    <!-- CSRF Token -->    
+    <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
@@ -45,15 +45,16 @@
                         <div class="top_single_area d-sm-flex align-items-center">
                             <!-- Top Mail Area Start -->
                             {{-- <div class="top_mail mr-5">
-                                <a class="align-middle" href="mailto:paty.sugelli@gmail.com"><i class="fa fa-envelope-o" aria-hidden="true"></i> paty.sugelli@gmail.com</a>
+                                <a class="align-middle" href="mailto:valenclothes@gmail.com"><i class="fa fa-envelope-o" aria-hidden="true"></i> paty.sugelli@gmail.com</a>
                             </div> --}}
                             <!-- Top Social Area Start -->
                             <div class="top_social">
-                                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                              <!--  <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
                                 <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
                                 <a href="#"><i class="fa fa-vimeo" aria-hidden="true"></i></a>
                                 <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a> -->
                             </div>
                         </div>
                     </div>
@@ -61,9 +62,9 @@
                         <div class="top_single_area d-sm-flex align-items-center justify-content-end">
                             <!-- Login Area Start -->
                             <div class="login_area">
-                                <p><a href="/login"><i class="fa fa-lock" aria-hidden="true"></i> Login</a> 
+                                <p><a href="/login"><i class="fa fa-lock" aria-hidden="true"></i> Login</a>
                                     <!-- <a href="register.html" target="_blank"><i class="fa fa-user" aria-hidden="true"></i> Create an account</a> -->
-                                </p>    
+                                </p>
                             </div>
                             <!-- Get Support -->
                             <!-- <div class="get_help">
@@ -95,7 +96,8 @@
                         <!-- Logo Area Start -->
                         <div class="col-6 col-md-3">
                             <div class="logo_area">
-                                <a href="/">Deportiva Salta</a>
+                                <img src="{{asset('img/logo.png')}}" alt="">
+
                             </div>
                         </div>
                         <!-- Search Area Start -->
@@ -109,7 +111,7 @@
                         </div> --}}
                         <!-- Hero Meta Area Start -->
                         <div class="col-6 col-md-3">
-                            <div class="hero_meta_area d-flex text-right align-items-center justify-content-end">                             
+                            <div class="hero_meta_area d-flex text-right align-items-center justify-content-end">
                             </div>
                         </div>
                     </div>
@@ -125,7 +127,7 @@
                             <div class="nav-toggle"></div>
                         </div>
                         <!-- Nav Text Area Start -->
-                        <span class="nav-text align-to-right"><i class="ti-headphone-alt"></i> +54 387 4152010</span>
+                        <span class="nav-text align-to-right"><i class="ti-headphone-alt"></i> +54 387 xxxxxxx</span>
 
                         @if (Auth::guest())
                             <!-- Main Menus Wrapper -->
@@ -135,28 +137,41 @@
                                     <li><a href="/aboutUs" >Quienes somos</a></li>
                                     <li><a href="/catalogo" >Catálogo</a></li>
                                     <li><a href="/fotos" >Galería de Fotos</a></li>
-                                    <li><a href="/contacto" >Contactanos</a></li>                    
-                                
+                                    <li><a href="/contacto" >Contactanos</a></li>
+
                                 </ul>
-                            </div>                    
+                            </div>
                         @else
                             <div class="nav-menus-wrapper">
-                                <ul class="nav-menu">                                
-                                    <li><a href="#">Administrador</a>
+                                <ul class="nav-menu">
+                                    <li><a href="#">Ventas</a>
                                         <ul class="nav-dropdown">
+                                            <li><a href="/productsale">Realizar Venta</a></li>
                                             <li><a href="/sale/list">Ventas realizadas</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">Productos</a>
+                                        <ul class="nav-dropdown">
                                             <li><a href="/products">Mostrar Productos</a></li>
-                                            <li><a href="/product/create">Nuevo Producto</a></li>
-                                            <li><a href="/galeria">Admin Galeria de Fotos</a></li>
-                                            <li><a href="/category/create">Nueva Categoria</a></li>
+                                            <li><a href="/product/selectcategory">Nuevo Producto</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">Galeria de Fotos</a>
+                                        <ul class="nav-dropdown">
+                                            <li><a href="/galeria">Administrar fotos</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">Administrar</a>
+                                        <ul class="nav-dropdown">
+                                        <li><a href="/category/create">Nueva Categoria</a></li>
                                             <li><a href="/viewcategory">Mostrar Categorias</a></li>
-                                            <li><a href="/colour/create">Nueva Color</a></li>
+                                            <li><a href="/colour/create">Nuevo Color</a></li>
                                             <li><a href="/viewcolour">Mostrar Colores</a></li>
                                             <li><a href="/brand/create">Nueva Marca</a></li>
                                             <li><a href="/viewbrand">Mostrar Marcas</a></li>
-                                            <li><a href="/waist/create">Nuevo Talles</a></li>
+                                            <li><a href="/waist/create">Nuevo Talle</a></li>
                                             <li><a href="/viewwaist">Mostrar Talles</a></li>
-                                        </ul>    
+                                        </ul>
                                     </li>
                                     <li  class="nav-item dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -188,7 +203,7 @@
     <!-- <div class="container">      -->
         @yield('content')
     <!-- </div> -->
-     
+
     <footer class="footer_area section_padding_100">
         <div class="container">
             <div class="row">
@@ -199,16 +214,16 @@
                             <h6>Sobre nosotros</h6>
                         </div>
                         <div class="footer_content">
-                            <p>Deportiva Salta, es un emprendimiento que busca satisfacer la necesidad de usar ropa deportiva de calidad.</p>
-                            <p>Movil: +54 387 4152010</p>
-                            <p>Email: paty.sugelli@gmail.com</p>
+                            <p>Valenclothes, Todo lo que buscas.. en un solo lugar</p>
+                            <p>Movil: +54 387 xxxxxx</p>
+                            <p>Email: contacto@valenclothes.com.ar</p>
                         </div>
                         <div class="footer_social_area mt-15">
                             <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                            <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                        <!--    <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
                             <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
                             <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
-                            <a href="#"><i class="fa fa-rss" aria-hidden="true"></i></a>
+                            <a href="#"><i class="fa fa-rss" aria-hidden="true"></i></a> -->
                         </div>
                     </div>
                 </div>
@@ -224,7 +239,7 @@
                             <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>Quienes somos</a></li>
                             <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>Catálogo</a></li>
                             <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>Galería de fotos</a></li>
-                            <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>Contactenos</a></li>                            
+                            <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>Contactenos</a></li>
                         </ul>
                     </div>
                 </div>
@@ -276,17 +291,17 @@
                     <!-- Copywrite Content -->
                     <div class="col-12 col-md">
                         <div class="copywrite_text text-left d-flex align-items-center">
-                            <p>Sitio desarrollado por <a href="#">Hosting Salta</a></p>
+                            <p>Sitio desarrollado por <a href="#">Via Digital</a></p>
                         </div>
                     </div>
                     <!-- Payment Method -->
                     <div class="col-12 col-md">
                         <div class="payment_method text-right">
-                            <img src="img/payment-method/paypal.png" alt="">
-                            <img src="img/payment-method/maestro.png" alt="">
-                            <img src="img/payment-method/western-union.png" alt="">
-                            <img src="img/payment-method/discover.png" alt="">
-                            <img src="img/payment-method/american-express.png" alt="">
+                            <img src="/img/payment-method/visa.png" alt="">
+                            <!--<img src="/img/payment-method/maestro.png" alt="">
+                            <img src="/img/payment-method/western-union.png" alt="">
+                            <img src="/img/payment-method/discover.png" alt="">
+                            <img src="/img/payment-method/american-express.png" alt=""> -->
                         </div>
                     </div>
                 </div>
@@ -296,16 +311,16 @@
     <!-- ***** Footer Area End ***** -->
 
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
-    
-    
+
+
     <!-- Popper js -->
-    <script src="js/popper.min.js"></script>
+    <script src="/js/popper.min.js"></script>
     <!-- Bootstrap js -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
     <!-- Plugins js -->
-    <script src="js/plugins.js"></script>
+    <script src="/js/plugins.js"></script>
     <!-- Active js -->
-    <script src="js/active.js"></script>   
+    <script src="/js/active.js"></script>
 
 </body>
 </html>

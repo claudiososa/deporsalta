@@ -45,8 +45,8 @@
                                     <div class="form-group">
                                         <select class="custom-select w-100">
                                           <option selected>Asunto</option>
-                                          <option value="1">Revendedor</option>
-                                          <option value="2">Nueva coleccion</option>
+                                        <!--  <option value="1">Revendedor</option>
+                                          <option value="2">Nueva coleccion</option> -->
                                           <option value="3">Consulta general</option>
                                         </select>
                                     </div>

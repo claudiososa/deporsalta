@@ -16,6 +16,7 @@ class CreateTableWaists extends Migration
         Schema::create('waists', function (Blueprint $table) {
             $table->increments('id');
             $table->string('description',25);
+            $table->integer('type')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->timestamps();
         });

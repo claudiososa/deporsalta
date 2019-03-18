@@ -15,8 +15,8 @@ class AddUserIdColumnToCategory extends Migration
     {
         Schema::table('categories', function (Blueprint $table) {
             $table->integer('user_id')->unsigned();
-
             $table->foreign('user_id')->references('id')->on('users');
+            //$table->foreign('type')->references('type')->on('waists');
         });
     }
 
@@ -29,6 +29,7 @@ class AddUserIdColumnToCategory extends Migration
     {
         Schema::table('categories', function (Blueprint $table) {
             $table->dropForeign('categories_user_id_foreign');
+            //$table->dropForeign('categories_type_foreign');
             $table->dropColumn('user_id');
         });
     }

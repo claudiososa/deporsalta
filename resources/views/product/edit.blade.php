@@ -1,12 +1,15 @@
 @extends('layouts.app')
 @section('content')
   <script src="{{asset('js/product/create.js')}}"></script>
-  <div class="row">
-    <h1>Editando Product</h1>
-
+  <div class="container">
+  
+    <h4>Modificar Producto</h4>
+    <h5 class='alert alert-info'>Categoria: {{$category->description}}</h5>
     <form class="" action="/product/edit" method="post">
       {{csrf_field()}}
       <input type="hidden" name="id" value="{{$product->id}}" class="form-control">
+      <input type="hidden" name="type" value="{{$category->type}}">
+      <input type="hidden" name="category_id" value="{{$category->id}}">
 
       <div class="form-group @if($errors->has('description')) has-danger @endif">
         <label for="description">Nombre del Producto</label>
@@ -19,93 +22,6 @@
             </div>
           @endforeach
         @endif
-      </div>
-
-      <div class="form-group @if($errors->has('priceCost')) has-danger @endif">
-        <label for="description">Precio de Costo</label>
-        <input type="text" name="priceCost" id="priceCost" value="{{$product->priceCost}}" class="form-control"
-        placeholder="Ingrese precio del producto">
-        @if ($errors->has('priceCost'))
-          @foreach ($errors->get('priceCost') as $error)
-            <div class="form-control-feedback">
-              {{$error}}
-            </div>
-          @endforeach
-        @endif
-      </div>
-
-      <div class="form-group @if($errors->has('priceReven')) has-danger @endif">
-        <label for="description">Precio Revendedor</label>
-        <input type="text" name="priceReven" id="priceReven"  value="{{$product->priceReven}}" class="form-control"
-        placeholder="Precio para Revendedor">
-        @if ($errors->has('priceReven'))
-          @foreach ($errors->get('priceReven') as $error)
-            <div class="form-control-feedback">
-              {{$error}}
-            </div>
-          @endforeach
-        @endif
-      </div>
-
-      <div class="form-group @if($errors->has('priceClient')) has-danger @endif">
-        <label for="description">Precio Cliente Final</label>
-        <input type="text" name="priceClient" id="priceClient" value="{{$product->priceClient}}" class="form-control"
-        placeholder="Precio para Cliente Final">
-        @if ($errors->has('priceClient'))
-          @foreach ($errors->get('priceClient') as $error)
-            <div class="form-control-feedback">
-              {{$error}}
-            </div>
-          @endforeach
-        @endif
-      </div>
-
-      <div class="form-group @if($errors->has('special')) has-danger @endif">
-        <label for="special">Destacado</label>      
-        @if($product->special == '1')
-          echo '<input type="checkbox" name="special" id="special"  checked class="form-control">';          
-        @else
-          echo '<input type="checkbox" name="special" id="special"  class="form-control">';          
-        @endif
-      </div>
-
-
-      <div class="form-group @if($errors->has('marginReseller')) has-danger @endif">
-        <label for="marginReseller">Margen Revendedor</label>
-        <input type="text" name="marginReseller" id="marginReseller" value="{{$product->marginReseller}}" class="form-control" readyonly>
-        @if ($errors->has('marginReseller'))
-          @foreach ($errors->get('marginReseller') as $error)
-            <div class="form-control-feedback">
-              {{$error}}
-            </div>
-          @endforeach
-        @endif
-      </div>
-
-      <div class="form-group @if($errors->has('marginClient')) has-danger @endif">
-        <label for="marginClient">Margen Cliente Final</label>
-        <input type="text" name="marginClient" id="marginClient" value="{{$product->marginClient}}" class="form-control" readyonly>
-        @if ($errors->has('marginClient'))
-          @foreach ($errors->get('marginClient') as $error)
-            <div class="form-control-feedback">
-              {{$error}}
-            </div>
-          @endforeach
-        @endif
-      </div>
-
-      <div class="form-group @if($errors->has('category_id')) has-danger @endif">
-        <label for="marginClient">Categoria</label>
-        <select class="form-control" name="category_id">
-          @foreach ($categories as $category)
-            @if ($category->id==$product->category_id)
-              <option selected value="{{$category->id}}">{{$category->description}}</option>
-            @else
-              <option value="{{$category->id}}">{{$category->description}}</option>
-            @endif
-
-          @endforeach
-        </select>
       </div>
 
       <div class="form-group @if($errors->has('brand_id')) has-danger @endif">
@@ -136,12 +52,53 @@
         </select>
       </div>
 
-      <button type="submit" class="btn btn-success" name="button">Crear Producto</button>
+      <div class="form-group @if($errors->has('priceCost')) has-danger @endif">
+        {{-- <label for="description">Precio Costo Principal</label> --}}
+        <input type="text" name="cost" id="cost" value="" class="form-control" placeholder="Precio Costo">
+        <input type="text" name="client" id="client" value="" class="form-control" placeholder="Precio Venta">
+        @if ($errors->has('priceCost{{$waist->id}}'))
+          @foreach ($errors->get('priceCost') as $error)
+            <div class="form-control-feedback">
+              {{$error}}
+            </div>
+          @endforeach
+        @endif
+      </div>
+
+      @foreach ($waists as $waist)
+      <p class='alert alert-info'>Talle: {{$waist->description}}</p>
+
+      <div class="form-group @if($errors->has('priceCost')) has-danger @endif">
+        @foreach($productPrice as $price)
+          @if($waist->id == $price->waist_id)
+            <input type="text" name="priceCost{{$waist->id}}" id="priceCost{{$waist->id}}" value="{{$price->price_cost}}" class="form-control" placeholder="Precio de Costo">
+            <input type="text" name="priceClient{{$waist->id}}" id="priceClient{{$waist->id}}" value="{{$price->price_sale}}" class="form-control" placeholder="Precio Venta">
+          @endif        
+        @endforeach
+        
+        @if ($errors->has('priceCost{{$waist->id}}'))
+          @foreach ($errors->get('priceCost{{$waist->id}}') as $error)
+            <div class="form-control-feedback">
+              {{$error}}
+            </div>
+          @endforeach
+        @endif
+      </div>
+        
+      @endforeach   
+
+      <div class="form-group @if($errors->has('special')) has-danger @endif">
+        <label for="special">Destacado</label>      
+        <div class='form-group'>
+        @if($product->special == '1')
+          <input type="checkbox" name="special" id="special"  checked class="form-control">
+        @else
+          <input type="checkbox" name="special" id="special"  class="form-control">
+        @endif
+        </div>
+      </div>   
+
+      <button type="submit" class="btn btn-success" name="button">Modificar Producto</button>
     </form>
-
-
-
-
-
   </div>
 @endsection

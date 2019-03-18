@@ -15,7 +15,13 @@ class Quantity extends Model
     {
       return $this->belongsTo(Waist::class);
     }
+
+    // public function price()
+    // {
+    //   return $this->belongsTo(Productprice::class);
+    // }
     
+
 /*
     public function brand()
     {

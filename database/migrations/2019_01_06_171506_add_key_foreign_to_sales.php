@@ -14,8 +14,8 @@ class AddKeyForeignToSales extends Migration
     public function up()
     {
       Schema::table('sales', function (Blueprint $table) {
-        $table->foreign('product_id')->references('id')->on('products');
-        $table->foreign('waist_id')->references('id')->on('waists');
+        $table->foreign('user_id')->references('id')->on('users');
+        //$table->foreign('id')->references('id')->on('waists');
       });
     }
 
@@ -27,8 +27,8 @@ class AddKeyForeignToSales extends Migration
     public function down()
     {
         Schema::table('sales', function (Blueprint $table) {
-            $table->dropForeign('sales_waist_id_foreign');
-            $table->dropForeign('sales_product_id_foreign');
+            $table->dropForeign('sales_user_id_foreign');
+            //$table->dropForeign('sales_product_id_foreign');
         });
     }
 }

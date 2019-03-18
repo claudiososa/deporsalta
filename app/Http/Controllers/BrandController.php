@@ -33,9 +33,7 @@ class BrandController extends Controller
     $user= $request->user();
     $brand = Brand::create([
       'user_id' => $user->id,
-      'description' =>$request->input('description'),
-      'marginReseller' =>$request->input('marginReseller'),
-      'marginClient' =>$request->input('marginClient')
+      'description' =>$request->input('description')     
     ]);
     return redirect('/viewbrand/'.$brand->id);
   }

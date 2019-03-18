@@ -25,8 +25,16 @@ Route::get('/catalogo/{category}','ProductController@catalogoCategory');
 
 //  Products
 Route::get('/products','ProductController@list')->middleware('auth');
-Route::get('/product/create','ProductController@new')->middleware('auth');
+Route::get('/productsale','ProductController@listSale')->middleware('auth');
+
+
+Route::get('/product/selectcategory','ProductController@selectCategory')->middleware('auth');
+Route::post('/product/selectcategory','ProductController@new')->middleware('auth');
+
+//Route::get('/product/create','ProductController@new')->middleware('auth');
 Route::post('/searchproduct','ProductController@searchProduct')->middleware('auth')->name('searchProduct');
+Route::post('/searchproductsale','ProductController@searchProductSale')->middleware('auth')->name('searchProductSale');
+
 
 Route::get('/search','ProductController@search')->middleware('auth');
 Route::post('/product/search','ProductController@searchPost')->middleware('auth');
@@ -35,7 +43,9 @@ Route::post('/product/search','ProductController@searchPost')->middleware('auth'
 Route::get('viewproduct/{product}','ProductController@show');
 Route::post('/product/create','ProductController@create')->middleware('auth');
 
+
 Route::get('/product/update/{product}','ProductController@update')->middleware('auth');
+
 Route::post('/product/edit','ProductController@edit')->middleware('auth');
 //  Brands
 Route::get('/viewbrand','BrandController@list')->middleware('auth');
@@ -89,10 +99,19 @@ Route::get('/quantity/new/{product}','QuantityController@new')->middleware('auth
 Route::post('/quantity/create','QuantityController@create')->middleware('auth');
 
 // Sales
+
+Route::post('/sale/price/unit/','SaleController@priceUnit')->middleware('auth');
 Route::get('/sale/new/{product}','SaleController@new')->middleware('auth');
 Route::get('/sale/list','SaleController@list')->middleware('auth');
 Route::post('/sale/create','SaleController@create')->middleware('auth');
-Route::get('/sale/delete/{sale}','SaleController@delete')->middleware('auth');
+Route::get('/sale/addItem/{product}/{waist}','SaleController@addItem');
+//Route::get('/sale/confirm/{id}','SaleController@confirm');
+Route::post('/sale/confirm','SaleController@confirmPost');
+
+//Route::post('/sale/addItem','SaleController@addItem');
+//Route::get('/sale/delete/{sale}','SaleController@delete')->middleware('auth');
+Route::get('/saledetail/delete/{sale}','SaleController@delete')->middleware('auth');
+Route::get('/saledetail/sum/{sale}','SaleController@sumTotal')->middleware('auth');
 
 // Albums
 Route::get('/fotos','AlbumsController@getAlbums');

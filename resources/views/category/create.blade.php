@@ -1,11 +1,11 @@
 @extends('layouts.app')
 @section('content')
+<div class='container'>
 
-  <div class="row">
     <form class="" action="/category/create" method="post">
       <div class="form-group @if($errors->has('description')) has-danger @endif">
-      {{csrf_field()}}
-        <label for="description">Nombre de Categoria</label>
+        {{csrf_field()}}
+        <p class='alert alert-dark' for="description">Nombre de Categoria</p>        
         <input type="text" name="description" value="" class="form-control"
         placeholder="Ingrese nombre de categoria">
         @if ($errors->has('description'))
@@ -15,8 +15,33 @@
             </div>
           @endforeach
         @endif
-        <button type="submit" class="btn btn-success" name="button">Crear Categoria</button>
+        <br>
       </div>
+      <p class='alert alert-dark'>Seleccione tipo de Talle para la categoria</p>
+      <br>      
+      <div class="row">
+        @foreach ($waists as $waist)
+
+        <div class='col-md-4'>
+          <p class='alert alert-danger'>
+            <input class='from-control' type="radio" name="type" value="{{$waist->type}}"> Tipo Talle: {{$waist->type}}
+          </p>
+          <ul>
+          @foreach ($waist_details as $detail)
+            @if ($detail->type == $waist->type)
+              
+                <li>{{$detail->description}}</li>
+              
+            @endif
+            
+          @endforeach
+          </ul>           
+          </div>   
+          @endforeach
+        </div>
+        <div class='alert alert-dark'><button type="submit" class="btn btn-danger" name="button">Crear Categoria</button></div>    
+        </div>  
     </form>
-  </div>
+   <!-- end row   -->
+</div> <!-- end container   -->
 @endsection

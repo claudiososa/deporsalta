@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
+use App\Waist;
 use App\Http\Requests\CreateCategoryRequest;
 //use App\Http\Requests\UpdateCategoryRequest;
 
@@ -29,16 +30,25 @@ class CategoryController extends Controller
 
     public function new()
     {
-      return view('category.create');
+      $waists = Waist::distinct()->select('type')->orderBy('type','asc')->get();
+      $waist_details = Waist::orderBy('id','asc')->get();
+      //dd($waists);
+      return view('category.create',[
+        'waists' => $waists,
+        'waist_details' => $waist_details
+      ]);
     }
 
     public function create(CreateCategoryRequest $request)
     {
+      
       $user= $request->user();
       $category = Category::create([
         'user_id' => $user->id,
-        'description' =>$request->input('description')
+        'description' =>$request->input('description'),
+        'type' =>$request->input('type')
       ]);
+      //dd($request);
       return redirect('/viewcategory/'.$category->id);
     }
 
