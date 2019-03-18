@@ -51,10 +51,11 @@ $(document).ready(function () {
         let product_id = $('#product_id').val()
 
         $('#waist_id').val(waist_id)
-     
+        
         $.ajax({
             type: 'POST',         
-            url: '/sale/price/unit/',           
+            url: '/sale/price/unit/',     
+                  
             data: {
                 '_token': $('input[name=_token]').val(),     
                 'waist_id': waist_id,
