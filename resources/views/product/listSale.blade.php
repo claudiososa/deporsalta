@@ -113,7 +113,7 @@
 
 
  @if ($saleDetail != '')
- <div class='alert alert-dark'>
+ <div class='alert alert-dark' id="saleDetail">
       <h4>Detalle de Venta actual</h4>
     <table class='table'>
       <thead>
@@ -147,7 +147,7 @@
         <tr>
           <td colspan='6'>Detalle de pago</td>
         </tr>
-        <tr>
+        <tr id='rowTypePayment'>
           <td>
             <select name="tipoEfectivo" id="tipoEfectivo" class="form-control" disabled>
               <option value="efectivo" selected>Efectivo</option>
