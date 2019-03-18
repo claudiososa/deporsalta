@@ -5,7 +5,7 @@
         <p class="alert alert-warning">{{$error}}</p>
     @endif
     
-  <script src="{{asset('js/sale/getPrice.js')}}"></script>
+  <script src="{{asset('js/sale/getPrice1.js')}}"></script>
   <div class="container">
   <div class="col-md-12">
     <div class="col-md-12 alert alert-dark">
