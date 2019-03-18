@@ -215,7 +215,7 @@
                         </div>
                         <div class="footer_content">
                             <p>Valenclothes, Todo lo que buscas.. en un solo lugar</p>
-                            <p>Movil: +54 387 xxxxxx</p>
+                          <!--  <p>Movil: +54 387 xxxxxx</p> -->
                             <p>Email: contacto@valenclothes.com.ar</p>
                         </div>
                         <div class="footer_social_area mt-15">
