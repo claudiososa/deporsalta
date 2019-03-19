@@ -53,7 +53,7 @@ $(document).ready(function () {
         $('#waist_id').val(waist_id)
      
         $.ajax({
-            type: 'POST',
+            type: 'GET',
             //url: '/sale/price/unit/', 
             url: `/sale/price/unit/${product_id}/${ waist_id}`, 
             //headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},      
