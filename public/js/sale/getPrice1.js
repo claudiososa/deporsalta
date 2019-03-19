@@ -53,9 +53,9 @@ $(document).ready(function () {
         $('#waist_id').val(waist_id)
      
         $.ajax({
-            type: 'POST',         
-            url: '/sale/price/unit/',     
-            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},      
+            type: 'GET',
+            url: `/sale/price/unit/${product_id}/${ waist_id}`, 
+            //headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},      
             data: {
                // '_token': $('input[name=_token]').val(),     
                 'waist_id': waist_id,
