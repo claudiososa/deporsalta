@@ -191,20 +191,19 @@ $(document).ready(function () {
 
     $('#confirmSale').click(function (){
         console.log('presionaste confirmSale')
-        alert(sale_id)
-        alert( $('input[name=_token]').val())
+    
         let montoEfectivo = $('#montoEfectivo').val()
         let tipoTarjeta = $('#tipoTarjeta').val()
         let montoTarjeta = $('#montoTarjeta').val()
 
-        $.ajaxSetup({
-            headers: { 'X-CSRF-Token' : $('meta[name="csrf-token"]').attr('content') }
-        });        
+        // $.ajaxSetup({
+        //     headers: { 'X-CSRF-Token' : $('meta[name="csrf-token"]').attr('content') }
+        // });        
         $.ajax({                       
-            url: '/sale/confirm/',
-            type: 'post',
+            url: `/sale/confirm/${sale_id}/${montoEfectivo}/${tipoTarjeta}/${montoTarjeta}/`,
+            type: 'GET',
             data: {                
-                '_token': $('input[name=_token]').val(),
+                //'_token': $('input[name=_token]').val(),
                 'sale_id': sale_id,
                 'montoEfectivo': montoEfectivo,
                 'tipoTarjeta': tipoTarjeta,

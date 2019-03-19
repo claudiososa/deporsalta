@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('content')
 
-<meta name="csrf-token" content="{{ csrf_token() }}">
 @if(isset($sale->id))
 <script>
   let sale_id ={{$sale->id}}
@@ -141,8 +140,7 @@
         </tr>
         @endforeach
         <!-- <form  class="form-inline my-2 my-lg-0" method="post">  -->
-          <form  method='post'>
-          {{csrf_field()}}
+        
         <tr id='rowTotal'>
           <td></td>
           <td></td>
@@ -199,7 +197,7 @@
       
           <!-- <input type="submit" id='confirmSale' class="form-control btn btn-danger" name="button" value="Confirmar venta"> -->
           <button class='btn btn-info' id='confirmSale'>Confirmar venta</button></td></tr>
-        </form>
+        
         <!-- <button class='btn btn-info' id='confirmSale'>Confirmar venta</button></td></tr> -->
       </tbody>
     </table>

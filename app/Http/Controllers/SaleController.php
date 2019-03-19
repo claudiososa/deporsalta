@@ -135,14 +135,47 @@ class SaleController extends Controller
     }
 
 
-    public function confirmPost(Request $request)
+    //public function confirmPost(Request $request)
+    public function confirmPost($sale_id,$montoEfectivo,$tipoTarjeta,$montoTarjeta)
     {
       //dd($request);
-       $sale = Sale::find($request->sale_id);
+    //    $sale = Sale::find($request->sale_id);
+    //    $sale->status = '1';
+    //    $sale->save();
+
+    //    $details = SaleDetail::where('sale_id',$request->sale_id)->get();
+
+    //    foreach( $details as $item)
+    //    {
+    //       $quantity = Quantity::where('product_id',$item->product_id)->where('waist_id',$item->waist_id)->first();
+
+    //       $quantity->quantity = $quantity->quantity - $item->quantity;
+    //       Quantity::where('product_id',$item->product_id)->where('waist_id',$item->waist_id)->update(['quantity' => $quantity->quantity]);
+         
+    //     }
+       
+    //    if ($request->montoEfectivo !='0') {
+    //       $payment = Payment::create([
+    //         'sale_id' => $request->sale_id,
+    //         'type' => 'efectivo',
+    //         'amount' => $request->montoEfectivo
+    //       ]);
+    //    }
+
+    //    if ($request->montoTarjeta !='0') {
+    //     $payment = Payment::create([
+    //       'sale_id' => $request->sale_id,
+    //       'type' => $request->tipoTarjeta,
+    //       'amount' => $request->montoTarjeta
+    //     ]);
+    //  }
+       
+       
+       $sale = Sale::find($sale_id);
        $sale->status = '1';
        $sale->save();
 
-       $details = SaleDetail::where('sale_id',$request->sale_id)->get();
+       $details = SaleDetail::where('sale_id',$sale_id)->get();
 
        foreach( $details as $item)
        {
@@ -153,22 +186,21 @@ class SaleController extends Controller
           //$quantity->save();
         }
        //dd($quantity);
-       if ($request->montoEfectivo !='0') {
+       if ($montoEfectivo !='0') {
           $payment = Payment::create([
-            'sale_id' => $request->sale_id,
+            'sale_id' => $sale_id,
             'type' => 'efectivo',
-            'amount' => $request->montoEfectivo
+            'amount' => $montoEfectivo
           ]);
        }
 
-       if ($request->montoTarjeta !='0') {
+       if ($montoTarjeta !='0') {
         $payment = Payment::create([
-          'sale_id' => $request->sale_id,
-          'type' => $request->tipoTarjeta,
-          'amount' => $request->montoTarjeta
+          'sale_id' => $sale_id,
+          'type' => $tipoTarjeta,
+          'amount' => $montoTarjeta
         ]);
-     }
-       
+     } 
         return response()->json($sale);
     }
 
