@@ -194,6 +194,11 @@ $(document).ready(function () {
         let montoEfectivo = $('#montoEfectivo').val()
         let tipoTarjeta = $('#tipoTarjeta').val()
         let montoTarjeta = $('#montoTarjeta').val()
+
+        $.ajaxSetup({
+            headers: { 'X-CSRF-Token' : $('meta[name="csrf-token"]').attr('content') }
+        });
+        
         $.ajax({
             type: 'POST',
             url: '/sale/confirm/',

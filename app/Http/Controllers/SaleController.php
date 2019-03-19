@@ -87,48 +87,7 @@ class SaleController extends Controller
         'total' => $request->total,
         'status' => '0'
       ]);
-
-      //dd($saleDetail);
-      // $user = $request->user();
-  
-      // $quant = Quantity::where('product_id','=',$request->input('product_id'))->Where('waist_id','=',$request->input('waist_id'))->first();
-
-      // if (!is_null($quant)) {
-      //   if ($quant->quantity >= $request->input('quantity')) {
-      //     $sale = Sale::create([
-      //       'product_id' =>$request->input('product_id'),
-      //       'user_id' => $user->id,
-      //       'waist_id' =>$request->input('waist_id'),
-      //       'quantity' =>$request->input('quantity'),
-      //       'priceUnit' =>$request->input('priceUnit'),
-      //       'total' =>$request->input('total')
-      //     ]);       
-          
-      //     $quantUpdate = Quantity::where('product_id','=',$request->input('product_id'))
-      //           ->Where('waist_id','=',$request->input('waist_id'))
-      //           ->update(['quantity' => $quant->quantity-$request->input('quantity')]);
-                        
-      //     return redirect('/products'); 
-      //   }else{
-      //     $product = Product::where('id','=',$request->input('product_id'))->first();
-      //     $waists =Waist::all();
-      //     return view('sale.create',[
-      //         'product'=>$product,
-      //         'waists' =>$waists,
-      //         'error'=>'No existe stock suficiente para realizar esta venta'
-      //         ]);  
-      //   }
-      // } else {
-      //   $product = Product::where('id','=',$request->input('product_id'))->first();
-      //     $waists =Waist::all();
-      //     return view('sale.create',[
-      //         'product'=>$product,
-      //         'waists' =>$waists,
-      //         'error'=>'No existe stock suficiente para realizar esta venta'
-      //         ]);     
-      // }
-      
-        return redirect('productsale');
+      return redirect('productsale');
     }
 
     public function delete($id)
