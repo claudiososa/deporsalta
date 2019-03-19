@@ -16,7 +16,7 @@
   <script src="{{asset('js/sale/getPrice.js')}}"></script>
   <div class='alert alert-success'>
     <h4>Buscar Producto</h4>      
-    	<form action="{{route('searchProductSale')}}" class="form-inline my-2 my-lg-0" method="post">
+    	<form action="/searchproductsale" class="form-inline my-2 my-lg-0" method="post">
           {{csrf_field()}}          
             <input name="id" class="form-control mr-sm-2" type="text" placeholder="id">
             <input name="description" class="form-control mr-sm-2" type="text" placeholder="descripción">
