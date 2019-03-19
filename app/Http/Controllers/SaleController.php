@@ -78,15 +78,35 @@ class SaleController extends Controller
 
     public function create(CreateSaleRequest $request)
     {
-      $saleDetail = SaleDetail::create([
-        'sale_id' => $request->sale_id,
-        'product_id' => $request->product_id,
-        'waist_id' => $request->waist_id,
-        'quantity' => $request->quantity,
-        'priceUnit' => $request->priceUnit,
-        'total' => $request->total,
-        'status' => '0'
-      ]);
+      $searchDetail = SaleDetail::where('sale_id',$request->sale_id)
+                                  ->where('product_id',$request->product_id)
+                                  ->where('waist_id',$request->waist_id)
+                                  ->count();
+      //dd($searchDetail);
+      if($searchDetail > 0)
+      {
+
+
+        $udpateDetail = SaleDetail::where('sale_id',$request->sale_id)
+                                  ->where('product_id',$request->product_id)
+                                  ->where('waist_id',$request->waist_id)
+                                  ->update(['quantity' => $request->quantity,
+                                            'priceUnit' => $request->priceUnit,
+                                            'total' => $request->total]);
+       
+      }else{
+        $saleDetail = SaleDetail::create([
+          'sale_id' => $request->sale_id,
+          'product_id' => $request->product_id,
+          'waist_id' => $request->waist_id,
+          'quantity' => $request->quantity,
+          'priceUnit' => $request->priceUnit,
+          'total' => $request->total,
+          'status' => '0'
+        ]);
+      }                           
+
+      
       return redirect('productsale');
     }
 
