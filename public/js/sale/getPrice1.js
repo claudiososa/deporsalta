@@ -55,9 +55,9 @@ $(document).ready(function () {
             headers: { 'X-CSRF-Token' : $('meta[name="csrf-token"]').attr('content') }
         });
         $.ajax({
-//            type: 'POST',
-            url: $('#formItem').attr('action'),
-            type: $('#formItem').attr('method'),
+
+            url: '/sale/price/unit',
+            type: 'post',
             //url: `/sale/price/unit/${product_id}/${ waist_id}`, 
             //headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},      
             data: {
