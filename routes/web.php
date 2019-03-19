@@ -100,6 +100,7 @@ Route::post('/quantity/create','QuantityController@create')->middleware('auth');
 
 // Sales
 Route::post('/sale/price/unit/','SaleController@priceUnit')->middleware('auth');
+Route::get('/sale/price/unit/','SaleController@priceUnit')->middleware('auth');
 //Route::get('/sale/price/unit/{product}/{waist}','SaleController@priceUnit')->middleware('auth');
 Route::get('/sale/new/{product}','SaleController@new')->middleware('auth');
 Route::get('/sale/list','SaleController@list')->middleware('auth');
