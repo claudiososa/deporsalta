@@ -108,7 +108,7 @@ Route::post('/sale/create','SaleController@create')->middleware('auth');
 Route::get('/sale/addItem/{product}/{waist}','SaleController@addItem');
 //Route::get('/sale/confirm/{id}','SaleController@confirm');
 Route::post('/sale/confirm/','SaleController@confirmPost')->middleware('auth');
-Route::get('/sale/confirm/','SaleController@confirmPost')->middleware('auth');
+//Route::get('/sale/confirm/','SaleController@confirmPost')->middleware('auth');
 
 //Route::post('/sale/addItem','SaleController@addItem');
 //Route::get('/sale/delete/{sale}','SaleController@delete')->middleware('auth');

@@ -113,6 +113,7 @@
 
 
  @if ($saleDetail != '')
+
  <div class='alert alert-dark' id="saleDetail">
       <h4>Detalle de Venta actual</h4>
     <table class='table'>
@@ -137,6 +138,9 @@
           <td><a href="#" id="saledetail{{$detail->id}}" class="btn btn-danger">Quitar</a></td>
         </tr>
         @endforeach
+        <!-- <form  class="form-inline my-2 my-lg-0" method="post">  -->
+          <form action="">
+          {{csrf_field()}}
         <tr id='rowTotal'>
           <td></td>
           <td></td>
@@ -189,9 +193,15 @@
             <input type="text" id='amountQuota' class="form-control" disabled>
           </td>
         </tr>
-        <tr id='rowConfirmSale'><td colspan="6"><button class='btn btn-info' id='confirmSale'>Confirmar venta</button></td></tr>
+        <tr id='rowConfirmSale'><td colspan="6">
+      
+          <!-- <input type="submit" id='confirmSale' class="form-control btn btn-danger" name="button" value="Confirmar venta"> -->
+          <button class='btn btn-info' id='confirmSale'>Confirmar venta</button></td></tr>
+        </form>
+        <!-- <button class='btn btn-info' id='confirmSale'>Confirmar venta</button></td></tr> -->
       </tbody>
     </table>
+    
 </div>
  @endif
   </div><!-- End container -->

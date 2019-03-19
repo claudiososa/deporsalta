@@ -137,6 +137,7 @@ class SaleController extends Controller
 
     public function confirmPost(Request $request)
     {
+      //dd($request);
        $sale = Sale::find($request->sale_id);
        $sale->status = '1';
        $sale->save();
