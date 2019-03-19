@@ -1,5 +1,7 @@
 @extends('layouts.app')
 @section('content')
+
+<meta name="csrf-token" content="{{ csrf_token() }}">
 @if(isset($sale->id))
 <script>
   let sale_id ={{$sale->id}}
@@ -139,7 +141,7 @@
         </tr>
         @endforeach
         <!-- <form  class="form-inline my-2 my-lg-0" method="post">  -->
-          <form action="">
+          <form  method='post'>
           {{csrf_field()}}
         <tr id='rowTotal'>
           <td></td>

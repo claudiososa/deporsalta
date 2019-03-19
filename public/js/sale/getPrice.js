@@ -191,7 +191,8 @@ $(document).ready(function () {
 
     $('#confirmSale').click(function (){
         console.log('presionaste confirmSale')
-        //alert(sale_id)
+        alert(sale_id)
+        alert( $('input[name=_token]').val())
         let montoEfectivo = $('#montoEfectivo').val()
         let tipoTarjeta = $('#tipoTarjeta').val()
         let montoTarjeta = $('#montoTarjeta').val()
