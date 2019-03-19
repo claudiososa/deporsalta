@@ -52,7 +52,7 @@ $(document).ready(function () {
 
         $('#waist_id').val(waist_id)
         $.ajaxSetup({
-            headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
+            headers: { 'X-CSRF-Token' : $('meta[name="csrf-token"]').attr('content') }
         });
         $.ajax({
 //            type: 'POST',
