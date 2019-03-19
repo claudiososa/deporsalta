@@ -46,7 +46,7 @@ $(document).ready(function () {
     $('[id ^=radio').on('click', function(){//botones radio seleccion de talle
         //e.preventDefault();
         //alert($(this).attr('id').substr(5));
-        $("#agregarItem").prop('disabled', false);
+        
         let waist_id = $(this).attr('id').substr(5)        
         let product_id = $('#product_id').val()
 
@@ -66,7 +66,7 @@ $(document).ready(function () {
                 console.log('sumando')
                 console.log(data) 
                 //$('[id ^=rowDetail]').empty();
-                
+                $("#agregarItem").prop('disabled', false);
                 $('#priceUnit').val(data.price_sale);
                 $('#total').val(data.price_sale);
                 $('#divQuantity').empty()
