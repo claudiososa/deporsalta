@@ -164,15 +164,13 @@ class SaleController extends Controller
     }
 
 
-    public function priceUnit(Request $request)
-    //public function priceUnit($product,$waist)
+    public function priceUnit(Request $request)    
     {
        $price = Productprice::join('quantities', function($join)
        {
          $join->on('quantities.product_id','=','productprices.product_id');
          $join->on('quantities.waist_id','=','productprices.waist_id');
-        })
-      // ->where('productprices.product_id',$product)->where('productprices.waist_id',$waist)->first();       
+        })      
        ->where('productprices.product_id',$request->product_id)->where('productprices.waist_id',$request->waist_id)->first();       
        return response()->json($price);
     }

@@ -44,19 +44,21 @@ $(document).ready(function () {
 
     
     $('[id ^=radio').on('click', function(){//botones radio seleccion de talle
-
+        //e.preventDefault();
         //alert($(this).attr('id').substr(5));
         $("#agregarItem").prop('disabled', false);
         let waist_id = $(this).attr('id').substr(5)        
         let product_id = $('#product_id').val()
 
         $('#waist_id').val(waist_id)
-
+        $.ajaxSetup({
+            headers: { 'X-CSRF-Token' : $('meta[name="csrf-token"]').attr('content') }
+        });
         $.ajax({
-            type: 'GET',
-            url: `/sale/price/unit/${product_id}/${ waist_id}`,
+            url: '/sale/price/unit',
+            type: 'post',            
             data: {
-                //'_token': $('input[name=_token]').val(),                
+                '_token': $('input[name=_token]').val(),     
                 'waist_id': waist_id,
                 'product_id': product_id                
             },
