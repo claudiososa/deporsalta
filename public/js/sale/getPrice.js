@@ -198,10 +198,10 @@ $(document).ready(function () {
         $.ajaxSetup({
             headers: { 'X-CSRF-Token' : $('meta[name="csrf-token"]').attr('content') }
         });        
-        $.ajax({            
-            type: 'post',
+        $.ajax({                       
             url: '/sale/confirm/',
-            data: {
+            type: 'post',
+            data: {                
                 '_token': $('input[name=_token]').val(),
                 'sale_id': sale_id,
                 'montoEfectivo': montoEfectivo,
