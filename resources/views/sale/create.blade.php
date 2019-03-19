@@ -14,7 +14,7 @@
     </div>
     <div class="col-md-12">
 
-    <form class="" action="/sale/price/unit/" method="post" id="formItem">
+    <form class="" action="/sale/create" method="post">
       <div class="form-group @if($errors->has('description')) has-danger @endif">
       {{csrf_field()}}
         <input type="hidden" name="product_id" id="product_id" value="{{$product->id}}">
