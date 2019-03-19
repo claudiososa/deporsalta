@@ -44,6 +44,7 @@ $(document).ready(function () {
 
     
     $('[id ^=radio').on('click', function(){//botones radio seleccion de talle
+        $("#agregarItem").prop('disabled', true);
         //e.preventDefault();
         //alert($(this).attr('id').substr(5));
         
