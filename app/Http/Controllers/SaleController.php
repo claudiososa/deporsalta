@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateSaleRequest;
+use App\Http\Requests\saleFilter;
 use App\Quantity;
 use App\Sale;
 use App\Productprice;
@@ -15,8 +16,14 @@ use App\Payment;
 
 class SaleController extends Controller
 {
-    public  function list()
+    public  function list(saleFilter $request)
     {
+      //dd($request);
+      if($request->isMethod('post')){
+        dd($request);
+      }else{
+
+      
       $sales = Sale::where('status','1')->get();
       //dd($sales);
      
@@ -37,7 +44,9 @@ class SaleController extends Controller
       //   }
       //   ])->paginate(10);  
         //dd($sales);  
-      //])->where('status','=','0')->paginate(10);  
+      //])->where('status','=','0')->paginate(10);
+      
+    } 
     return view('sale.list',[
       'sales' => $sales,
       'salesDetail' => $salesDetail
@@ -91,7 +100,7 @@ class SaleController extends Controller
     {
       $searchDetail = SaleDetail::where('sale_id',$request->sale_id)
                                   ->where('product_id',$request->product_id)
-                                  ->where('waist_id',$request->waist_id)
+                                  ->where('wdaist_id',$request->waist_id)
                                   ->count();
       //dd($searchDetail);
       if($searchDetail > 0)

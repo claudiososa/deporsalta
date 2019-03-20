@@ -2,7 +2,18 @@
 @section('content')  
   <div class="container">        
     <hr>
-    <h2>Ventas realizadas</h2>
+    <form action='/sale/list' method='post'>
+     {{csrf_field()}}   
+    <div class='row alert alert-dark'>
+      <div class='col-md-3'><h4>Ventas realizadas</h4></div>
+     
+     
+        <div class='col-md-4'><input type="date" class='form-control' id='firstDate'></div>
+        <div class='col-md-4'><input type="date" class='form-control' id='lastDate'></div>
+        <div class='col-md-1'> <input type="submit" value="Filtrar" class="btn btn-dark"> </div> 
+     
+    </div>
+    </form>
     <script src="{{asset('js/sale/action.js')}}"></script>
     <div>
       @foreach($salesDetail as $sale)
