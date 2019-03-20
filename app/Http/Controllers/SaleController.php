@@ -27,7 +27,7 @@ class SaleController extends Controller
         'total' => function($query){
           $query->get();
          },
-        ])->paginate(5);  
+        ])->orderBy('id','desc')->paginate(5);  
         //dd($salesDetail);
 
 
@@ -192,6 +192,7 @@ class SaleController extends Controller
        
        
        $sale = Sale::find($sale_id);
+       $sale->date = date("Y-m-d H:i:s");
        $sale->status = '1';
        $sale->save();
 

@@ -8,7 +8,7 @@
       @foreach($salesDetail as $sale)
       <div class='row alert alert-dark'>
         <div class='col-md-4' >Comprobante: N° {{$sale->id}}</div>
-        <div class='col-md-4'>Fecha: {{$sale->date}}</div>
+        <div class='col-md-4'>Fecha: {{date('d-m-Y', strtotime($sale->date))}} Hora: {{date('H:m', strtotime($sale->date))}}</div>
         @foreach ($sale->total as $total)
         <div class='col-md-4'>Total: $ {{$total->totalSale}}</div>    
         @endforeach
