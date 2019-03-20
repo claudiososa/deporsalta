@@ -29,7 +29,7 @@
             @forelse ($sale->saledetail as $detail)         
 
               <tr id='rowSale{{$detail->id}}'>
-                <td>{{$detail->sale->id}}</td>
+                <td>{{$detail->product->id}}</td>
                 <td>{{$detail->product->description}}</td>
                 <td>{{$detail->waist->description}}</td>
                 <td>{{$detail->priceUnit}}</td>
