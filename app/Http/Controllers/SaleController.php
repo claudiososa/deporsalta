@@ -20,11 +20,22 @@ class SaleController extends Controller
       $sales = Sale::where('status','1')->get();
       //dd($sales);
      
-      $salesDetail = SaleDetail::with([
-        'sale' => function($query){
+      $salesDetail = Sale::with([
+        'saledetail' => function($query){
          $query->get();
-        }
-        ])->paginate(10);  
+        },
+        'total' => function($query){
+          $query->get();
+         },
+        ])->paginate(5);  
+        //dd($salesDetail);
+
+
+      // $salesDetail = SaleDetail::with([
+      //   'sale' => function($query){
+      //    $query->get();
+      //   }
+      //   ])->paginate(10);  
         //dd($sales);  
       //])->where('status','=','0')->paginate(10);  
     return view('sale.list',[
@@ -112,17 +123,6 @@ class SaleController extends Controller
 
     public function delete($id)
     {
-        //$saleDetail = ;
-
-        // $quant = Quantity::where('product_id','=',$sale->product_id)->Where('waist_id','=',$sale->waist_id)->first();
-
-        // $quantUpdate = Quantity::where('product_id','=',$sale->product_id)
-        // ->Where('waist_id','=',$sale->waist_id)
-        // ->update(['quantity' => $quant->quantity + $sale->quantity]);
-
-        // $sale->status = 1;
-        // $sale->save();
-
         return response()->json(SaleDetail::destroy($id));
     }
 

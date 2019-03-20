@@ -15,7 +15,13 @@ class Sale extends Model
 
     public function saledetail()
     {
-      return $this->belongsTo(SaleDetail::class);
+      return $this->hasMany(SaleDetail::class);
     } 
+
+   public function total() {
+      return $this->hasMany(SaleDetail::class)
+          ->select('sale_id', \DB::raw('sum(`total`) as `totalSale`'))
+          ->groupBy('sale_id');
+  }
 
 }

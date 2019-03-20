@@ -5,8 +5,15 @@
     <h2>Ventas realizadas</h2>
     <script src="{{asset('js/sale/action.js')}}"></script>
     <div>
-      @foreach($sales as $sale)
-      <div> {{$sale->id}} </div>        
+      @foreach($salesDetail as $sale)
+      <div class='row alert alert-dark'>
+        <div class='col-md-4' >Comprobante: N° {{$sale->id}}</div>
+        <div class='col-md-4'>Fecha: {{$sale->date}}</div>
+        @foreach ($sale->total as $total)
+        <div class='col-md-4'>Total: $ {{$total->totalSale}}</div>    
+        @endforeach
+        
+      </div>        
       <div>   
         <table class="table">
           <thead>
@@ -19,28 +26,18 @@
             <!-- <th>Cancelar</th>       -->
           </thead>
           <tbody>
-           
-            @forelse ($salesDetail as $detail)
-              @if($detail->sale_id == $sale->id)
-               
-               
-              
+            @forelse ($sale->saledetail as $detail)         
+
               <tr id='rowSale{{$detail->id}}'>
                 <td>{{$detail->sale->id}}</td>
                 <td>{{$detail->product->description}}</td>
                 <td>{{$detail->waist->description}}</td>
                 <td>{{$detail->priceUnit}}</td>
                 <td>{{$detail->quantity}}</td>      
-                <td>{{$detail->total}}</td>      
-                {{-- <td><a href="/sale/delete/{{$detail->id}}" id="sale{{$detail->id}}" class="btn btn-danger">Cancelar venta</a></td></td> --}}
-                <!-- <td><a href="#" id="sale{{$detail->id}}" class="btn btn-danger">Cancelar venta</a></td> -->
-              </tr>
-              <tr>
-                <td colspan="6"></td>
-              </tr>
-              @endif
+                <td>{{$detail->total}}</td>                                  
+              </tr>                            
             @empty
-              <p>No hay Productos creadas</p>
+              <p>Sin detalles para este comprobante</p>
             @endforelse
 
           </tbody>
@@ -49,33 +46,6 @@
       @endforeach
       
     </div>
-    <table class="table">
-      <thead>
-        <th>Id</th>
-        <th>Producto</th>
-        <th>Talle</th>
-        <th>P. Unitario</th>
-        <th>Cantidad</th>
-        <th>Total</th>      
-        <!-- <th>Cancelar</th>       -->
-      </thead>
-      <tbody>
-        @forelse ($salesDetail as $detail)
-          <tr id='rowSale{{$detail->id}}'>
-            <td>{{$detail->sale->id}}</td>
-            <td>{{$detail->product->description}}</td>
-            <td>{{$detail->waist->description}}</td>
-            <td>{{$detail->priceUnit}}</td>
-            <td>{{$detail->quantity}}</td>      
-            <td>{{$detail->total}}</td>      
-            {{-- <td><a href="/sale/delete/{{$detail->id}}" id="sale{{$detail->id}}" class="btn btn-danger">Cancelar venta</a></td></td> --}}
-            <!-- <td><a href="#" id="sale{{$detail->id}}" class="btn btn-danger">Cancelar venta</a></td> -->
-          </tr>
-        @empty
-          <p>No hay Productos creadas</p>
-        @endforelse
-      </tbody>
-    </table>
     @if(count($salesDetail))
       <div class="mt-2 mx-auto">
           {{$salesDetail->links('pagination::bootstrap-4')}}

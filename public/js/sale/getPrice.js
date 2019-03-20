@@ -95,7 +95,7 @@ $(document).ready(function () {
             },
             success: function(data) {
                 console.log('llego bien luego de borrar')
-                console.log(data)                
+                // console.log($('#totalSale').val()-data.total)                
                 updateTotal()
                 $('#rowDetail' + id).remove();                
             }
@@ -110,10 +110,12 @@ $(document).ready(function () {
                 '_token': $('input[name=_token]').val(),
             },
             success: function(data) {
-                console.log('sumando')
-                console.log(data)                                
+                // console.log('sumando')
+                // console.log(data)                                
                 $('#totalSale').empty();                
-                $('#totalSale').text('$ '+data);                
+                $('#totalSale').val(data);   
+                $('#montoEfectivo').val($('#totalSale').val())             
+                $('#montoTarjeta').val('0')             
             }
         });
     }
@@ -150,7 +152,7 @@ $(document).ready(function () {
     })
 
     $('#montoEfectivo').change(function (){
-        let montoTarjeta = montoTotal - $('#montoEfectivo').val()
+        let montoTarjeta = $('#totalSale').val() - $('#montoEfectivo').val()
         $('#montoTarjeta').val(montoTarjeta)
         
         //let montoTarjeta = $('#montoTarjeta').val()
@@ -170,7 +172,7 @@ $(document).ready(function () {
     })
 
     $('#montoTarjeta').change(function (){
-        montoEfectivo = montoTotal - $('#montoTarjeta').val()
+        montoEfectivo = $('#totalSale').val() - $('#montoTarjeta').val()
         $('#montoEfectivo').val(montoEfectivo)  
 
         let montoTarjeta = $(this).val()
