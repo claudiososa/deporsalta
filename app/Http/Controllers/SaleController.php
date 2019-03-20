@@ -27,7 +27,7 @@ class SaleController extends Controller
         'total' => function($query){
           $query->get();
          },
-        ])->orderBy('id','desc')->paginate(5);  
+        ])->where('status','<>','0')->orderBy('id','desc')->paginate(5);  
         //dd($salesDetail);
 
 
