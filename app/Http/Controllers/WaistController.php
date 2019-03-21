@@ -19,7 +19,16 @@ class WaistController extends Controller
 
   public  function list()
   {
-    $waists = Waist::paginate(10);
+
+    $waists = Waist::all();
+
+
+    // foreach ($waists as $waist){
+    //   Waist::where('id',$waist->id)->update([
+    //     'order' => $waist->id
+    //   ]);
+    // }
+
     return view('waist.list',[
       'waists' => $waists
     ]);
@@ -61,6 +70,52 @@ class WaistController extends Controller
       $waist->user_id = $user->id;
 
       $waist->save();
+
+      $waistOld =Waist::find($request->input('id'));
+
+      if($request->input('order')<>$waistOld->order){
+        $position = $request->input('order');
+        if($request->input('order') < $waistOld->order){
+           $waistDesdeHasta = Waist::where('order','>=',$position)
+                            ->where('order','<>',$waistOld->order)       
+                            ->orderBy('order','asc')->get();
+        foreach($waistDesdeHasta as $item){
+          $newValue = $item->order+1;
+
+          $update = Waist::find($item->id)->update([
+            'order'=>$newValue,
+          ]);
+        }
+        $waistOld = Waist::find($request->input('id'))->update([
+          'order' => $position
+        ]);
+        }else{
+          $waistDesdeHasta = Waist::where('order','<=',$position)
+          ->where('order','<>',$waistOld->order)       
+          ->orderBy('order','asc')->get();
+          //dd($waistDesdeHasta);
+          
+          foreach($waistDesdeHasta as $item){
+            $newValue = $item->order-1;
+  
+            $update = Waist::find($item->id)->update([
+              'order'=>$newValue,
+            ]);
+          }
+          $waistOld = Waist::find($request->input('id'))->update([
+            'order' => $position
+          ]);
+        }
+
+        
+
+        //dd($waistDesdeHasta);
+        
+        //$update =Waist::where('id',$request->input('id'))->update([
+
+       //])
+      }
+
       return view('waist.show',[
         'waist'=>$waist
       ]);

@@ -30,6 +30,7 @@ $factory->define(App\Category::class,function(Faker\Generator $faker){
   return [
     'description' => $faker->username(),
     'type' => $faker->numberBetween($min=1,$max=1),
+    'order' => $faker->numberBetween($min=1,$max=1),
     'user_id' => '1',
   ];
 });
