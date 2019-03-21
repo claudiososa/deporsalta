@@ -27,6 +27,11 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <!-- Includes for datePicker -->
+    <!-- <link  href="{{asset('css/datepicker.css')}}" rel="stylesheet">
+    <script src="{{asset('js/datepicker.js')}}"></script> -->
+    <!-- End includes for datePicker -->
+
     <title>{{ config('app.name', 'Laravel') }}</title>
 </head>
 <!-- <head>

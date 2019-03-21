@@ -18,16 +18,45 @@ class SaleController extends Controller
 {
     public  function list(saleFilter $request)
     {
-      //dd($request);
-      if($request->isMethod('post')){
-        dd($request);
-      }else{
-
-      
       $sales = Sale::where('status','1')->get();
-      //dd($sales);
-     
-      $salesDetail = Sale::with([
+      $search = [];
+      $sum =0;
+      $totalResultado = [];   
+      if($request->isMethod('post')){
+      
+        $search = [
+          'firstDate' => date('d-m-Y', strtotime($request->firstDate)),
+          'lastDate' => date('d-m-Y', strtotime($request->lastDate)),
+        ];
+        
+        $salesDetail = Sale::with([
+          'saledetail' => function($query){
+           $query->get();
+          },
+          'total' => function($query){
+            $query->get();           
+          },
+          ])->where('status','<>','0')
+            ->whereDate('date','>=',$request->firstDate)
+            ->whereDate('date','<=',$request->lastDate)
+            ->orderBy('id','desc')->get();
+            //->paginate(5);  
+        
+         
+
+        foreach ($salesDetail as $sale) {
+
+          foreach ($sale->total as $total){
+            $sum = $sum + $total->totalSale;
+          }
+        }
+          
+           
+        $totalResultado= [
+          'montoTotal' => $sum,
+        ];
+      }else{     
+        $salesDetail = Sale::with([
         'saledetail' => function($query){
          $query->get();
         },
@@ -35,22 +64,15 @@ class SaleController extends Controller
           $query->get();
          },
         ])->where('status','<>','0')->orderBy('id','desc')->paginate(5);  
-        //dd($salesDetail);
-
-
-      // $salesDetail = SaleDetail::with([
-      //   'sale' => function($query){
-      //    $query->get();
-      //   }
-      //   ])->paginate(10);  
-        //dd($sales);  
-      //])->where('status','=','0')->paginate(10);
-      
+        
     } 
     return view('sale.list',[
       'sales' => $sales,
-      'salesDetail' => $salesDetail
-    ]);    
+      'salesDetail' => $salesDetail,
+      'search' => $search,
+      'montoTotal' => $totalResultado
+    ]);  
+      
   }
 
     public function new(Product $product)//agrega nuevo item a venta actual
