@@ -17,14 +17,14 @@
         @endif
         <br>
       </div>
-      <p class='alert alert-dark'>Seleccione tipo de Talle para la categoria</p>
-      <br>      
-      <div class="row">
-        @foreach ($waists as $waist)
-
+    <p class='alert alert-dark'>Seleccione tipo de Talle para la categoria</p>
+    <hr>           
+    <div class='row'>
+      @foreach ($waists as $waist)
         <div class='col-md-4'>
-          <p class='alert alert-danger'>
-            <input class='from-control' type="radio" name="type" value="{{$waist->type}}"> Tipo Talle: {{$waist->type}}
+          <p class='alert alert-dark'>
+            <input type="checkbox"  name="type[]" value="{{$waist->type}}">Tipo Talle: {{$waist->type}}<br>
+            <!-- <input class='from-control' type="radio" name="type" value="{{$waist->type}}"> Tipo Talle: {{$waist->type}} -->
           </p>
           <ul>
           @foreach ($waist_details as $detail)
@@ -36,11 +36,10 @@
             
           @endforeach
           </ul>           
-          </div>   
-          @endforeach
-        </div>
-        <div class='alert alert-dark'><button type="submit" class="btn btn-danger" name="button">Crear Categoria</button></div>    
-        </div>  
+        </div>   
+      @endforeach
+    </div>
+    <div class='row alert alert-dark'><button type="submit" class="btn btn-dark" name="button">Crear Categoria</button></div>    
     </form>
    <!-- end row   -->
 </div> <!-- end container   -->

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-  <div class="row">
+  <div class="container">
     <form class="" action="/colour/create" method="post">
       <div class="form-group @if($errors->has('description')) has-danger @endif">
       {{csrf_field()}}
