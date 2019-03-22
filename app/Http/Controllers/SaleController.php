@@ -122,7 +122,7 @@ class SaleController extends Controller
     {
       $searchDetail = SaleDetail::where('sale_id',$request->sale_id)
                                   ->where('product_id',$request->product_id)
-                                  ->where('wdaist_id',$request->waist_id)
+                                  ->where('waist_id',$request->waist_id)
                                   ->count();
       //dd($searchDetail);
       if($searchDetail > 0)
