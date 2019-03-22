@@ -55,15 +55,15 @@
         @endif
       </div>
 
-      @foreach ($waists as $waist)
-      <p>Talle: {{$waist->description}}</p>
+      @foreach ($waists as $key => $value)
+      <p>Talle: {{$value['description']}}</p>
 
       <div class="form-group @if($errors->has('priceCost')) has-danger @endif">
         {{-- <label for="description">Precio Costo</label> --}}
-        <input type="text" name="priceCost{{$waist->id}}" id="priceCost{{$waist->id}}" value="" class="form-control" placeholder="Precio de Costo">
-        <input type="text" name="priceClient{{$waist->id}}" id="priceClient{{$waist->id}}" value="" class="form-control" placeholder="Precio Venta">
-        @if ($errors->has('priceCost{{$waist->id}}'))
-          @foreach ($errors->get('priceCost{{$waist->id}}') as $error)
+        <input type="text" name="priceCost{{$value['id']}}" id="priceCost{{$value['id']}}" value="" class="form-control" placeholder="Precio de Costo">
+        <input type="text" name="priceClient{{$value['id']}}" id="priceClient{{$value['id']}}" value="" class="form-control" placeholder="Precio Venta">
+        @if ($errors->has('priceCost{{$value["id"]}}'))
+          @foreach ($errors->get('priceCost{{$value["id"]}}') as $error)
             <div class="form-control-feedback">
               {{$error}}
             </div>

@@ -57,7 +57,7 @@
       @endforeach
     </div>
 
-      <button type="submit" class="btn btn-dark" name="button">Crear Categoria</button>
+      <button type="submit" class="btn btn-dark" name="button">Modificar Categoria</button>
     </form>
     <hr>
   </div>

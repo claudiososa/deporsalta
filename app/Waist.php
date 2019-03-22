@@ -17,4 +17,5 @@ class Waist extends Model
     {
       return $this->hasMany(Quantity::class);
     }
+  
 }

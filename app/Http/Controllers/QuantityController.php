@@ -8,6 +8,7 @@ use App\Quantity;
 use App\Waist;
 use App\Product;
 use App\Category;
+use App\CategoryWaist;
 
 class QuantityController extends Controller
 {
@@ -41,10 +42,25 @@ class QuantityController extends Controller
 
   public function new(Product $product)
   {
-    $category = Category::find($product->category_id);
+    //$category = Category::find($product->category_id);
 
-    $waists =Waist::where('type',$category->type)->get();
+    $categoryWaist =CategoryWaist::where('category_id',$product->category_id)->get();
+    
+    $waists = [];
+    foreach ($categoryWaist as $item){
+      $searchWaist = Waist::where('type',$item->type)->get();
+
+      foreach ($searchWaist as $itemWaist){
+        $waists[] = [
+                    'id' =>$itemWaist->id,
+                    'description' => $itemWaist->description
+                    ];
+      }
+    }
+//    $waists
+    
     //dd($waists);
+
     return view('quantity.create',[
       'product' =>$product,
       'waists' =>$waists

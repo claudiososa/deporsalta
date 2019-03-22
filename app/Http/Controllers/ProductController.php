@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use App\Category;
+use App\CategoryWaist;
 use App\Brand;
 use App\Colour;
 use App\Quota;
@@ -45,11 +46,6 @@ class ProductController extends Controller
         }                  
     })->orderBy('id','desc')->paginate(10);
     
-    
-  //   ->where(function($q) {
-  //     $q->where('Cab', 2)
-  //       ->orWhere('Cab', 4);
-  // })
   $brands = Brand::all();  
   $categories = Category::all();
   return view('product.list',[
@@ -143,7 +139,20 @@ class ProductController extends Controller
     
     $category =Category::find($request->category_id);
     
-    $waists =Waist::where('type',$category->type)->orderBy('id','asc')->get();
+    //$waists =Waist::where('type',$category->type)->orderBy('id','asc')->get();
+    $categoryWaist =CategoryWaist::where('category_id',$request->category_id)->get();
+    
+      $waists = [];
+      foreach ($categoryWaist as $item){
+        $searchWaist = Waist::where('type',$item->type)->get();
+
+        foreach ($searchWaist as $itemWaist){
+          $waists[] = [
+                    'id' =>$itemWaist->id,
+                    'description' => $itemWaist->description
+                    ];
+        }
+      }
     //dd($waists);    
     $brands = Brand::all();
     $colours = Colour::all();
@@ -180,33 +189,40 @@ class ProductController extends Controller
       'brand_id'=>$request->input('brand_id'),
       'colour_id'=>$request->input('colour_id'),
       //'user_id'=>'1',
-
     ]);
 
-    //dd($product);
-    $waists = Waist::where('type',$request->type)->get();
-    //dd($waists);
-
-    foreach ($waists as $waist){
-      //$dato =${'request->priceCost'.$waist->id};
-      //$dato =${'priceCost'.$waist->id};
-
-      //dd($request->input('priceCost'.$waist->id));
-      $price = Productprice::create([
-        'product_id' => $product->id,
-        'waist_id'=>$waist->id,
-        'price_cost'=>$request->input('priceCost'.$waist->id),
-        'price_sale'=>$request->input('priceClient'.$waist->id),        
-        
-  
-      ]);
-      //dd($request->priceCost+$waist->id);
-    }
-
-      
+   // $waists = Waist::where('type',$request->type)->get();
     
-   
-    return redirect('/viewproduct/'.$product->id);
+    $categoryWaist =CategoryWaist::where('category_id',$request->category_id)->get();
+    
+    $waists = [];
+    foreach ($categoryWaist as $item){
+      $searchWaist = Waist::where('type',$item->type)->get();
+
+      foreach ($searchWaist as $itemWaist){
+        $price = Productprice::create([
+          'product_id' => $product->id,
+          'waist_id'=>$itemWaist->id,
+          'price_cost'=>$request->input('priceCost'.$itemWaist->id),
+          'price_sale'=>$request->input('priceClient'.$itemWaist->id),     
+        ]);    
+      }
+    }  
+    
+    // $waists[] = [
+    //   'id' =>$itemWaist->id,
+    //   'description' => $itemWaist->description
+    //   ];
+
+    // foreach ($waists as $waist){     
+    //   $price = Productprice::create([
+    //     'product_id' => $product->id,
+    //     'waist_id'=>$waist->id,
+    //     'price_cost'=>$request->input('priceCost'.$waist->id),
+    //     'price_sale'=>$request->input('priceClient'.$waist->id),     
+    //   ]);    
+    // }
+   return redirect('/viewproduct/'.$product->id);
   }
 
   public function update(Product $product)
@@ -215,7 +231,23 @@ class ProductController extends Controller
       $categories = Category::all();
       $brands = Brand::all();
       $colours = Colour::all();
-      $waists =Waist::where('type',$category->type)->orderBy('id','asc')->get();
+
+      //$waists =Waist::where('type',$category->type)->orderBy('id','asc')->get();
+      
+      $categoryWaist =CategoryWaist::where('category_id',$product->category_id)->get();
+    
+      $waists = [];
+      foreach ($categoryWaist as $item){
+        $searchWaist = Waist::where('type',$item->type)->get();
+
+        foreach ($searchWaist as $itemWaist){
+          $waists[] = [
+                    'id' =>$itemWaist->id,
+                    'description' => $itemWaist->description
+                    ];
+        }
+      }
+
       $productPrice = Productprice::where('product_id',$product->id)->get();
       //dd($productPrice);
       return view('product.edit',[
@@ -257,21 +289,54 @@ class ProductController extends Controller
       $waists = Waist::where('type',$request->type)->get();
     
       $prices = Productprice::where('product_id',$product->id)->get();
-      //dd($prices);
-      foreach($waists as $waist){
 
-        foreach ($prices as $price) {
+
+      $categoryWaist =CategoryWaist::where('category_id',$product->category_id)->get();
+    
+      
+      foreach ($categoryWaist as $item){
+        $searchWaist = Waist::where('type',$item->type)->get();
+
+        foreach ($searchWaist as $itemWaist){
+          $searchPrice =ProductPrice::where('product_id',$request->input('id'))->where('waist_id',$itemWaist->id)->count();
           
-          if($price->waist_id == $waist->id)
-          {
-            $p =Productprice::find($price->id);
-            $p->price_cost = $request->input('priceCost'.$waist->id);
-            $p->price_sale = $request->input('priceClient'.$waist->id);
-            $p->save();            
+          if ($searchPrice > 0) {
+            $updatePrice=ProductPrice::where('product_id',$request->input('id'))->where('waist_id',$itemWaist->id)
+              ->update(['price_cost'=>$request->input('priceCost'.$itemWaist->id),
+                        'price_cost'=>$request->input('priceCost'.$itemWaist->id)
+                        ]);
+          } else {
+            $price = Productprice::create([
+              'product_id' => $request->input('id'),
+              'waist_id'=>$itemWaist->id,
+              'price_cost'=>$request->input('priceCost'.$itemWaist->id),
+              'price_sale'=>$request->input('priceClient'.$itemWaist->id),     
+            ]);    
           }
           
+          // $waists[] = [
+          //           'id' =>$itemWaist->id,
+          //           'description' => $itemWaist->description
+          //           ];
         }
       }
+
+
+      //dd($prices);
+      // foreach($waists as $waist){
+
+      //   foreach ($prices as $price) {
+          
+      //     if($price->waist_id == $waist->id)
+      //     {
+      //       $p =Productprice::find($price->id);
+      //       $p->price_cost = $request->input('priceCost'.$waist->id);
+      //       $p->price_sale = $request->input('priceClient'.$waist->id);
+      //       $p->save();            
+      //     }
+          
+      //   }
+      // }
       
 
 
