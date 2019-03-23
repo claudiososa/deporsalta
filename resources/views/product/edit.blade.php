@@ -3,7 +3,11 @@
   <script src="{{asset('js/product/create.js')}}"></script>
   <div class="container">
   
-    <h4>Modificar Producto</h4>
+    <div class='row alert alert-dark'>
+      <div class='col-md-6'><h4>Modificar Producto</h4></div>
+      <div class='col-md-2'>Id:{{$product->id}}</div>      
+      <div class='col-md-4'>{{$product->description}}</div>      
+    </div>
     <h5 class='alert alert-info'>Categoria: {{$category->description}}</h5>
     <form class="" action="/product/edit" method="post">
       {{csrf_field()}}
@@ -66,26 +70,18 @@
       </div>
 
       @foreach ($waists as $key => $value)
-      <p class='alert alert-info'>Talle: {{$value['description']}}</p>
-
-      <div class="form-group @if($errors->has('priceCost')) has-danger @endif">
-        @foreach($productPrice as $price)
-          @if($value['id'] == $price->waist_id)
-            <input type="text" name="priceCost{{$value['id']}}" id="priceCost{{$value['id']}}" value="{{$price->price_cost}}" class="form-control" placeholder="Precio de Costo">
-            <input type="text" name="priceClient{{$value['id']}}" id="priceClient{{$value['id']}}" value="{{$price->price_sale}}" class="form-control" placeholder="Precio Venta">
-          
-          @endif        
-        @endforeach
-        
-        @if ($errors->has('priceCost{{$value["id"]}}'))
-          @foreach ($errors->get('priceCost{{$value["id"]}}') as $error)
-            <div class="form-control-feedback">
-              {{$error}}
-            </div>
-          @endforeach
-        @endif
-      </div>
-        
+        <p class='alert alert-info'>Talle: {{$value['description']}}</p>
+        <div class="form-group @if($errors->has('priceCost')) has-danger @endif">
+          <input type="text" name="priceCost{{$value['id']}}" id="priceCost{{$value['id']}}" value="{{$value['price_cost']}}" class="form-control" placeholder="Precio de Costo">
+          <input type="text" name="priceClient{{$value['id']}}" id="priceClient{{$value['id']}}" value="{{$value['price_sale']}}" class="form-control" placeholder="Precio Venta">               
+          @if ($errors->has('priceCost{{$value["id"]}}'))
+            @foreach ($errors->get('priceCost{{$value["id"]}}') as $error)
+              <div class="form-control-feedback">
+                {{$error}}
+              </div>
+            @endforeach
+          @endif
+        </div>        
       @endforeach   
 
       <div class="form-group @if($errors->has('special')) has-danger @endif">

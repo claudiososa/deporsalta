@@ -237,19 +237,38 @@ class ProductController extends Controller
       $categoryWaist =CategoryWaist::where('category_id',$product->category_id)->get();
     
       $waists = [];
+
       foreach ($categoryWaist as $item){
         $searchWaist = Waist::where('type',$item->type)->get();
 
         foreach ($searchWaist as $itemWaist){
-          $waists[] = [
-                    'id' =>$itemWaist->id,
-                    'description' => $itemWaist->description
-                    ];
+          $countProductPrice = Productprice::where('product_id',$product->id)
+                                        ->where('waist_id',$itemWaist->id)
+                                        ->count();    
+          if ($countProductPrice > 0) {
+            $row = Productprice::where('product_id',$product->id)
+                                        ->where('waist_id',$itemWaist->id)
+                                        ->first();    
+            $waists[] = [
+              'id' =>$itemWaist->id,
+              'description' => $itemWaist->description,
+              'price_cost' => $row->price_cost ,
+              'price_sale' => $row->price_sale
+              ];
+          }else{
+            $waists[] = [
+              'id' =>$itemWaist->id,
+              'description' => $itemWaist->description,
+              'price_cost' => '0',
+              'price_sale' => '0'
+              ];
+          }                               
+          
         }
       }
 
       $productPrice = Productprice::where('product_id',$product->id)->get();
-      //dd($productPrice);
+      //dd($waists);
       return view('product.edit',[
         'product' => $product,
         'categories' => $categories,
@@ -271,7 +290,6 @@ class ProductController extends Controller
       }else{
         $special = 0;
       }        
-
       $product->id = $request->input('id');
       $product->description = $request->input('description');
       // $product->priceCost = $request->input('priceCost');
@@ -285,7 +303,8 @@ class ProductController extends Controller
       $product->colour_id = $request->input('colour_id');
 
       $product->save();
-         
+
+               
       $waists = Waist::where('type',$request->type)->get();
     
       $prices = Productprice::where('product_id',$product->id)->get();
@@ -303,7 +322,7 @@ class ProductController extends Controller
           if ($searchPrice > 0) {
             $updatePrice=ProductPrice::where('product_id',$request->input('id'))->where('waist_id',$itemWaist->id)
               ->update(['price_cost'=>$request->input('priceCost'.$itemWaist->id),
-                        'price_cost'=>$request->input('priceCost'.$itemWaist->id)
+                        'price_sale'=>$request->input('priceClient'.$itemWaist->id)
                         ]);
           } else {
             $price = Productprice::create([
@@ -364,7 +383,7 @@ class ProductController extends Controller
       $brands = Brand::all();
       $products = Product::with([
         'quantity' => function($query){
-          $query->with('waist')->get();
+          $query->with('waist')->where('quantity','<>','0')->get();
           },
         // 'productprice' => function($query){
         //     $query->get();
