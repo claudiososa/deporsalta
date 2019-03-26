@@ -117,7 +117,8 @@ class SaleController extends Controller
             $join->on('productprices.product_id','=','quantities.product_id');
             $join->on('productprices.waist_id','=','quantities.waist_id');
           })
-      ->where('quantities.product_id',$product->id)->get();     
+      ->where('quantities.product_id',$product->id)->where('quantities.quantity','<>','0')->get();     
+
       if ($sale > 0) {
         $sale = Sale::where('status','0')->first();        
       } else {
