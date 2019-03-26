@@ -19,7 +19,7 @@
           @endforeach
         @endif
 
-        <label for="description">Orden</label>
+        <!-- <label for="description">Orden</label>
         <input type="text" name="order" value="{{$waist->order}}" class="form-control"
         placeholder="Ingrese nombre de talle">
         @if ($errors->has('order'))
@@ -28,7 +28,7 @@
               {{$error}}
             </div>
           @endforeach
-        @endif
+        @endif -->
         <button type="submit" class="btn btn-success" name="button">Modificar Talle</button>
       </div>
     </form>

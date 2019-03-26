@@ -36,7 +36,13 @@ class WaistController extends Controller
 
   public function new()
   {
-    return view('waist.create');
+    $waists = Waist::distinct()->select('type')->orderBy('type','asc')->get();
+    $waist_details = Waist::orderBy('id','asc')->get();
+
+    return view('waist.create',[
+      'waists' => $waists,
+      'waist_details' => $waist_details
+    ]);
   }
 
   public function create(CreateWaistRequest $request)
