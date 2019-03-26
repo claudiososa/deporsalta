@@ -22,7 +22,8 @@ class SaleController extends Controller
       $search = [];
       $sum =0;
       $totalResultado = [];   
-      if($request->isMethod('post')){
+
+      if($request->isMethod('post')){//si llega con una peticion con metodo post
       
         $search = [
           'firstDate' => date('d-m-Y', strtotime($request->firstDate)),
@@ -33,6 +34,9 @@ class SaleController extends Controller
           'saledetail' => function($query){
            $query->get();
           },
+          'payment' => function($query){
+            $query->get();
+           },
           'total' => function($query){
             $query->get();           
           },
@@ -42,15 +46,39 @@ class SaleController extends Controller
             ->orderBy('id','desc')->get();
             //->paginate(5);  
         
-         
+        //dd($salesDetail);
+        $efectivo = 0;
+        $debito = 0;
+        $credito = 0;
 
         foreach ($salesDetail as $sale) {
 
           foreach ($sale->total as $total){
             $sum = $sum + $total->totalSale;
           }
+
+          foreach ($sale->payment as $typePayment){
+
+            switch ($typePayment->type) {
+              case 'efectivo':
+                $efectivo = $efectivo + $typePayment->amount;
+                break;
+              case 'debito':
+                $debito = $debito + $typePayment->amount;
+                break;
+              default:
+                $credito = $credito + $typePayment->amount;
+                break;
+            }             
+
+          }
         }
-          
+        
+        $typePayment= [
+          'efectivo' => $efectivo,
+          'debito' => $debito,
+          'credito' => $credito
+        ];
            
         $totalResultado= [
           'montoTotal' => $sum,
@@ -70,7 +98,8 @@ class SaleController extends Controller
       'sales' => $sales,
       'salesDetail' => $salesDetail,
       'search' => $search,
-      'montoTotal' => $totalResultado
+      'montoTotal' => $totalResultado,
+      'typePayment' => $typePayment
     ]);  
       
   }
