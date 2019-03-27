@@ -14,13 +14,12 @@
     </form>
     @if(!empty($search))
     <div class='row alert alert-info'>      
-      <div class='col-md-4'> Detalle de busqueda: Desde {{$search['firstDate']}} hasta {{$search['lastDate']}}</div>  
-      <div class='col-md-4'>Tipo de Pagos:
-        @foreach ( $typePayment as $key )
-
-        @endforeach
+      <div class='col-md-12'> Detalle de busqueda: Desde {{$search['firstDate']}} hasta {{$search['lastDate']}}</div>  
+      <div class='col-md-12'> Cantidad de ventas:{{$typePayment['countSales']}}</div>  
+      <div class='col-md-12'> Cantidad de productos:{{$typePayment['countProduct']}}</div>  
+      <div class='col-md-12'> - Efectivo: ${{$typePayment['efectivo']}} <br> - Debito: ${{$typePayment['debito']}} <br> - Credito: ${{$typePayment['credito']}}        
       </div>
-      <div class='col-md-4'>Total: {{$montoTotal['montoTotal']}}</div>
+      <div class='col-md-12'><b> - Total: ${{$montoTotal['montoTotal']}}</b></div>
 
     </div>
     @endif

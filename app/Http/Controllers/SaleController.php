@@ -21,7 +21,8 @@ class SaleController extends Controller
       $sales = Sale::where('status','1')->get();
       $search = [];
       $sum =0;
-      $totalResultado = [];   
+      $totalResultado = [];
+      $typePayment = [];   
 
       if($request->isMethod('post')){//si llega con una peticion con metodo post
       
@@ -50,8 +51,16 @@ class SaleController extends Controller
         $efectivo = 0;
         $debito = 0;
         $credito = 0;
+        $countSales =0;    
+        $countProduct =0;
 
         foreach ($salesDetail as $sale) {
+
+          $countSales = $countSales + 1;
+
+          foreach ($sale->saledetail as $item){
+            $countProduct = $countProduct + $item->quantity;
+          }
 
           foreach ($sale->total as $total){
             $sum = $sum + $total->totalSale;
@@ -77,9 +86,12 @@ class SaleController extends Controller
         $typePayment= [
           'efectivo' => $efectivo,
           'debito' => $debito,
-          'credito' => $credito
+          'credito' => $credito,
+          'countSales' => $countSales,
+          'countProduct' => $countProduct
         ];
-           
+        
+        //dd($typePayment);
         $totalResultado= [
           'montoTotal' => $sum,
         ];
