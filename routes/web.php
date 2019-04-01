@@ -122,6 +122,9 @@ Route::get('/fotos','AlbumsController@getAlbums');
 Route::get('/galeria','AlbumsController@getList')->name('gallery');
 Route::get('/createalbum','AlbumsController@getForm')->name('createAlbum');
 
+// Send Email
+
+Route::post('/sendmail','Controller@sendMail');
 
 Route::post('/createalbum', array('as' => 'create_album','uses' => 'AlbumsController@postCreate'));
 Route::get('/deletealbum/{id}', array('as' => 'delete_album','uses' => 'AlbumsController@getDelete'));

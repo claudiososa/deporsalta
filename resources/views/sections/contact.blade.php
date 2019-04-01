@@ -21,36 +21,37 @@
         <div class="row justify-content-center">
             <div class="col-12 col-md-10">
                 <div class="contact_from">
-                    <form action="mail.php" method="post" id="main_contact_form">
+                    <form action="/sendmail" method="post">
+                        {{csrf_field()}}
                         <!-- Message Input Area Start -->
                         <div class="contact_input_area">
                             <div id="success_fail_info"></div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" name="f_name" id="f-name" placeholder="Nombre" required>
+                                        <input type="text" class="form-control" name="f_name" id="name" placeholder="Nombre" required>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <!-- <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" name="l_name" id="l-name" placeholder="Apellido" required>
+                                        <input type="text" class="form-control" name="l_name" id="surname" placeholder="Apellido" required>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <input type="email" class="form-control" name="email" id="email" placeholder="Tu email" required>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <!-- <div class="col-md-6">
                                     <div class="form-group">
                                         <select class="custom-select w-100">
                                           <option selected>Asunto</option>
-                                        <!--  <option value="1">Revendedor</option>
-                                          <option value="2">Nueva coleccion</option> -->
+                                         <option value="1">Revendedor</option> -->
+                                          <!-- <option value="2">Nueva coleccion</option> 
                                           <option value="3">Consulta general</option>
                                         </select>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="col-12">
                                     <div class="form-group">
                                         <textarea name="message" class="form-control" id="message" cols="30" rows="10" placeholder="Tu Mensaje *" required></textarea>
