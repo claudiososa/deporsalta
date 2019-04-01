@@ -15,7 +15,7 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     public function sendMail(Request $request){
-        Mail::to('contacto@valenclothes.com.ar')->send(new SendMailContact($request));
+        Mail::to('vicomser.claudio@gmail.com')->send(new SendMailContact($request));
         return redirect('/contacto');
     }
 }
